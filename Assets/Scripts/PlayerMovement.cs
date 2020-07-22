@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -11,11 +12,22 @@ public class PlayerMovement : MonoBehaviour
     public float runSpeed = 40f;
 
     float horizontalMove = 0f;
-    bool jump = false;
+    public bool jump { get; set; } = false;
     bool crouch = false;
 
-    float playerMovementX = 0;
-    float playerMovementY = 0;
+    public float playerMovementX { get; set; } = 0;
+    public float playerMovementY { get; set; } = 0;
+
+    [SerializeField]
+    private int playerIndex = 0;
+
+
+
+    public int GetPlayerIndex()
+    {
+        return playerIndex;
+    }
+
 
 
     private void Awake()
@@ -24,20 +36,6 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-    private void OnLeftStick(InputValue val)
-    {
-        playerMovementX = val.Get<Vector2>()[0];
-        playerMovementY = val.Get<Vector2>()[1];
-        Debug.Log(playerMovementY);
- 
-
-    }
-
-
-    private void OnJump()
-    {
-        jump = true;
-    }
 
     // Update is called once per frame
     void Update()
@@ -50,20 +48,7 @@ public class PlayerMovement : MonoBehaviour
         if (playerMovementY < 0) { crouch = true; }
         else { crouch = false; }
 
-        //if (Input.GetButtonDown("Jump"))
-        //{
-        //    jump = true;
-        //   // animator.SetBool("IsJumping", true);
-        //}
 
-        //if (Input.GetButtonDown("Crouch"))
-        //{
-        //    crouch = true;
-        //}
-        //else if (Input.GetButtonUp("Crouch"))
-        //{
-        //    crouch = false;
-        //}
 
     }
 
