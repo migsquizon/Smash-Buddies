@@ -8,32 +8,46 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
-    private PlayerMovement mover;
+    private PlayerActions player;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        var movers = FindObjectsOfType<PlayerMovement>();
+        var players = FindObjectsOfType<PlayerActions>();
         var index = playerInput.playerIndex;
-        mover = movers.FirstOrDefault(m => m.GetPlayerIndex() == index);
+        player = players.FirstOrDefault(m => m.GetPlayerIndex() == index);
         //mover = GetComponent<PlayerMovement>();
     }
 
 
     public void OnLeftStick(CallbackContext val)
     {
-        //Debug.Log(context.ReadValue<Vector2>());
-        mover.playerMovementX = val.ReadValue<Vector2>()[0];
-        mover.playerMovementY = val.ReadValue<Vector2>()[1];
-        Debug.Log("input read");
-        //Debug.Log(playerMovementY);
+        if (player != null)
+        {
+            //Debug.Log(context.ReadValue<Vector2>());
+            player.playerMovementX = val.ReadValue<Vector2>()[0];
+            player.playerMovementY = val.ReadValue<Vector2>()[1];
 
+            //Debug.Log(playerMovementY);
+        }
 
     }
 
 
     public void OnJump()
     {
-        mover.jump = true;
+        if (player != null)
+        {
+            player.jump = true;
+        }
+    }
+
+    public void OnShoot()
+    {
+        Debug.Log("input read");
+        if (player != null)
+        {
+            player.willShoot = true;
+        }
     }
 
 

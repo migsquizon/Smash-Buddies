@@ -299,6 +299,8 @@ MonoBehaviour:
   controller: {fileID: 0}
   runSpeed: 40
   playerIndex: 1
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
 --- !u!114 &3501992195396063452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +336,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3501992195396063431}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 012dd8d50befab5469a49285f7b979f0, type: 3}
   m_Name: 

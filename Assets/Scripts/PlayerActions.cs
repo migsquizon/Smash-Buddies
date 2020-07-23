@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerActions : MonoBehaviour
 {
 
     public CharacterController2D controller;
@@ -20,6 +20,19 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField]
     private int playerIndex;
+
+
+    public bool willShoot { get; set; } = false;
+
+
+    public Transform firePoint;
+    public GameObject bulletPrefab;
+
+    void Shoot(bool s)
+    {
+
+        if (s) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
 
 
 
@@ -66,6 +79,8 @@ public class PlayerMovement : MonoBehaviour
     {
 
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        Shoot(willShoot);
+        willShoot = false;
         jump = false;
         // Move our character
         //controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);

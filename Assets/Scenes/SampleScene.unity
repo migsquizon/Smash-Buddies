@@ -2686,6 +2686,9 @@ MonoBehaviour:
   controller: {fileID: 0}
   runSpeed: 40
   playerIndex: 0
+  firePoint: {fileID: 1083089013}
+  bulletPrefab: {fileID: 6186094345650966270, guid: fa0672f69bb74fa459ebb66c60e0f836,
+    type: 3}
 --- !u!114 &755955542
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2994,6 +2997,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &1395800544 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3501992193592494077, guid: c482a3973c7d1459bb0015c738303b6a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1733982543}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1442381595
 GameObject:
   m_ObjectHideFlags: 0
@@ -3836,6 +3845,17 @@ PrefabInstance:
       propertyPath: m_UsedByEffector
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3501992195396063453, guid: c482a3973c7d1459bb0015c738303b6a,
+        type: 3}
+      propertyPath: firePoint
+      value: 
+      objectReference: {fileID: 1395800544}
+    - target: {fileID: 3501992195396063453, guid: c482a3973c7d1459bb0015c738303b6a,
+        type: 3}
+      propertyPath: bulletPrefab
+      value: 
+      objectReference: {fileID: 6186094345650966270, guid: fa0672f69bb74fa459ebb66c60e0f836,
+        type: 3}
     m_RemovedComponents:
     - {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: c482a3973c7d1459bb0015c738303b6a, type: 3}

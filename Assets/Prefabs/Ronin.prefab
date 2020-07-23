@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 559273869202937843}
   - component: {fileID: 559273869202937841}
   m_Layer: 0
-  m_Name: Ronin 1
+  m_Name: Ronin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,6 +299,8 @@ MonoBehaviour:
   controller: {fileID: 0}
   runSpeed: 40
   playerIndex: 0
+  firePoint: {fileID: 0}
+  bulletPrefab: {fileID: 0}
 --- !u!114 &559273869202937843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -334,7 +336,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 559273869202937832}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 012dd8d50befab5469a49285f7b979f0, type: 3}
   m_Name: 
