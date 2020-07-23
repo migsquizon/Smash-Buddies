@@ -19,13 +19,20 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
-    public void OnLeftStick(CallbackContext val)
+    public void OnLeftStick(InputValue val)
     {
+  
         if (player != null)
         {
+
+
+            //Debug.Log(val.Get());
             //Debug.Log(context.ReadValue<Vector2>());
-            player.playerMovementX = val.ReadValue<Vector2>()[0];
-            player.playerMovementY = val.ReadValue<Vector2>()[1];
+            Debug.Log(val.Get<Vector2>());
+            player.playerMovementX = val.Get<Vector2>()[0];
+
+
+            player.playerMovementY = val.Get<Vector2>()[1];
 
             //Debug.Log(playerMovementY);
         }
@@ -43,7 +50,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnShoot()
     {
-        Debug.Log("input read");
+       
         if (player != null)
         {
             player.willShoot = true;
