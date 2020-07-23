@@ -42,7 +42,7 @@
                 {
                     "name": "",
                     "id": "62fc5480-fd28-43a9-bcb7-8fd3be1dc1ef",
-                    "path": "<DualShockGamepad>/leftStick",
+                    "path": "<Gamepad>/leftStick",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -64,7 +64,7 @@
                 {
                     "name": "",
                     "id": "5da10082-0e48-4a02-9bd8-d38c3f618a26",
-                    "path": "<DualShockGamepad>/buttonSouth",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",

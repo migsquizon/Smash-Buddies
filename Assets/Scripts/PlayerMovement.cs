@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float playerMovementY { get; set; } = 0;
 
     [SerializeField]
-    private int playerIndex = 0;
+    private int playerIndex;
 
 
 
