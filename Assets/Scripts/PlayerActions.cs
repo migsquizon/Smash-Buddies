@@ -79,6 +79,7 @@ public class PlayerActions : MonoBehaviour
     {
 
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        Debug.Log(willShoot);
         Shoot(willShoot);
         willShoot = false;
         jump = false;

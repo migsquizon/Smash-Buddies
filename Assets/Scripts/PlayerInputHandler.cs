@@ -51,6 +51,7 @@ public class PlayerInputHandler : MonoBehaviour
     public void OnShoot()
     {
        
+       
         if (player != null)
         {
             player.willShoot = true;
