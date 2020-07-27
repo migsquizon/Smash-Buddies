@@ -8,7 +8,7 @@ public class PlayerActions : MonoBehaviour
 {
 
     public CharacterController2D controller;
-
+    bool teleport = false;
     public float runSpeed = 40f;
 
     float horizontalMove = 0f;
@@ -64,22 +64,58 @@ public class PlayerActions : MonoBehaviour
 
 
     }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("teleport") && !teleport)
+        {
+            
+            {
+                Debug.Log(transform.position);
+                Debug.Log("teleporting!");
+                if (transform.position.y > -1)
+                {
+                    
+                    teleport = true;
+                    transform.position = new Vector2(transform.position.x, -4f);
+                    Debug.Log(transform.position);
+                    StartCoroutine(ExampleCoroutine());
+                }
+                else if (transform.position.y < -1 )
+                {
+                    teleport = true;
+                    transform.position = new Vector2(transform.position.x, 2f);
+                    StartCoroutine(ExampleCoroutine());
+                }
+            }
+        }
+    }
+    IEnumerator ExampleCoroutine()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(3);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        teleport = false;
+    }
     public void OnLanding()
     {
-     //   animator.SetBool("IsJumping", false);
+        //   animator.SetBool("IsJumping", false);
     }
 
     public void OnCrouching(bool isCrouching)
     {
-       // animator.SetBool("IsCrouching", isCrouching);
+        // animator.SetBool("IsCrouching", isCrouching);
     }
 
     void FixedUpdate()
     {
 
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        Debug.Log(willShoot);
+        //        Debug.Log(willShoot);
         Shoot(willShoot);
         willShoot = false;
         jump = false;
