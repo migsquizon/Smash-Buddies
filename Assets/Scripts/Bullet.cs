@@ -25,8 +25,13 @@ public class Bullet : MonoBehaviour
         //}
         Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
+        if (hitInfo.gameObject.tag != "teleport")
+        {
+            Debug.Log("Success!");
+            Destroy(gameObject);
+        }
 
-        Destroy(gameObject);
+        
     }
 
 }

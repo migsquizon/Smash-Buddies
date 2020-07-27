@@ -15,8 +15,8 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(atkRange,0));
-        if (hit.collider.CompareTag("Enemy"))
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(atkRange, 0));
+        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
             
             Instantiate(bulletPrefab, transform.position, transform.rotation);
