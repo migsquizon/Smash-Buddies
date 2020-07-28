@@ -86,13 +86,13 @@ public class PlayerActions : MonoBehaviour
                     teleport = true;
                     transform.position = new Vector2(transform.position.x, -4f);
                     Debug.Log(transform.position);
-                    StartCoroutine(ExampleCoroutine());
+                    StartCoroutine(PortalCoroutine());
                 }
                 else if (transform.position.y < -1 )
                 {
                     teleport = true;
                     transform.position = new Vector2(transform.position.x, 2f);
-                    StartCoroutine(ExampleCoroutine());
+                    StartCoroutine(PortalCoroutine());
                 }
             }
         }
@@ -113,7 +113,7 @@ public class PlayerActions : MonoBehaviour
 
     }
 
-    IEnumerator ExampleCoroutine()
+    IEnumerator PortalCoroutine()
     {
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
@@ -142,7 +142,8 @@ public class PlayerActions : MonoBehaviour
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
    
         Shoot(willShoot);
-        BuildTower(buildTower);
+
+        if(jump!=true) BuildTower(buildTower);
         buildTower = false;
         willShoot = false;
         jump = false;

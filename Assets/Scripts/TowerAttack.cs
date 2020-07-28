@@ -17,11 +17,13 @@ public class TowerAttack : MonoBehaviour
     {
 
         if (transform.rotation.y < 0) atkRange *= -1;
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(atkRange, 0));
+        Vector3 weapon = transform.position + new Vector3(0.5f, 0, 0);
+        RaycastHit2D hit = Physics2D.Raycast(weapon, new Vector2(atkRange, 0));
+        //Debug.Log(hit.collider.CompareTag("Tower"));
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
 
-            Instantiate(bulletPrefab, transform.position, transform.rotation);
+            Instantiate(bulletPrefab, weapon, transform.rotation);
 
 
         }
