@@ -97,6 +97,22 @@ public class PlayerActions : MonoBehaviour
             }
         }
     }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        //Debug.Log(collision.gameObject.tag);
+        if (collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Player")
+        {
+            Debug.Log(collision.gameObject.tag);
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
+            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+            //Debug.Log(transform.GetChild(3).gameObject.tag);
+
+
+        }
+
+    }
+
     IEnumerator ExampleCoroutine()
     {
         //Print the time of when the function is first called.
@@ -109,6 +125,7 @@ public class PlayerActions : MonoBehaviour
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         teleport = false;
     }
+
     public void OnLanding()
     {
         //   animator.SetBool("IsJumping", false);
@@ -129,6 +146,7 @@ public class PlayerActions : MonoBehaviour
         buildTower = false;
         willShoot = false;
         jump = false;
+
 
 
 
