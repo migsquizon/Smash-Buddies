@@ -24,14 +24,22 @@ public class PlayerActions : MonoBehaviour
 
     public bool willShoot { get; set; } = false;
 
+    public bool buildTower { get; set; } = false;
+
 
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public GameObject towerPrefab;
 
     void Shoot(bool s)
     {
 
         if (s) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    void BuildTower(bool b)
+    {
+        if (b) Instantiate(towerPrefab, firePoint.position, firePoint.rotation);
     }
 
 
@@ -115,12 +123,14 @@ public class PlayerActions : MonoBehaviour
     {
 
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        //        Debug.Log(willShoot);
+   
         Shoot(willShoot);
+        BuildTower(buildTower);
+        buildTower = false;
         willShoot = false;
         jump = false;
-        // Move our character
-        //controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        //jump = false;
+
+
+
     }
 }

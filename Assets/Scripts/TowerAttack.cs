@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Attack : MonoBehaviour
+public class TowerAttack : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject bulletPrefab;
@@ -15,7 +15,9 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(atkRange, 0));
+        Debug.Log(transform.rotation.y);
+        if (transform.rotation.y < 0) atkRange *= -1;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position,new Vector2(atkRange, 0));
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
             

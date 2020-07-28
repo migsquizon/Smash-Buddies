@@ -48,6 +48,14 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnBuildTower()
+    {
+        if (player != null)
+        {
+            player.buildTower = true;
+        }
+    }
+
     public void OnShoot()
     {
        
