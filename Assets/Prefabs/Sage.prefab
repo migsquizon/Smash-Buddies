@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4138955022858728057}
   - component: {fileID: 4138955022858728054}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrouchCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -66,7 +66,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4138955022882252007}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4138955022947868250}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 4138955023435603931}
   - component: {fileID: 4138955023435603930}
   - component: {fileID: 4138955023568852377}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sage
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -270,6 +270,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   runSpeed: 40
   playerIndex: 1
+  respawns: []
   firePoint: {fileID: 4138955023896987899}
   bulletPrefab: {fileID: 6186094345650966270, guid: fa0672f69bb74fa459ebb66c60e0f836,
     type: 3}
@@ -328,7 +329,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4138955023896987899}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Firepoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}

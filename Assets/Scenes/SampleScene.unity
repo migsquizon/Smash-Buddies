@@ -3371,6 +3371,11 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4138955022858728056, guid: 974a80f1cb6348f4c80d133d2a2684b8,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4138955023435603905, guid: 974a80f1cb6348f4c80d133d2a2684b8,
         type: 3}
       propertyPath: m_Name
@@ -3414,7 +3419,7 @@ PrefabInstance:
     - target: {fileID: 4138955023435603935, guid: 974a80f1cb6348f4c80d133d2a2684b8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4138955023435603935, guid: 974a80f1cb6348f4c80d133d2a2684b8,
         type: 3}
@@ -6025,7 +6030,7 @@ GameObject:
   - component: {fileID: 1717757164}
   m_Layer: 0
   m_Name: Heroes
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6041,8 +6046,8 @@ Transform:
   m_LocalPosition: {x: -1.8210523, y: 0.53232205, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 751520461}
   - {fileID: 755955537}
+  - {fileID: 751520461}
   m_Father: {fileID: 0}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6313,6 +6318,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1717757164}
     m_Modifications:
+    - target: {fileID: 124434748539673049, guid: a0ac7b1c9097bf6419a0d23af0fcc3ac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 124434749488795518, guid: a0ac7b1c9097bf6419a0d23af0fcc3ac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 124434749554554309, guid: a0ac7b1c9097bf6419a0d23af0fcc3ac,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 124434749640860507, guid: a0ac7b1c9097bf6419a0d23af0fcc3ac,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 124434750108356322, guid: a0ac7b1c9097bf6419a0d23af0fcc3ac,
         type: 3}
       propertyPath: m_Name
@@ -6356,7 +6381,7 @@ PrefabInstance:
     - target: {fileID: 124434750108356348, guid: a0ac7b1c9097bf6419a0d23af0fcc3ac,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 124434750108356348, guid: a0ac7b1c9097bf6419a0d23af0fcc3ac,
         type: 3}

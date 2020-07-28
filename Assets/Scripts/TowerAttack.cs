@@ -15,11 +15,20 @@ public class TowerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (transform.rotation.y < 0) atkRange *= -1;
-        Vector3 weapon = transform.position + new Vector3(0.5f, 0, 0);
+        Vector3 weapon;
+        if (transform.rotation.y < 0)
+        {
+            atkRange =-5;
+            weapon = transform.position - new Vector3(0.5f, 0, 0);
+        }
+        else
+        {
+            Debug.Log(transform.rotation.y);
+            weapon = transform.position + new Vector3(0.5f, 0, 0);
+        }
         RaycastHit2D hit = Physics2D.Raycast(weapon, new Vector2(atkRange, 0));
         //Debug.Log(hit.collider.CompareTag("Tower"));
+        Debug.DrawRay(weapon, new Vector2(atkRange, 0), Color.green);
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
 

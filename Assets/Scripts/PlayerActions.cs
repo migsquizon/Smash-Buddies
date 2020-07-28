@@ -22,6 +22,16 @@ public class PlayerActions : MonoBehaviour
     private int playerIndex;
 
 
+    public GameObject[] respawns;
+    void Start()
+    {
+     
+    }
+
+
+
+
+
     public bool willShoot { get; set; } = false;
 
     public bool buildTower { get; set; } = false;
@@ -61,6 +71,9 @@ public class PlayerActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+   
         if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
         else if (playerMovementX == 0) { horizontalMove = 0 * runSpeed; }
         else { horizontalMove = -1.5f * runSpeed; }
@@ -98,20 +111,30 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Tower" || collision.gameObject.tag == "Player")
-        {
-            Debug.Log(collision.gameObject.tag);
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-            //Debug.Log(transform.GetChild(3).gameObject.tag);
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    //Debug.Log(collision.gameObject.tag);
+    //    if (collision.gameObject.tag == "Tower")
+    //    {
+    //        Debug.Log(collision.gameObject.tag);
+    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
+    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+    //        //Debug.Log(transform.GetChild(3).gameObject.tag);
 
 
-        }
+    //    }
+    //    if (collision.gameObject.tag == "Player")
+    //    {
+    //        Debug.Log(collision.gameObject.tag);
 
-    }
+    //        //Debug.Log(transform.GetChild(3).gameObject.tag);
+    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
+    //        Physics2D.IgnoreCollision(collision.gameObject.transform.GetChild(3).GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
+    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+
+    //    }
+
+    //}
 
     IEnumerator PortalCoroutine()
     {
@@ -143,7 +166,7 @@ public class PlayerActions : MonoBehaviour
    
         Shoot(willShoot);
 
-        if(jump!=true) BuildTower(buildTower);
+        if(jump!=true)BuildTower(buildTower);
         buildTower = false;
         willShoot = false;
         jump = false;

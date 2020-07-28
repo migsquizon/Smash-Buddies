@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124434748539673048}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Firepoint
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124434749488795513}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CeilingCheck
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -69,7 +69,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 124434749554554308}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundCheck
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -100,7 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 124434749640860506}
   - component: {fileID: 124434749640860501}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CrouchCollider
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 124434750108356344}
   - component: {fileID: 124434750108356345}
   - component: {fileID: 6255578091903887078}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ronin
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -300,6 +300,7 @@ MonoBehaviour:
   controller: {fileID: 0}
   runSpeed: 40
   playerIndex: 0
+  respawns: []
   firePoint: {fileID: 124434748539673048}
   bulletPrefab: {fileID: 6186094345650966270, guid: fa0672f69bb74fa459ebb66c60e0f836,
     type: 3}
