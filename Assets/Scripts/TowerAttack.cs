@@ -11,11 +11,11 @@ public class TowerAttack : MonoBehaviour
 
 
     public float duration = 5.0f;
-    private float timeSinceAction = 0.0f;
+    private float timeSinceAction;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
-   
+        timeSinceAction = 0.0f;
     }
 
     // Update is called once per frame
@@ -34,11 +34,14 @@ public class TowerAttack : MonoBehaviour
             Debug.Log(transform.rotation.y);
             weapon = transform.position + new Vector3(0.5f, 0, 0);
         }
+
         RaycastHit2D hit = Physics2D.Raycast(weapon, new Vector2(atkRange, 0));
         //Debug.Log(hit.collider.CompareTag("Tower"));
+ 
         Debug.DrawRay(weapon, new Vector2(atkRange, 0), Color.green);
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
+            Debug.Log(hit.collider.tag);
 
             Instantiate(bulletPrefab, weapon, transform.rotation);
         }
@@ -57,13 +60,13 @@ public class TowerAttack : MonoBehaviour
 
 
 
-    void OnCollisionEnter2D(Collision2D collision)
-    {
-        //Debug.Log(collision.gameObject.tag);
-        if (collision.gameObject.tag == "Tower")
-        {
-            Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-        }
+    //void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    //Debug.Log(collision.gameObject.tag);
+    //    if (collision.gameObject.tag == "Tower")
+    //    {
+    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
+    //    }
 
-    }
+    //}
 }

@@ -23,12 +23,11 @@ public class PlayerActions : MonoBehaviour
 
 
     public GameObject[] respawns;
-    void Start()
-    {
-     
-    }
 
+    [SerializeField]
+    private float buildTowerCooldown = 10.0f;
 
+    private float buildTowerTimer;
 
 
 
@@ -41,15 +40,34 @@ public class PlayerActions : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject towerPrefab;
 
-    void Shoot(bool s)
-    {
 
-        if (s) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+
+
+    void Start()
+    {
+        buildTowerTimer = buildTowerCooldown +1;
     }
 
-    void BuildTower(bool b)
+
+
+    public void Shoot()
     {
-        if (b) Instantiate(towerPrefab, firePoint.position, firePoint.rotation);
+
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+    }
+
+    public void BuildTower()
+    {
+        if (buildTowerTimer > buildTowerCooldown)
+        {
+            buildTowerTimer = 0;
+            Instantiate(towerPrefab, firePoint.position, firePoint.rotation);
+        }
+        else
+        {
+            Debug.Log("Build tower is on cooldown");
+        }
+       
     }
 
 
@@ -72,8 +90,9 @@ public class PlayerActions : MonoBehaviour
     void Update()
     {
 
+        buildTowerTimer  += Time.deltaTime;
 
-   
+
         if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
         else if (playerMovementX == 0) { horizontalMove = 0 * runSpeed; }
         else { horizontalMove = -1.5f * runSpeed; }
@@ -91,14 +110,14 @@ public class PlayerActions : MonoBehaviour
         {
             
             {
-                Debug.Log(transform.position);
-                Debug.Log("teleporting!");
+                //Debug.Log(transform.position);
+                //Debug.Log("teleporting!");
                 if (transform.position.y > -1)
                 {
                     
                     teleport = true;
                     transform.position = new Vector2(transform.position.x, -4f);
-                    Debug.Log(transform.position);
+                    //Debug.Log(transform.position);
                     StartCoroutine(PortalCoroutine());
                 }
                 else if (transform.position.y < -1 )
@@ -164,11 +183,7 @@ public class PlayerActions : MonoBehaviour
 
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
    
-        Shoot(willShoot);
 
-        if(jump!=true)BuildTower(buildTower);
-        buildTower = false;
-        willShoot = false;
         jump = false;
 
 

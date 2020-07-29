@@ -52,7 +52,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (player != null)
         {
-            player.buildTower = true;
+            player.BuildTower();
         }
     }
 
@@ -62,7 +62,7 @@ public class PlayerInputHandler : MonoBehaviour
        
         if (player != null)
         {
-            player.willShoot = true;
+            player.Shoot();
         }
     }
 
