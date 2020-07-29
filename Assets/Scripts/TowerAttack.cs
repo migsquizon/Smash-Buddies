@@ -7,14 +7,22 @@ public class TowerAttack : MonoBehaviour
     // Start is called before the first frame update
     public GameObject bulletPrefab;
     public int atkRange;
+
+
+
+    public float duration = 5.0f;
+    private float timeSinceAction = 0.0f;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
+   
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
         Vector3 weapon;
         if (transform.rotation.y < 0)
         {
@@ -33,10 +41,21 @@ public class TowerAttack : MonoBehaviour
         {
 
             Instantiate(bulletPrefab, weapon, transform.rotation);
+        }
 
+
+        timeSinceAction += Time.deltaTime;
+
+        if (timeSinceAction > duration)
+        {
+            Destroy(gameObject);
 
         }
+
     }
+
+
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
