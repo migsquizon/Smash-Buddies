@@ -9,6 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerActions player;
+    private HeartSystem heartSystem;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -16,8 +17,8 @@ public class PlayerInputHandler : MonoBehaviour
         var index = playerInput.playerIndex;
         player = players.FirstOrDefault(m => m.GetPlayerIndex() == index);
         //mover = GetComponent<PlayerMovement>();
+        heartSystem = player.GetComponent<HeartSystem>();
     }
-
 
     public void OnLeftStick(InputValue val)
     {
@@ -58,5 +59,9 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
+    public void OnTakeDamage()
+    {
+        heartSystem.TakeDamage(1);
+    }
 
 }

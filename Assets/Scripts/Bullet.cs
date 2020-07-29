@@ -23,11 +23,11 @@ public class Bullet : MonoBehaviour
         //{
         //    enemy.TakeDamage(damage);
         //}
-        Debug.Log(hitInfo);
+        //Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
         if (hitInfo.gameObject.tag != "teleport")
         {
-            Debug.Log("Success!");
+            //Debug.Log("Success!");
             Destroy(gameObject);
         }
 
