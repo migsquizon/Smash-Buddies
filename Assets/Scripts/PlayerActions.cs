@@ -228,8 +228,10 @@ public class PlayerActions : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (!isStun) controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-        else Debug.Log("player is stunned!");
+        if (isStun) return;
+        //else Debug.Log("player is stunned!");
+        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+    
 
         jump = false;
 
