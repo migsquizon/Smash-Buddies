@@ -7,7 +7,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerActions : MonoBehaviour
 {
 
-    public CharacterController2D controller;
+    CharacterController2D controller;
     bool teleport = false;
     public float runSpeed = 40f;
 
@@ -28,6 +28,12 @@ public class PlayerActions : MonoBehaviour
     private float buildTowerCooldown = 10.0f;
 
     private float buildTowerTimer;
+
+    [SerializeField]
+    private float stunCooldown = 10.0f;
+    [SerializeField]
+    public int stunTime = 5;
+    private float stunTimer;
 
 
 
@@ -50,10 +56,27 @@ public class PlayerActions : MonoBehaviour
 
 
 
+    public void Ability()
+    {
+
+        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        Transform opposite = transform.GetChild(4).GetComponent<Transform>();
+        //Debug.Log(firePoint.rotation);
+        //temporary.Rotate(0f, 180f, 0f);
+        //Debug.Log(firePoint.rotation);
+        //Quaternion temporary = firePoint.rotation;
+        Instantiate(bulletPrefab, opposite.position, opposite.rotation);
+        //temporary.Rotate(0f, 180f, 0f);
+
+    }
+
+
     public void Shoot()
     {
 
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+     
+
     }
 
     public void BuildTower()
@@ -68,6 +91,54 @@ public class PlayerActions : MonoBehaviour
             Debug.Log("Build tower is on cooldown");
         }
        
+    }
+
+
+    public void TankStun()
+    {
+        if (stunTimer > stunCooldown)
+        {
+            buildTowerTimer = 0;
+ 
+        }
+        else
+        {
+            Debug.Log("stun is on cooldown");
+        }
+
+    }
+
+
+
+    private bool isStun;
+
+    public void PlayerHit()
+    {
+        // If we are already stun, quit; we don't want to be hit again when we are stun
+        if (isStun)
+        {
+            Debug.Log("player is stunned, cannot stun again");
+            return;
+        }
+
+        //DamageTaken();
+        isStun = true;
+
+
+        StartCoroutine(WaitForStunToEnd());
+    }
+
+    private IEnumerator WaitForStunToEnd()
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(stunTime);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        isStun = false;
+  
     }
 
 
@@ -130,41 +201,18 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
-    //void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    //Debug.Log(collision.gameObject.tag);
-    //    if (collision.gameObject.tag == "Tower")
-    //    {
-    //        Debug.Log(collision.gameObject.tag);
-    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
-    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-    //        //Debug.Log(transform.GetChild(3).gameObject.tag);
-
-
-    //    }
-    //    if (collision.gameObject.tag == "Player")
-    //    {
-    //        Debug.Log(collision.gameObject.tag);
-
-    //        //Debug.Log(transform.GetChild(3).gameObject.tag);
-    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
-    //        Physics2D.IgnoreCollision(collision.gameObject.transform.GetChild(3).GetComponent<Collider2D>(), transform.GetChild(3).GetComponent<Collider2D>());
-    //        Physics2D.IgnoreCollision(collision.gameObject.GetComponent<Collider2D>(), GetComponent<Collider2D>());
-
-    //    }
-
-    //}
+ 
 
     IEnumerator PortalCoroutine()
     {
         //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        //Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(3);
 
         //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         teleport = false;
     }
 
@@ -180,9 +228,8 @@ public class PlayerActions : MonoBehaviour
 
     void FixedUpdate()
     {
-
-        controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-   
+        if (!isStun) controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
+        else Debug.Log("player is stunned!");
 
         jump = false;
 

@@ -67,4 +67,15 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
+    public void OnAbility()
+    {
+
+
+        if (player != null)
+        {
+            player.PlayerHit();
+        }
+    }
+
+
 }

@@ -22,6 +22,8 @@ public class CharacterController2D : MonoBehaviour
     [Header("Events")]
     [Space]
 
+
+
     public UnityEvent OnLandEvent;
 
     [System.Serializable]
@@ -39,6 +41,8 @@ public class CharacterController2D : MonoBehaviour
 
         if (OnCrouchEvent == null)
             OnCrouchEvent = new BoolEvent();
+
+  
     }
 
     private void FixedUpdate()
@@ -63,6 +67,8 @@ public class CharacterController2D : MonoBehaviour
 
     public void Move(float move, bool crouch, bool jump)
     {
+
+
         // If crouching, check to see if the character can stand up
         if (!crouch)
         {

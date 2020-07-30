@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class TowerAttack : MonoBehaviour
 {
@@ -35,9 +36,16 @@ public class TowerAttack : MonoBehaviour
             weapon = transform.position + new Vector3(0.5f, 0, 0);
         }
 
-        RaycastHit2D hit = Physics2D.Raycast(weapon, new Vector2(atkRange, 0));
+        RaycastHit2D hit = Physics2D.Raycast(weapon, new Vector2(atkRange, 0), Math.Abs(atkRange));
         //Debug.Log(hit.collider.CompareTag("Tower"));
- 
+
+        //RaycastHit[] hits = Physics.RaycastAll(launchoffset.position, transform.forward, 100.0F);
+        //for (int i = 0; i < hits.Length; i++)
+        //{
+
+
+        //}
+
         Debug.DrawRay(weapon, new Vector2(atkRange, 0), Color.green);
         if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
