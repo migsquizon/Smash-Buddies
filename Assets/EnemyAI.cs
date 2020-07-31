@@ -6,12 +6,18 @@ using Pathfinding;
 public class EnemyAI : MonoBehaviour
 {
 
-	public Transform target;
+	private enum State
+	{
+		ChasePortal,
+		ChasePlayer,
+	}
 
+	public Transform target;
+	public Transform portal;
 	public float speed = 300f;
 	public float nextWaypointDistance = 3f;
-
 	public Transform enemyGFX;
+	private State state;
 
 	Path path;
 	int currentWaypoint = 0;
@@ -22,6 +28,7 @@ public class EnemyAI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+    	state = State.ChasePortal;
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -29,9 +36,21 @@ public class EnemyAI : MonoBehaviour
     }
 
     void UpdatePath()
-    {
-    	if (seeker.IsDone())
-    		seeker.StartPath(rb.position, target.position, OnPathComplete);
+    {	
+    	switch(state)
+    	{
+    		default:
+    		case State.ChasePortal:
+    			if (seeker.IsDone())
+    				seeker.StartPath(rb.position, portal.position, OnPathComplete);
+    			break;
+
+    		case State.ChasePlayer:
+    		    if (seeker.IsDone())
+    				seeker.StartPath(rb.position, target.position, OnPathComplete);
+    			break;
+    	}
+
     }
 
     void OnPathComplete(Path p)
@@ -46,42 +65,103 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (path == null)
-        	return;
+    	switch(state)
+    	{
+    		default:
+    		case State.ChasePortal:
+    			FindTarget();
+    			if (path == null)
+			    	return;
 
-        if(currentWaypoint >= path.vectorPath.Count)
-        {
-        	reachedEndOfPath = true;
-        	return;
-        } else
-        {
-        	reachedEndOfPath = false;
-        }
+			    if(currentWaypoint >= path.vectorPath.Count)
+			    {
+			    	reachedEndOfPath = true;
+			    	return;
+			    } else
+			    {
+			    	reachedEndOfPath = false;
+			    }
 
-        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime;
-        Vector2 velocity = rb.velocity;
+			    Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+			    Vector2 force = direction * speed * Time.deltaTime;
+			    Vector2 velocity = rb.velocity;
 
 
-        //rb.AddForce(force);
+			    //rb.AddForce(force);
 
-        velocity.x = force.x;
-        rb.velocity = velocity;
+			    velocity.x = force.x;
+			    rb.velocity = velocity;
 
-        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+			    float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-        if (distance < nextWaypointDistance)
-        {
-        	currentWaypoint++;
-        }
+			    if (distance < nextWaypointDistance)
+			    {
+			    	currentWaypoint++;
+			    }
 
-        if (force.x >= 0.01f)
-        {
-        	enemyGFX.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if (force.x <= -0.01f)
-        {
-        	enemyGFX.localScale = new Vector3(-1f ,1f, 1f);
-        }
+			    if (force.x >= 0.01f)
+			    {
+			    	enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+			    }
+			    else if (force.x <= -0.01f)
+			    {
+			    	enemyGFX.localScale = new Vector3(-1f ,1f, 1f);
+			    }
+    			break;
+    		// Code for portal here 
+
+    		case State.ChasePlayer:
+			    if (path == null)
+			    	return;
+
+			    if(currentWaypoint >= path.vectorPath.Count)
+			    {
+			    	reachedEndOfPath = true;
+			    	return;
+			    } else
+			    {
+			    	reachedEndOfPath = false;
+			    }
+
+			    direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+			    force = direction * speed * Time.deltaTime;
+			    velocity = rb.velocity;
+
+
+			    //rb.AddForce(force);
+
+			    velocity.x = force.x;
+			    rb.velocity = velocity;
+
+			    distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+			    if (distance < nextWaypointDistance)
+			    {
+			    	currentWaypoint++;
+			    }
+
+			    if (force.x >= 0.01f)
+			    {
+			    	enemyGFX.localScale = new Vector3(1f, 1f, 1f);
+			    }
+			    else if (force.x <= -0.01f)
+			    {
+			    	enemyGFX.localScale = new Vector3(-1f ,1f, 1f);
+			    }
+			    break;
+    	}
+
+    }
+
+    private void FindTarget()
+    {
+    	float targetRange = 30f;
+    	Debug.Log(Vector3.Distance(transform.position, target.position));
+    	if (Vector3.Distance(transform.position, target.position) < targetRange)
+    	{
+    		//Player within target range
+    		state = State.ChasePlayer;
+    	}
+    	else state = State.ChasePortal;
     }
 }
