@@ -35,6 +35,8 @@ public class Bomb : MonoBehaviour
     }
 
     void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log(other.gameObject.tag);
+        Debug.Log(transform.position.x);
         if (SplashRange > 0){
             var hitcolliders = Physics2D.OverlapCircleAll(transform.position,SplashRange);
             foreach (var hitcollider in hitcolliders){
@@ -43,8 +45,8 @@ public class Bomb : MonoBehaviour
                     var closest = hitcollider.ClosestPoint(transform.position);
                     var distance = Vector3.Distance(closest,transform.position);
                     var dmg = Mathf.InverseLerp(SplashRange,0,distance);
-                    Debug.Log("Eneemy took hit");
-                    Debug.Log(dmg);
+                    //Debug.Log("Eneemy took hit");
+                    //Debug.Log(dmg);
                 }
             }
         }

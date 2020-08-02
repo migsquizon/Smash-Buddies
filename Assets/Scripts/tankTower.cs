@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FireTower : MonoBehaviour
+public class tankTower : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject fireBreadth;
-    public int atkRange;
+    public GameObject pusher;
+    public int atkRange = 1;
     public int atkSpeed;
-    public Transform launchoffset;
     public int atkSize;
+    
+    public Transform launchoffset;
     bool fired = false;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
-        
     }
 
     // Update is called once per frame
@@ -30,7 +30,7 @@ public class FireTower : MonoBehaviour
             dir = -1f;
         }
         
-        var hitcolliders = Physics2D.OverlapBoxAll(launchoffset.position,new Vector2 (6f,1f),0);
+        var hitcolliders = Physics2D.OverlapBoxAll(launchoffset.position,new Vector2 (atkRange*1f,1f),0);
         //var hitcolliders = Physics2D.OverlapCircleAll(new Vector3(launchoffset.position.x + (dir * Math.Abs(transform.position.y)), launchoffset.position.y, 0f), 3f);
         foreach (var hitcollider in hitcolliders)
         {
@@ -47,9 +47,9 @@ public class FireTower : MonoBehaviour
     {
         if (!fired)
         {
-            GameObject fire = Instantiate(fireBreadth, transform.position, transform.rotation);
-            fire.GetComponent<Fire>().AtkRange = atkRange;
-            fire.GetComponent<Fire>().size = atkSize;
+            GameObject pusherobj = Instantiate(pusher, transform.position, transform.rotation);
+            pusherobj.GetComponent<push>().AtkRange = atkRange;
+//            push.GetComponent<Fire>().size = atkSize;
             fired = true;
             StartCoroutine(fireCD());
         }

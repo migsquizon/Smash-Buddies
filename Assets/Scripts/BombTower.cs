@@ -12,6 +12,7 @@ public class BombTower : MonoBehaviour
     public Transform launchoffset;
     private bool bombed = false;
     public float atkRange = 5f;
+    public int atkSpeed = 1;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
@@ -27,24 +28,25 @@ public class BombTower : MonoBehaviour
         float dir;
         if (transform.rotation.y > 1)
         {
-            dir = 1f;
+            dir = -1f;
         }
         else
         {
-            dir = -1f;
+            dir = 1f;
         }
         //RaycastHit[] hits; 
         //hits = Physics.RaycastAll(launchoffset.position, new Vector2(5f,0), 100.0F);
         Debug.DrawRay(new Vector3(launchoffset.position.x + (dir * Math.Abs(transform.position.y)), launchoffset.position.y, 0f), new Vector2(dir*1f, 0));
         // Debug.Log(hits.Length);
         //RaycastHit2D hit = Physics2D.Raycast(launchoffset.position, new Vector2(atkRange, 0));
-        var hitcolliders = Physics2D.OverlapCircleAll(new Vector3(launchoffset.position.x + (dir * Math.Abs(transform.position.y)), launchoffset.position.y, 0f), 3f);
+        //var hitcolliders = Physics2D.OverlapCircleAll(new Vector3(launchoffset.position.x + (dir * Math.Abs(transform.position.y)), launchoffset.position.y, 0f), 3f);
+        var hitcolliders = Physics2D.OverlapBoxAll(launchoffset.position + new Vector3 (2*dir*Math.Sign(transform.position.x),0,0),new Vector2 (1f,2f),0);
         foreach (var hitcollider in hitcolliders)
         {
             var enemy = hitcollider.gameObject.tag;
             if (enemy == "Enemy")
             {
-                Debug.Log("Eneemy took hit");
+//                Debug.Log("Eneemy took hit");
                 toThrow();
             }
         }
@@ -69,6 +71,7 @@ public class BombTower : MonoBehaviour
     {
         if (!bombed)
         {
+            Debug.Log(launchoffset.position.x);
             Instantiate(bombPrefab, launchoffset.position, transform.rotation);
             bombed = true;
             StartCoroutine(ExampleCoroutine());
@@ -81,7 +84,7 @@ public class BombTower : MonoBehaviour
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(4-atkSpeed);
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
