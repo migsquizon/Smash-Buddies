@@ -9,6 +9,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerActions player;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -73,8 +74,13 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (player != null)
         {
-            player.PlayerHit();
+            player.Ability();
         }
+    }
+
+    public void OnChangeLevel()
+    {
+
     }
 
 
