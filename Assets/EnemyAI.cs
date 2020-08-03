@@ -6,7 +6,7 @@ using Pathfinding;
 public class EnemyAI : MonoBehaviour
 {
 
-	public Transform target;
+    public Transform portal; 
 
 	public float speed = 300f;
 	public float nextWaypointDistance = 3f;
@@ -19,6 +19,7 @@ public class EnemyAI : MonoBehaviour
 
 	Seeker seeker;
 	Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,15 +31,25 @@ public class EnemyAI : MonoBehaviour
 
     void UpdatePath()
     {
-    	//float distToPlayer = Vector2.Distance(transform.position, target.position);
-    	RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(1,0,0), new Vector2(visionRange, 0), visionRange);
-    	Debug.DrawRay(transform.position, new Vector2(visionRange*1f, 0));
-    	Debug.Log(hit.collider);
-    	Debug.Log(hit.collider.CompareTag("Player"));
-    	if (seeker.IsDone() && hit.collider != null && hit.collider.CompareTag("Player")) {
-    		seeker.StartPath(rb.position, target.position, OnPathComplete);
-    		Debug.Log("Update Path");
-    	}
+
+    	RaycastHit2D hit_front = Physics2D.Raycast(transform.position + new Vector3(1,0,0), new Vector2(visionRange, 0), visionRange);
+		RaycastHit2D hit_back = Physics2D.Raycast(transform.position + new Vector3(-1,0,0), new Vector2(visionRange * -1f, 0), visionRange);
+
+        if (seeker.IsDone()) {
+            if ((hit_front.collider != null && hit_front.collider.CompareTag("Player")) || (hit_back.collider != null && hit_back.collider.CompareTag("Player"))) { //Chases the nearest player 
+                if (hit_front.collider == null) { //Player is behind
+                    seeker.StartPath(rb.position, hit_back.point, OnPathComplete);
+                } else if (hit_back.collider == null) { //Player is in front
+                    seeker.StartPath(rb.position, hit_front.point, OnPathComplete);
+                } else if (Vector2.Distance(transform.position, hit_front.point) > Vector2.Distance(transform.position, hit_back.point)){ //enemy behind is closer
+                    seeker.StartPath(rb.position, hit_back.point, OnPathComplete);
+                } else {
+                    seeker.StartPath(rb.position, hit_front.point, OnPathComplete);
+                }
+            } else {
+                seeker.StartPath(rb.position, portal.position, OnPathComplete); //Chases the portal instead
+            }
+        }
 
     }
 
@@ -54,12 +65,6 @@ public class EnemyAI : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-    	//float distToPlayer = Vector2.Distance(transform.position, target.position);
-    	//Debug.Log("Distance to Player" + distToPlayer);
-    	//RaycastHit2D hit = Physics2D.Raycast(transform.position, new Vector2(visionRange, 0));
-        //if (hit.collider != null && hit.collider.CompareTag("Enemy"))
-        //if (distToPlayer < visionRange)
-        //{
     	if (path == null)
         	return;
 
@@ -75,9 +80,6 @@ public class EnemyAI : MonoBehaviour
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime;
         Vector2 velocity = rb.velocity;
-
-
-        //rb.AddForce(force);
 
         velocity.x = force.x;
         rb.velocity = velocity;
@@ -97,7 +99,6 @@ public class EnemyAI : MonoBehaviour
         {
         	enemyGFX.localScale = new Vector3(-1f ,1f, 1f);
         }
-        //}
 
     }
 }
