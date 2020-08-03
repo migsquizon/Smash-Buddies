@@ -74,7 +74,12 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (player != null)
         {
-            player.Ability();
+            Debug.Log(player.gameObject.name);
+            if (player.gameObject.name == "Ronin")
+            {
+
+                player.Ability();
+            }
         }
     }
 
