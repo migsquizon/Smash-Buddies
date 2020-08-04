@@ -51,7 +51,7 @@
                     "id": "f11192fe-1c83-4762-a975-73c889939f01",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
                 },
                 {
                     "name": "TakeDamage",

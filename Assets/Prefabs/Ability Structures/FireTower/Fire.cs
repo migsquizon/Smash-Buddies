@@ -44,11 +44,11 @@ public class Fire : MonoBehaviour
         //{
         //    enemy.TakeDamage(damage);
         //}
-        Debug.Log(hitInfo);
+        //Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
         if (hitInfo.gameObject.tag == "Enemy")
         {
-            Debug.Log("burn!");
+            //Debug.Log("burn!");
             hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             //Destroy(gameObject);
         }
