@@ -27,7 +27,7 @@ public class EnemyAI : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         portal = GameObject.FindGameObjectWithTag("MainPortal").GetComponent<Transform>();
-        Debug.Log(portal);
+        // Debug.Log(portal);
 
         InvokeRepeating("UpdatePath", 0f, .5f);
     }

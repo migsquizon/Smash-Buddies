@@ -27,7 +27,7 @@ public class WaveManager : MonoBehaviour
     public static void spawnMiniWave()
     {
         List<List<GameObject>> miniWaves = EnemySpawner.SharedInstance.GetMiniWave(0, 0);
-        List<Vector2> miniWavesLocation = EnemySpawner.SharedInstance.GetSpawnLocation(0, 0);
+        List<Vector3> miniWavesLocation = EnemySpawner.SharedInstance.GetSpawnLocation(0, 0);
         List<GameObject> enemies = miniWaves[0];
         for (int i = 0; i < 4; i++)
         {

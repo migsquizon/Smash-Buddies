@@ -14,7 +14,7 @@ public class AoeEffect : MonoBehaviour
     public int aoedamage = 5;
     void Start()
     {
-        Debug.Log(transform.localScale);
+        // Debug.Log(transform.localScale);
         transform.localScale = transform.localScale + new Vector3(scale, 0, 0);
     }
 
@@ -31,7 +31,7 @@ public class AoeEffect : MonoBehaviour
         //{
         //    enemy.TakeDamage(damage);
         //}
-        Debug.Log(hitInfo);
+        // Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
         if (hitInfo.gameObject.tag == "Enemy")
         {

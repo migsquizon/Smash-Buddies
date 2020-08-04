@@ -13,19 +13,13 @@ public class SpawningEnemy
 public class MiniWave
 {
     public List<SpawningEnemy> enemyTypesInLane1;
-    public Vector2 spawnLocation1;
+    public Transform spawnLocation1;
     public List<SpawningEnemy> enemyTypesInLane2;
-    public Vector2 spawnLocation2;
+    public Transform spawnLocation2;
     public List<SpawningEnemy> enemyTypesInLane3;
-    public Vector2 spawnLocation3;
+    public Transform spawnLocation3;
     public List<SpawningEnemy> enemyTypesInLane4;
-    public Vector2 spawnLocation4;
-}
-
-public class UnpackedMiniWave
-{
-    public List<GameObject> enemies;
-    public Vector2 spawnLocation;
+    public Transform spawnLocation4;
 }
 
 [System.Serializable]
@@ -110,14 +104,14 @@ public class EnemySpawner : MonoBehaviour
         return enemyPool;
     }
 
-    public List<Vector2> GetSpawnLocation(int wave_i, int miniWave_i)
+    public List<Vector3> GetSpawnLocation(int wave_i, int miniWave_i)
     {
-        List<Vector2> enemySpawnLocations = new List<Vector2>()
+        List<Vector3> enemySpawnLocations = new List<Vector3>()
         {
-            waves[wave_i].miniWaves[miniWave_i].spawnLocation1,
-            waves[wave_i].miniWaves[miniWave_i].spawnLocation2,
-            waves[wave_i].miniWaves[miniWave_i].spawnLocation3,
-            waves[wave_i].miniWaves[miniWave_i].spawnLocation4,
+            waves[wave_i].miniWaves[miniWave_i].spawnLocation1.position,
+            waves[wave_i].miniWaves[miniWave_i].spawnLocation2.position,
+            waves[wave_i].miniWaves[miniWave_i].spawnLocation3.position,
+            waves[wave_i].miniWaves[miniWave_i].spawnLocation4.position,
         };
         return enemySpawnLocations;
     }

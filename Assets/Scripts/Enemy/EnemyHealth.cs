@@ -10,27 +10,21 @@ public class EnemyHealth : MonoBehaviour
     public bool m_Dead;
     public HealthbarBehaviour healthbar;
 
-    void OnEnable()
+    void Start()
     {
         m_MaxHealth = enemyStats.health;
-        m_CurrentHealth = enemyStats.health;
+        m_CurrentHealth = m_MaxHealth;
         m_Dead = false;
-        healthbar.SetHealth(80, 100);
+        healthbar.SetHealth(m_CurrentHealth, m_MaxHealth);
     }
 
     public void TakeDamage(float amount)
     {
         // tag can be used to determine status. for example, what happen if it takes damage while debuffed. (add multiplier etc)
         m_CurrentHealth -= amount;
-        SetHealthUI();
+        healthbar.SetHealth(m_CurrentHealth, m_MaxHealth);
 
         if (m_CurrentHealth <= 0f && !m_Dead) OnDeath();
-    }
-
-    private void SetHealthUI()
-    {
-        healthbar.SetHealth(m_CurrentHealth, m_MaxHealth);
-        // will be for the floating health bar on top of the enemy
     }
 
     private void OnDeath()

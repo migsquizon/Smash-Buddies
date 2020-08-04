@@ -23,15 +23,22 @@ public class Bullet : MonoBehaviour
         //{
         //    enemy.TakeDamage(damage);
         //}
-        Debug.Log(hitInfo);
+        // Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
         if (hitInfo.gameObject.tag != "teleport")
         {
-            Debug.Log("Success!");
+            // Debug.Log("Success!");
+            Debug.Log(hitInfo.gameObject.name);
             Destroy(gameObject);
         }
 
-        
+        if (hitInfo.gameObject.tag == "Enemy") {
+            Debug.Log("Damaged by bullet");
+            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+        }
     }
 
+    void OnBecameInvisible() {
+        Destroy(gameObject);
+    }
 }

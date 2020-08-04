@@ -18,4 +18,4 @@ MonoBehaviour:
   attackRate: 1
   lookRange: 5
   lookSphereCastRadius: 1
-  moveSpeed: 300
+  moveSpeed: 200
