@@ -55,7 +55,7 @@ public class PlayerActions : MonoBehaviour
         buildTowerTimer = buildTowerCooldown + 1;
     }
 
-    public void BuildTower(GameObject tower, int price)
+    public void BuildTowerMike(GameObject tower, int price)
     {
         if (coinManager.GetComponent<CoinManager>().coin >= price)
         {

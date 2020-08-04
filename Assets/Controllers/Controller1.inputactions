@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Circle",
                     "type": "Button",
                     "id": "868cac6b-59f9-4558-9cd3-f706e9aa8dd2",
                     "expectedControlType": "Button",
@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "X",
                     "type": "Button",
                     "id": "dd78a145-023d-434f-8db4-20bed8bd306c",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "BuildTower",
+                    "name": "Square",
                     "type": "Button",
                     "id": "567c22d9-9eb4-4d10-ac8f-3974ad7d33e7",
                     "expectedControlType": "Button",
@@ -38,7 +38,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Ability",
+                    "name": "Triangle",
                     "type": "Button",
                     "id": "7deb0c34-02f2-4fab-8d4a-c27f7a75b6d9",
                     "expectedControlType": "Button",
@@ -52,17 +52,33 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "ShowShop",
+                    "type": "Button",
+                    "id": "600300ff-24df-4ccf-8bc8-4b546c19d66f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "TakeDamage",
+                    "type": "Button",
+                    "id": "fb2db94c-c813-4cec-8c5e-7a136d55abd2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
                 {
                     "name": "",
                     "id": "ded0a989-6c2a-4080-b6aa-0f84f9324c3c",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/buttonEast",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "Circle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -73,18 +89,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "X",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "69a3a6ec-5279-4fdf-b061-6018defa2290",
-                    "path": "<Gamepad>/buttonEast",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BuildTower",
+                    "action": "Square",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -150,7 +166,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Ability",
+                    "action": "Triangle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -162,6 +178,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "ChangeLevel",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b0573607-8aef-4909-8425-f279c091c2f9",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowShop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "10027fb9-0fc5-4afb-9448-559f1dea60d7",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeDamage",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
