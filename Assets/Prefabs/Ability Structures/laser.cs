@@ -11,10 +11,13 @@ public class laser : MonoBehaviour
 
     public float atkRange;
     public float damage;
+    GameObject closest_enemy;
+
     void Start()
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
+
     }
 
     // Update is called once per frame
@@ -39,8 +42,9 @@ public class laser : MonoBehaviour
         }*/
         //box collidermethod
         var closest = 999f;
-        Vector3 enemy_loc = new Vector3 (0f,0f,0f);
-        var hitcolliders = Physics2D.OverlapBoxAll(colliderCheck.position,new Vector2 (3f,1f),0);
+        Vector3 enemy_loc = new Vector3(0f, 0f, 0f);
+
+        var hitcolliders = Physics2D.OverlapBoxAll(colliderCheck.position, new Vector2(3f, 1f), 0);
         foreach (var hitcollider in hitcolliders)
         {
             var enemy = hitcollider.gameObject.tag;
@@ -49,22 +53,33 @@ public class laser : MonoBehaviour
                 // get position
                 var enemy_location_x = hitcollider.gameObject.transform.position.x;
                 var dist_to_player = Math.Abs(enemy_location_x - transform.position.x);
-                if (dist_to_player < closest){
+                if (dist_to_player < closest)
+                {
                     closest = dist_to_player * 1f;
                     enemy_loc = hitcollider.gameObject.transform.position;
+                    closest_enemy = hitcollider.gameObject;
                 }
 
+
                 //Debug.Log(transform.position.x);
-                
+
             }
         }
-//        Debug.Log(closest);
-        if (closest < atkRange){
-        lineRenderer.enabled = true;
-        lineRenderer.SetPosition(0,offset.position);
-        lineRenderer.SetPosition(1,enemy_loc);}
+        //        Debug.Log(closest);
+        if (closest < atkRange)
+        {
+            lineRenderer.enabled = true;
+            lineRenderer.SetPosition(0, offset.position);
+            lineRenderer.SetPosition(1, enemy_loc);
+            if (closest_enemy != null)
+                closest_enemy.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+
+        }
         //ENEMY TAKE DAMAGE HERE
-        else{
+
+
+        else
+        {
             lineRenderer.enabled = false;
         }
     }

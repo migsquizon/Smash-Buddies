@@ -49,6 +49,7 @@ public class Fire : MonoBehaviour
         if (hitInfo.gameObject.tag == "Enemy")
         {
             Debug.Log("burn!");
+            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             //Destroy(gameObject);
         }
 

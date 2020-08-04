@@ -53,7 +53,7 @@ public class push : MonoBehaviour
             
             var direction = -transform.right;
             hitInfo.GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse); 
-
+            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             //Destroy(gameObject);
         }
 

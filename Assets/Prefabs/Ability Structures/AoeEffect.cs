@@ -39,14 +39,13 @@ public class AoeEffect : MonoBehaviour
             Debug.Log("Going to slow enemy by " + aoeSlow.ToString());
             
             Debug.Log("Going to damage enemy by " + aoedamage.ToString());
-
+            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(aoedamage);
         }
         if (hitInfo.gameObject.tag == "Player")
         {
             Debug.Log("Player enter!");
             Debug.Log("Going to heal player by " + aoeheal.ToString());
         }
-
     }
 
     void OnTriggerExit2D(Collider2D hitInfo)

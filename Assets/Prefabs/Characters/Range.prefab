@@ -33,7 +33,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143198916705082903}
   m_LocalRotation: {x: -0.006659434, y: -0, z: -0, w: 0.9999778}
-  m_LocalPosition: {x: -12.96, y: 4.81, z: -0.05}
+  m_LocalPosition: {x: 2.47, y: 3.9, z: -0.05}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -198,8 +198,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 945baca3ae4b3794497d1196eda43319, type: 2}
-  m_CurrentHealth: 0
+  m_CurrentHealth: 10
+  m_MaxHealth: 10
   m_Dead: 0
+  healthbar: {fileID: 0}
 --- !u!114 &6007655581556891989
 MonoBehaviour:
   m_ObjectHideFlags: 0
