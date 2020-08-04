@@ -10,6 +10,13 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerInput playerInput;
     private PlayerActions player;
     private HeartSystem heartSystem;
+    private GameObject towerPicker;
+    public GameObject towerOne;
+    public int towerOnePrice;
+    public GameObject towerTwo;
+    public int towerTwoPrice;
+    public GameObject towerThree;
+    public int towerThreePrice;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -18,6 +25,7 @@ public class PlayerInputHandler : MonoBehaviour
         player = players.FirstOrDefault(m => m.GetPlayerIndex() == index);
         //mover = GetComponent<PlayerMovement>();
         heartSystem = player.GetComponent<HeartSystem>();
+        towerPicker = player.towerPicker;
     }
 
     public void OnLeftStick(InputValue val)
@@ -41,7 +49,7 @@ public class PlayerInputHandler : MonoBehaviour
     }
 
 
-    public void OnJump()
+    public void OnX()
     {
         if (player != null)
         {
@@ -49,13 +57,50 @@ public class PlayerInputHandler : MonoBehaviour
         }
     }
 
-    public void OnShoot()
+    public void OnSquare()
     {
-       
-       
-        if (player != null)
+        if (towerPicker.activeInHierarchy)
         {
-            player.willShoot = true;
+            player.BuildTower(towerOne, towerOnePrice);
+        }
+        else
+        {
+            if (player != null)
+            {
+                player.willShoot = true;
+            }
+        }
+
+    }
+
+    public void OnTriangle()
+    {
+        if (towerPicker.activeInHierarchy)
+        {
+            player.BuildTower(towerTwo, towerTwoPrice);
+        }
+    }
+
+    public void OnCircle()
+    {
+        if (towerPicker.activeInHierarchy)
+        {
+            player.BuildTower(towerThree, towerThreePrice);
+        }
+    }
+
+    
+
+    public void OnShowShop()
+    {
+        Debug.Log("show shop");
+        if (towerPicker.activeInHierarchy)
+        {
+            towerPicker.SetActive(false);
+        }
+        else
+        {
+            towerPicker.SetActive(true);
         }
     }
 
@@ -64,4 +109,5 @@ public class PlayerInputHandler : MonoBehaviour
         heartSystem.TakeDamage(1);
     }
 
+    
 }

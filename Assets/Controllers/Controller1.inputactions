@@ -14,7 +14,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Shoot",
+                    "name": "Square",
                     "type": "Button",
                     "id": "868cac6b-59f9-4558-9cd3-f706e9aa8dd2",
                     "expectedControlType": "Button",
@@ -22,7 +22,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Jump",
+                    "name": "X",
                     "type": "Button",
                     "id": "dd78a145-023d-434f-8db4-20bed8bd306c",
                     "expectedControlType": "Button",
@@ -30,7 +30,7 @@
                     "interactions": ""
                 },
                 {
-                    "name": "BuildTower",
+                    "name": "Circle",
                     "type": "Button",
                     "id": "567c22d9-9eb4-4d10-ac8f-3974ad7d33e7",
                     "expectedControlType": "Button",
@@ -38,9 +38,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "TakeDamage",
+                    "name": "Triangle",
+                    "type": "Button",
+                    "id": "389ecf8f-010c-40d4-b3f1-a0c29785113a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ShowShop",
                     "type": "Button",
                     "id": "33ffec3d-f424-40ac-933e-3ad3cb2eff65",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "TakeDamage",
+                    "type": "Button",
+                    "id": "4bdf4345-0ebe-4356-829c-de86dc8ddc63",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -54,7 +70,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Shoot",
+                    "action": "Square",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -65,7 +81,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Jump",
+                    "action": "X",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -76,7 +92,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "BuildTower",
+                    "action": "Circle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -142,7 +158,29 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
+                    "action": "ShowShop",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9dcf24e-2547-4ca4-ab12-c3304d7f79b6",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "TakeDamage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "feccf85b-bc41-4cdc-9fee-1472070b64b2",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Triangle",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

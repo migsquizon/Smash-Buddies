@@ -27,6 +27,8 @@ public class PlayerActions : MonoBehaviour
 
     public Transform firePoint;
     public GameObject bulletPrefab;
+    public GameObject coinManager;
+    public GameObject towerPicker;
 
     void Shoot(bool s)
     {
@@ -34,7 +36,17 @@ public class PlayerActions : MonoBehaviour
         if (s) Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
+    public void BuildTower(GameObject tower, int price)
+    {
+        if (coinManager.GetComponent<CoinManager>().coin >= price)
+        {
+            Vector3 buildPos = new Vector3(firePoint.position.x, firePoint.position.y + 0.5f, firePoint.position.y);
+            Instantiate(tower, buildPos, firePoint.rotation);
+            coinManager.GetComponent<CoinManager>().BuyCoin(price);
+            Debug.Log(horizontalMove);
+        }
 
+    }
 
     public int GetPlayerIndex()
     {
@@ -46,7 +58,7 @@ public class PlayerActions : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController2D>();
-
+        towerPicker.SetActive(false);
     }
 
 
@@ -55,7 +67,7 @@ public class PlayerActions : MonoBehaviour
     {
         if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
         else if (playerMovementX == 0) { horizontalMove = 0 * runSpeed; }
-        else { horizontalMove = -1.5f * runSpeed; }
+        else if (playerMovementX < 0) { horizontalMove = -1.5f * runSpeed; }
 
 
         if (playerMovementY < 0) { crouch = true; }

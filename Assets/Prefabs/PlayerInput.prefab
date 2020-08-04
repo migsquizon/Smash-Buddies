@@ -44,6 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fed9650ee33e47b28b6c4cb916b4b24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerOne: {fileID: 2779262390552379129, guid: 94e0f24bf584942e98a294c864daff07,
+    type: 3}
+  towerOnePrice: 75
+  towerTwo: {fileID: 2779262390552379129, guid: df1db6cb0ec3444c0ae24a26771ef14b,
+    type: 3}
+  towerTwoPrice: 100
+  towerThree: {fileID: 2779262390552379129, guid: 7a85555f9432148e1a3b3eca3c1c1d66,
+    type: 3}
+  towerThreePrice: 150
 --- !u!114 &8061064206037296145
 MonoBehaviour:
   m_ObjectHideFlags: 0
