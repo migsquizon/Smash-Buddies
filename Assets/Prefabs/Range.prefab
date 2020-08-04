@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2041841621529198238}
   - component: {fileID: 6007655581556891989}
   - component: {fileID: 5691032820066195851}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Range
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -165,11 +165,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dbf82b3d4c545648b56d5a827af21af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyStats: {fileID: 11400000, guid: 945baca3ae4b3794497d1196eda43319, type: 2}
-  target: {fileID: 6063658085283239322, guid: 668d57e79464e6647b84a3e8345f8eea, type: 3}
-  speed: 300
+  speed: 100
   nextWaypointDistance: 3
-  visionRange: 0
+  visionRange: 10
   enemyGFX: {fileID: 4088880558329505399}
 --- !u!114 &6694244515814311798
 MonoBehaviour:

@@ -37,7 +37,7 @@ public class PlayerInputHandler : MonoBehaviour
 
             //Debug.Log(val.Get());
             //Debug.Log(context.ReadValue<Vector2>());
-            Debug.Log(val.Get<Vector2>());
+            //Debug.Log(val.Get<Vector2>());
             player.playerMovementX = val.Get<Vector2>()[0];
 
 

@@ -8,6 +8,7 @@ TagManager:
   - teleport
   - Tower
   - towerattacks
+  - MainPortal
   layers:
   - Default
   - TransparentFX

@@ -31,7 +31,7 @@ public class AoeEffect : MonoBehaviour
         //{
         //    enemy.TakeDamage(damage);
         //}
-        Debug.Log(hitInfo);
+        //Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
         if (hitInfo.gameObject.tag == "Enemy")
         {
