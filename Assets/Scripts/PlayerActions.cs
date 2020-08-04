@@ -46,14 +46,26 @@ public class PlayerActions : MonoBehaviour
     public GameObject bulletPrefab;
     public GameObject towerPrefab;
 
-
+    public GameObject coinManager;
+    public GameObject towerPicker;
 
 
     void Start()
     {
-        buildTowerTimer = buildTowerCooldown +1;
+        buildTowerTimer = buildTowerCooldown + 1;
     }
 
+    public void BuildTower(GameObject tower, int price)
+    {
+        if (coinManager.GetComponent<CoinManager>().coin >= price)
+        {
+            Vector3 buildPos = new Vector3(firePoint.position.x, firePoint.position.y + 0.5f, firePoint.position.y);
+            Instantiate(tower, buildPos, firePoint.rotation);
+            coinManager.GetComponent<CoinManager>().BuyCoin(price);
+            Debug.Log(horizontalMove);
+        }
+
+    }
 
 
     public void Ability()
@@ -75,7 +87,7 @@ public class PlayerActions : MonoBehaviour
     {
 
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-     
+
 
     }
 
@@ -90,7 +102,7 @@ public class PlayerActions : MonoBehaviour
         {
             Debug.Log("Build tower is on cooldown");
         }
-       
+
     }
 
 
@@ -99,7 +111,7 @@ public class PlayerActions : MonoBehaviour
         if (stunTimer > stunCooldown)
         {
             buildTowerTimer = 0;
- 
+
         }
         else
         {
@@ -138,7 +150,7 @@ public class PlayerActions : MonoBehaviour
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         isStun = false;
-  
+
     }
 
 
@@ -153,6 +165,7 @@ public class PlayerActions : MonoBehaviour
     private void Awake()
     {
         controller = GetComponent<CharacterController2D>();
+        towerPicker.SetActive(false);
 
     }
 
@@ -161,7 +174,7 @@ public class PlayerActions : MonoBehaviour
     void Update()
     {
 
-        buildTowerTimer  += Time.deltaTime;
+        buildTowerTimer += Time.deltaTime;
 
 
         if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
@@ -179,19 +192,19 @@ public class PlayerActions : MonoBehaviour
     {
         if (other.CompareTag("teleport") && !teleport)
         {
-            
+
             {
                 //Debug.Log(transform.position);
                 //Debug.Log("teleporting!");
                 if (transform.position.y > -1)
                 {
-                    
+
                     teleport = true;
                     transform.position = new Vector2(transform.position.x, -4f);
                     //Debug.Log(transform.position);
                     StartCoroutine(PortalCoroutine());
                 }
-                else if (transform.position.y < -1 )
+                else if (transform.position.y < -1)
                 {
                     teleport = true;
                     transform.position = new Vector2(transform.position.x, 2f);
@@ -201,7 +214,7 @@ public class PlayerActions : MonoBehaviour
         }
     }
 
- 
+
 
     IEnumerator PortalCoroutine()
     {
@@ -231,7 +244,7 @@ public class PlayerActions : MonoBehaviour
         if (isStun) return;
         //else Debug.Log("player is stunned!");
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-    
+
 
         jump = false;
 
