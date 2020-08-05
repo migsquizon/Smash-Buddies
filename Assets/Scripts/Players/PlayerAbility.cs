@@ -12,10 +12,12 @@ public class PlayerAbility : MonoBehaviour
     private float stunTimer;
 
 
-
-    public bool RoninActive {get;set;} = false;
+    public GameObject fire;
+    public GameObject heart;
+    public bool RoninActive { get; set; } = false;
 
     public Transform firePoint;
+    public Transform supportOffset;
     public GameObject bulletPrefab;
     public float duration = 5.0f;
     private float timeSinceAction;
@@ -30,9 +32,9 @@ public class PlayerAbility : MonoBehaviour
     void Update()
     {
         timeSinceAction += Time.deltaTime;
-        
-       // if(isActive && !fired) RoninAbility();
-  
+
+        // if(isActive && !fired) RoninAbility();
+
     }
 
     public void RoninAbility()
@@ -48,21 +50,53 @@ public class PlayerAbility : MonoBehaviour
         //Debug.Log(firePoint.rotation);
         //Quaternion temporary = firePoint.rotation;
         Instantiate(bulletPrefab, opposite.position, opposite.rotation);
-        
+
         // temporary.Rotate(0f, 180f, 0f);
         // if(timeSinceAction > duration) {
         //     RoninActive = false;
         //     Debug.Log(timeSinceAction);
         //     timeSinceAction = 0;
         // }
-        
+
     }
-    public void RoninDurFunc(){
+    public void tankStun(float AOE, int stunDuration)
+    {
+        var hitcolliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(AOE, 1f), 0);
+        foreach (var hitcollider in hitcolliders)
+        {
+            var enemy = hitcollider.gameObject.tag;
+            if (enemy == "Enemy")
+            {
+                Debug.Log("Got enemy here");
+                var ms = hitcollider.gameObject.GetComponent<EnemyHealth>().moveSpeed.speed;
+                Debug.Log(ms);
+                hitcollider.gameObject.GetComponent<EnemyHealth>().TakeStatus(0, ms, stunDuration);
+                Debug.Log(ms);
+
+                //Debug.Log(transform.position.x);
+
+            }
+        }
+    }
+
+    public void fireBurn(){
+        
+        //Transform opposite = transform.GetChild(4).GetComponent<Transform>();
+        Instantiate(fire,firePoint.position,firePoint.rotation);
+    }
+
+        public void heartSpawn(){
+        
+       // Transform opposite = transform.GetChild(4).GetComponent<Transform>();
+        Instantiate(heart,firePoint.position,firePoint.rotation);
+    }
+    public void RoninDurFunc()
+    {
         StartCoroutine(RoninDuration());
     }
 
 
-        IEnumerator shootCD()
+    IEnumerator shootCD()
     {
         //Print the time of when the function is first called.
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
@@ -72,10 +106,10 @@ public class PlayerAbility : MonoBehaviour
         fired = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-    
+
     }
 
-            IEnumerator RoninDuration()
+    IEnumerator RoninDuration()
     {
         //Print the time of when the function is first called.
         Debug.Log("Ronin ability duration started at : " + Time.time);
@@ -85,7 +119,7 @@ public class PlayerAbility : MonoBehaviour
         RoninActive = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Ronin Ability duration ended at : " + Time.time);
-    
+
     }
 
 

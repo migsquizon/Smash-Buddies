@@ -93,11 +93,7 @@ public class PlayerActions : MonoBehaviour
 
     }
 
-    public void fireBurn(){
-        
-        Transform opposite = transform.GetChild(4).GetComponent<Transform>();
-        Instantiate(fire,opposite.position,opposite.rotation);
-    }
+
     public void BuildTower()
     {
         if (buildTowerTimer > buildTowerCooldown)

@@ -11,7 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerActions player;
     private PlayerHealth playerHealth;
     private GameObject towerPicker;
-        private float RoninCD = 10f;
+    private float RoninCD = 10f;
     private float RoninTimer;
     public GameObject towerOne;
     public int towerOnePrice;
@@ -19,8 +19,15 @@ public class PlayerInputHandler : MonoBehaviour
     public int towerTwoPrice;
     public GameObject towerThree;
     public int towerThreePrice;
+    private float SageTimer;
+    private float SageCD = 5f;
+    private float TankTimer;
+    private float TankCD = 5f;
+    private float SupportTimer;
+    private float SupportCD = 5f;
+    private float TankAOE = 3f;
+    private int stunDuration = 3;
 
-    
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -30,11 +37,19 @@ public class PlayerInputHandler : MonoBehaviour
         //mover = GetComponent<PlayerMovement>();
         playerHealth = player.GetComponent<PlayerHealth>();
         towerPicker = player.towerPicker;
-        
+
         RoninTimer = RoninCD + 1;
+        SageTimer = SageCD + 1;
+        TankTimer = TankCD +1;
+        SupportTimer =SupportCD+1;
     }
-    private void Update() {
+    private void Update()
+    {
         RoninTimer += Time.deltaTime;
+        SageTimer += Time.deltaTime;
+        TankTimer += Time.deltaTime;
+        SupportTimer += Time.deltaTime;
+        
     }
     public void OnLeftStick(InputValue val)
     {
@@ -75,9 +90,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (player != null)
             {
-                if (player.GetComponent<PlayerAbility>().RoninActive && player.gameObject.name == "Ronin") {
+                if (player.GetComponent<PlayerAbility>().RoninActive && player.gameObject.name == "Ronin")
+                {
                     player.GetComponent<PlayerAbility>().RoninAbility();
-                    Debug.Log("ABILITYING");}
+                    Debug.Log("ABILITYING");
+                }
                 else player.Shoot();
             }
         }
@@ -92,23 +109,52 @@ public class PlayerInputHandler : MonoBehaviour
             return;
         }
         Debug.Log(player.gameObject.name);
-        if(player.gameObject.name == "Ronin"){
-            player.fireBurn();
-        // THIS IS A WORKING RONIN SCRIPT BUT I AM TESTING
-        /*if( RoninTimer > RoninCD){
-            player.GetComponent<PlayerAbility>().RoninActive = true;
-            RoninTimer = 0;
-            player.GetComponent<PlayerAbility>().RoninDurFunc();
-            //player.GetComponent<PlayerAbility>().RoninAbility();
+        if (player.gameObject.name == "Sage")
+        {
+            if (SageTimer > SageCD)
+            {
+                player.GetComponent<PlayerAbility>().fireBurn();
+                SageTimer = 0;
+            }
         }
-        
-        else{
-            Debug.Log("RONIN ABILITY ON CD");
-        }*/
-        
-        
+        if (player.gameObject.name == "Tank")
+        {
+            if (TankTimer > TankCD)
+            {
+                player.GetComponent<PlayerAbility>().tankStun(TankAOE,stunDuration);
+                TankTimer = 0;
+            }
+        }
+        if (player.gameObject.name == "Ronin")
+        {
+            if (SupportTimer > SupportCD)
+            {
+                player.GetComponent<PlayerAbility>().heartSpawn();
+                Debug.Log("support skill used");
+                SupportTimer = 0;
+                //Tanktimer = 0;
+            }
+        }
+        // THIS IS A WORKING RONIN SCRIPT BUT I AM TESTING
+
+        if (player.gameObject.name == "Ronins")
+        {
+            if (RoninTimer > RoninCD)
+            {
+                player.GetComponent<PlayerAbility>().RoninActive = true;
+                RoninTimer = 0;
+                player.GetComponent<PlayerAbility>().RoninDurFunc();
+                //player.GetComponent<PlayerAbility>().RoninAbility();
+            }
+
+            else
+            {
+                Debug.Log("RONIN ABILITY ON CD");
+            }
+
         }
     }
+
 
     public void OnCircle()
     {

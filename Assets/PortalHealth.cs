@@ -27,7 +27,10 @@ public class PortalHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        TakeDamage(30);
+        if (collision.gameObject.CompareTag("Enemy")) {
+            TakeDamage(30);
+            Destroy(collision.gameObject);
+        }
     }
 
     void TakeDamage(int damage)

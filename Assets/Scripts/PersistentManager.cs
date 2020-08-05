@@ -8,7 +8,12 @@ public class PersistentManager : MonoBehaviour
 
     public int totalGold { get; set; }
 
+    public int talentPoints {get; set;}
+
     public LevelManager levelManager;
+
+
+    public CoinManager coinManager;
 
 
     public Dictionary<string,int> roninValues { get; set; } = new Dictionary<string, int>
@@ -71,12 +76,18 @@ public class PersistentManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        // levelManager = GameObject.Find("LevelChanger").GetComponent<LevelManager>();
+        coinManager = GameObject.Find("CoinManager").GetComponent<CoinManager>();
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        totalGold = coinManager.coin;
+        // Debug.Log(talentPoints);
+
+
         // check for number of enemies here, then change scene using level manager
     }
 }

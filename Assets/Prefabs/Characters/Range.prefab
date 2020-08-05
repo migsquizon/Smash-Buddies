@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2041841621529198238}
   - component: {fileID: 6007655581556891989}
   - component: {fileID: 5691032820066195851}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Range
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -37,6 +37,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6365993994007990860}
+  - {fileID: 5906076543908981324}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.763, y: 0, z: 0}
@@ -184,6 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 945baca3ae4b3794497d1196eda43319, type: 2}
   m_FireRate: 1
+  attackPoint: {fileID: 5906076543908981324}
+  attackRange: 0.3
+  animator: {fileID: 0}
 --- !u!114 &2041841621529198238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,7 +264,7 @@ GameObject:
   - component: {fileID: 5311292881095114318}
   - component: {fileID: 4046094932292241495}
   - component: {fileID: 4295399758288143393}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -334,7 +338,7 @@ GameObject:
   - component: {fileID: 4311947516310375912}
   - component: {fileID: 8017830362590493125}
   - component: {fileID: 5900063184356925669}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -428,6 +432,36 @@ MonoBehaviour:
   fill: {fileID: 4295399758288143393}
   low: {r: 1, g: 0, b: 0, a: 0}
   high: {r: 0, g: 1, b: 0, a: 0}
+--- !u!1 &4999371574443788683
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5906076543908981324}
+  m_Layer: 0
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5906076543908981324
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999371574443788683}
+  m_LocalRotation: {x: 0.006659434, y: -0, z: -0, w: 0.9999778}
+  m_LocalPosition: {x: 0.494, y: 0.008, z: -0.02}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4088880558329505399}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7224534020549007609
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,7 +473,7 @@ GameObject:
   - component: {fileID: 240105268997318094}
   - component: {fileID: 2477214192261863947}
   - component: {fileID: 8151130496024988807}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -511,7 +545,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6365993994007990860}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Health Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -545,7 +579,7 @@ GameObject:
   - component: {fileID: 7758022165361459691}
   - component: {fileID: 7948110534197666726}
   - component: {fileID: 4158477892498315800}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -5,18 +5,37 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public EnemyStats enemyStats;
-    public float m_FireRate = 1f;
-    private float nextFireTime;
-    private bool m_Fired;
+    public float m_FireRate = 0.3f;
+    private bool hasAttacked;
+    public Transform attackPoint;
+    public float attackRange;
+    public Animator animator;
 
-    public void Attack(float fireRate)
-    {
-        if (Time.time <= nextFireTime) return;
+    IEnumerator attackCD() {
+        yield return new WaitForSeconds(m_FireRate);
+        hasAttacked = false;
+        animator.SetBool("Attack", false);
+    }
 
-        nextFireTime = Time.time + fireRate;
-        m_Fired = true;
-
-        // add vfx
-        // add attack animation
+    void Update() {
+        float moveSpeed = gameObject.GetComponent<EnemyHealth>().moveSpeed.speed;
+        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+        foreach(Collider2D collision in hitColliders) {
+            if (collision.gameObject.tag == "Player" && !hasAttacked) {
+                animator.SetBool("Attack", true);
+                hasAttacked = true;
+                collision.gameObject.GetComponent<PlayerHealth>().PlayerHit();
+                collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+                StartCoroutine(attackCD());
+                gameObject.GetComponent<EnemyHealth>().TakeStatus(0, moveSpeed, 1);
+            } 
+            if (collision.gameObject.tag == "Obstacle" && !hasAttacked) {
+                animator.SetBool("Attack", true);
+                hasAttacked = true;
+                collision.gameObject.GetComponent<Obstacle>().TakeDamage(1);
+                StartCoroutine(attackCD());
+                gameObject.GetComponent<EnemyHealth>().TakeStatus(0, moveSpeed, 1);
+            }
+        }
     }
 }

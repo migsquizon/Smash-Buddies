@@ -5,12 +5,13 @@ using TMPro;
 
 public class CoinManager : MonoBehaviour
 {
-    public int coin;
+    public int coin {get;set;}
     public TextMeshPro coinText;
 
     // Start is called before the first frame update
     void Start()
     {
+        coin = 1000;
         coinText.SetText(coin.ToString());
     }
 

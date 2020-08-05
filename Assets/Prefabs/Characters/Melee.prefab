@@ -12,13 +12,12 @@ GameObject:
   - component: {fileID: 2000554605810798088}
   - component: {fileID: 3204744816852682067}
   - component: {fileID: 3189340672986678895}
-  - component: {fileID: 122109863774634222}
   - component: {fileID: 5713044701318527627}
   - component: {fileID: 6863742777694759958}
   - component: {fileID: 2301416896437999102}
   - component: {fileID: 5834739529906997813}
   - component: {fileID: 5574557389811397355}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Melee
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -37,6 +36,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6628981531329427756}
+  - {fileID: 6289658986332359259}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.763, y: 0, z: 0}
@@ -79,7 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 19fc4ff85394f44dc9614c956cd2ce12, type: 3}
+  m_Sprite: {fileID: 7249653872765355347, guid: 0f8b479cd1419f447a6168871eeec267,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -124,35 +125,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03, y: -0.1808663}
+  m_Offset: {x: 0, y: 0.035867654}
   serializedVersion: 2
-  m_Radius: 0.25145394
---- !u!61 &122109863774634222
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169708504548078967}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.030000001, y: 0.097768724}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.48, y: 0.32}
-    newSize: {x: 0.875, y: 0.875}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.50286174, y: 0.67720544}
-  m_EdgeRadius: 0
+  m_Radius: 0.28567207
 --- !u!114 &5713044701318527627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +158,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyStats: {fileID: 11400000, guid: 945baca3ae4b3794497d1196eda43319, type: 2}
   m_FireRate: 1
+  attackPoint: {fileID: 6289658986332359259}
+  attackRange: 0.5
+  animator: {fileID: 5574557389811397355}
 --- !u!114 &2301416896437999102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,9 +215,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 169708504548078967}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d196e625623b5c147bd54650099d4bd3, type: 2}
+  m_Controller: {fileID: 9100000, guid: e461cff3e1cfd4548adb0c0478854c20, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -259,7 +237,7 @@ GameObject:
   - component: {fileID: 5337841875244160302}
   - component: {fileID: 4287655255716897591}
   - component: {fileID: 4051551956488843073}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -322,6 +300,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &2502789387549605890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6289658986332359259}
+  m_Layer: 12
+  m_Name: AttackPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6289658986332359259
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2502789387549605890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4258379326764158231}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4608667444763000522
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,7 +341,7 @@ GameObject:
   - component: {fileID: 4067119006963787400}
   - component: {fileID: 7846216576164565669}
   - component: {fileID: 5928828859178437509}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Healthbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -358,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -1.29}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 1.2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &7846216576164565669
@@ -438,7 +446,7 @@ GameObject:
   - component: {fileID: 68490932832882350}
   - component: {fileID: 2433781587113750891}
   - component: {fileID: 8266625003080017895}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -510,7 +518,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6628981531329427756}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Health Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +533,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7557997982950665279}
   m_LocalRotation: {x: 0.006659434, y: -0, z: -0, w: 0.9999778}
-  m_LocalPosition: {x: 0, y: 0.99, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6194389964950881427}
@@ -544,7 +552,7 @@ GameObject:
   - component: {fileID: 7497466803323677323}
   - component: {fileID: 7920439969669859526}
   - component: {fileID: 4184886150301970808}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,8 +576,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 990, y: 569}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1.2, y: 0.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7497466803323677323
 Canvas:

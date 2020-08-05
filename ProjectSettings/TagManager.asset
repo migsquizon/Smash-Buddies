@@ -9,6 +9,7 @@ TagManager:
   - Tower
   - towerattacks
   - MainPortal
+  - Obstacle
   layers:
   - Default
   - TransparentFX
@@ -22,9 +23,9 @@ TagManager:
   - Towers
   - Platform
   - Bullets
-  - 
-  - 
-  - 
+  - Enemy
+  - PassthroughBullet
+  - Obstacle
   - 
   - 
   - 

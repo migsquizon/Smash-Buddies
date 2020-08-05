@@ -5,36 +5,39 @@ using UnityEngine;
 public class FireBullet : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float Speed = 10;
+    public float Speed = 50f;
     public Vector3 LaunchOffset;
     public bool Thrown;
     public float Damage = 10;
     public int AtkRange = 1;
 
     public int duration = 2;
+    public Rigidbody2D rb;
     
     void Start()
     {
       //  transform.localScale = transform.localScale + new Vector3 (0,size - 1,0);
-        if (Thrown){
+        /*if (Thrown){
             
             
             var direction = transform.right;
             GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse); 
-        }
-        transform.Translate(LaunchOffset);
+        }*/
+        //transform.Translate(LaunchOffset);
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right * Speed;
         Destroy(gameObject, AtkRange);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!Thrown){
+        /*if (!Thrown){
             //Debug.Log(transform.right);
             
             transform.position += -transform.right * Speed * Time.deltaTime;
             
-        }
+        }*/
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)

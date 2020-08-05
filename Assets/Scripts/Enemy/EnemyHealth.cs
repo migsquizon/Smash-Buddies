@@ -17,7 +17,7 @@ public class EnemyHealth : MonoBehaviour
         m_CurrentHealth = enemyStats.health;
         m_Dead = false;
         healthbar.SetHealth(m_CurrentHealth, m_MaxHealth);
-        Debug.Log(moveSpeed.speed);
+        // Debug.Log(moveSpeed.speed);
     }
 
     public void TakeDamage(float amount)
@@ -29,10 +29,10 @@ public class EnemyHealth : MonoBehaviour
         if (m_CurrentHealth <= 0f && !m_Dead) OnDeath();
     }
 
-    public void TakeStatus(float damageOverTime, float slow,int duration){
+    public void TakeStatus(float damageOverTime, float slow, int duration){
 
         //curSpeed = moveSpeed.speed;
-        StartCoroutine(statusDuration(duration,damageOverTime,slow));
+        StartCoroutine(statusDuration(duration, damageOverTime, slow));
     }
      IEnumerator statusDuration(int dur,float dot, float slow)
     {
@@ -63,13 +63,5 @@ public class EnemyHealth : MonoBehaviour
 
         gameObject.SetActive(false);
         Destroy(gameObject);
-    }
-
-    void OnCollisionEnter2D(Collision2D other)
-    {
-        if (other.collider.CompareTag("Player"))
-        {
-            // TakeDamage(1f, "");
-        }
     }
 }

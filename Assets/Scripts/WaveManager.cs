@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class WaveManager : MonoBehaviour
 {
@@ -11,9 +12,18 @@ public class WaveManager : MonoBehaviour
 
     public int interval;
 
-    public int numberOfWaves = 3;
+    public int numberOfWaves = 2;
 
     public bool inCombat = false;
+
+    public GameObject preparationScreen;
+    public TextMeshPro preparationText;
+
+
+    public bool stillGotEnemy = false;
+
+    private PersistentManager persistentManager;
+    public int preparation = 15;
 
     private static WaveManager _instance;
     public static WaveManager Instance
@@ -26,6 +36,7 @@ public class WaveManager : MonoBehaviour
 
     private void Awake()
     {
+
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -51,6 +62,16 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    public void showPreparationScreen()
+    {
+        preparationScreen.SetActive(true);
+    }
+
+    public void hidePreparationScreen()
+    {
+        preparationScreen.SetActive(true);
+    }
+
 
     //public  void spawnWave(int curr)
     //{
@@ -73,28 +94,61 @@ public class WaveManager : MonoBehaviour
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
         WaitForSeconds wait = new WaitForSeconds(interval);
+   
         for (int i = 0; i < EnemySpawner.SharedInstance.waves[curr].miniWaves.Count; i++)
         {
             Debug.Log("Finished interval : " + Time.time);
             spawnEnemies(curr, i);
-            //if (i == EnemySpawner.SharedInstance.waves[curr].miniWaves.Count - 1) inCombat = false;
+            if (i == EnemySpawner.SharedInstance.waves[curr].miniWaves.Count - 1) break;
             yield return wait;
            
            
         }
-        Debug.Log("Finished miniwave : " + Time.time);
-        inCombat = false;
+         inCombat = false;
+        // respawns = GameObject.FindGameObjectsWithTag("Enemy");
+        // Debug.Log("Started preparation : " + Time.time);
+        // can implement reward talent points here
+        // preparationText.SetText("Preparation Phase");
+        // if(persistentManager!=null)persistentManager.talentPoints += 1;
+        // yield return prep; // Preperation duration
+      
+        // Debug.Log("Finished preparation : " + Time.time);
+    }
+
+
+
+    private IEnumerator startRound()
+    {
+        WaitForSeconds prep = new WaitForSeconds(preparation);
+
+        preparationText.SetText("Preparation Phase");
+        if(persistentManager!=null)persistentManager.talentPoints += 1;     
+        yield return prep;    //Wait for preparation
+        
+        spawnWave();
+
+
+
+    }
+
+    private void begin(){
+
+        if(!inCombat){
+            StartCoroutine(startRound());
+            currentWave += 1;
+            inCombat = true;
+        }
+
     }
 
 
     private void spawnWave()
     {
-        if (!inCombat)
-        {
-            StartCoroutine(spawnMiniwaves(currentWave));
-            currentWave += 1;
-            inCombat = true;
-        }
+        preparationText.SetText("Combat Phase");
+        preparationScreen.SetActive(true);
+        StartCoroutine(spawnMiniwaves(currentWave));
+ 
+        
     }
 
     // ...
@@ -118,6 +172,7 @@ public class WaveManager : MonoBehaviour
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
+        persistentManager = GameObject.Find("PersistentManager").GetComponent<PersistentManager>();
         spawnWave();
     }
 
@@ -125,7 +180,8 @@ public class WaveManager : MonoBehaviour
     void Update()
     {
         respawns = GameObject.FindGameObjectsWithTag("Enemy");
-
+        if (respawns.Length == 0) stillGotEnemy = false;
+        else stillGotEnemy = true;
         //if (!inCombat)
         //{
         //    if (respawns.Length == 0)
@@ -140,8 +196,8 @@ public class WaveManager : MonoBehaviour
 
             if (respawns.Length == 0)
             {
-                LevelManager levelchanger = GameObject.Find("LevelChanger").GetComponent<LevelManager>();
-                levelchanger.FadeToNextLevel();
+                // LevelManager levelchanger = GameObject.Find("LevelChanger").GetComponent<LevelManager>();
+                // levelchanger.FadeToNextLevel();
                 return;
             }
 
@@ -149,27 +205,15 @@ public class WaveManager : MonoBehaviour
         }
         else
         {
-            if (respawns.Length == 0)
+            if (!stillGotEnemy)
             {
-                spawnWave();
+                // spawnWave();
+                begin();
             }
         }
     }
 
-    
-        //    if (currentWave == 2)
-        //    {
 
-        //        if (respawns.Length == 0)
-        //        {
-        //            LevelManager levelchanger = GameObject.Find("LevelChanger").GetComponent<LevelManager>();
-        //            levelchanger.FadeToNextLevel();
-        //            return;
-        //        }
-
-
-        //    }
-        //}
     
 
 

@@ -21,12 +21,19 @@ public class PlayerHealth : MonoBehaviour
         {
             Debug.Log("Damage Taken");
             life -= damagePoint;
-            Destroy(hearts[life].gameObject);
+            hearts[life].SetActive(false);
+            //Destroy(hearts[life].gameO;bject);
             if (life < 1)
             {
                 dead = true;
                 Debug.Log("<<<DEAD>>>");
             }
+        }
+    }
+    public void Heal(){
+        if (life < 3){
+            life += 1;
+            hearts[life-1].SetActive(true);
         }
     }
 
