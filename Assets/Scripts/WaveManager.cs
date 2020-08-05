@@ -117,7 +117,7 @@ public class WaveManager : MonoBehaviour
 
 
 
-    private IEnumerator startRound()
+    private IEnumerator startRound(int curr)
     {
         WaitForSeconds prep = new WaitForSeconds(preparation);
 
@@ -125,7 +125,7 @@ public class WaveManager : MonoBehaviour
         if(persistentManager!=null)persistentManager.talentPoints += 1;     
         yield return prep;    //Wait for preparation
         
-        spawnWave();
+        spawnWave(curr);
 
 
 
@@ -134,7 +134,7 @@ public class WaveManager : MonoBehaviour
     private void begin(){
 
         if(!inCombat){
-            StartCoroutine(startRound());
+            StartCoroutine(startRound(currentWave));
             currentWave += 1;
             inCombat = true;
         }
@@ -142,11 +142,11 @@ public class WaveManager : MonoBehaviour
     }
 
 
-    private void spawnWave()
+    private void spawnWave(int curr)
     {
         preparationText.SetText("Combat Phase");
         preparationScreen.SetActive(true);
-        StartCoroutine(spawnMiniwaves(currentWave));
+        StartCoroutine(spawnMiniwaves(curr));
  
         
     }
@@ -173,7 +173,7 @@ public class WaveManager : MonoBehaviour
     {
         //rb2D = GetComponent<Rigidbody2D>();
         persistentManager = GameObject.Find("PersistentManager").GetComponent<PersistentManager>();
-        spawnWave();
+        begin();
     }
 
 
@@ -182,6 +182,7 @@ public class WaveManager : MonoBehaviour
         respawns = GameObject.FindGameObjectsWithTag("Enemy");
         if (respawns.Length == 0) stillGotEnemy = false;
         else stillGotEnemy = true;
+        Debug.Log(currentWave);
         //if (!inCombat)
         //{
         //    if (respawns.Length == 0)
