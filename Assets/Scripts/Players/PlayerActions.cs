@@ -25,17 +25,17 @@ public class PlayerActions : MonoBehaviour
     public GameObject[] respawns;
 
     [SerializeField]
-    private float buildTowerCooldown = 10.0f;
+    private float buildTowerCooldown =  0f;
 
     private float buildTowerTimer;
-    
+
 
     [SerializeField]
     private float stunCooldown = 10.0f;
     [SerializeField]
     public int stunTime = 5;
     private float stunTimer;
-
+    public Animator animator;
 
 
     public bool willShoot { get; set; } = false;
@@ -99,7 +99,18 @@ public class PlayerActions : MonoBehaviour
         if (buildTowerTimer > buildTowerCooldown)
         {
             buildTowerTimer = 0;
-            Instantiate(towerPrefab, firePoint.position, firePoint.rotation);
+            Debug.Log(transform.position);
+            
+            //Debug.Log(transform.localRotation);
+            
+            Debug.Log(firePoint.position);
+            
+            //Debug.Log(firePoint.localRotation);
+            Instantiate(towerPrefab, firePoint.position, Quaternion.Euler(0, transform.position.x < firePoint.position.x ? 180f : 0, 0));
+            // Instantiate(towerPrefab, firePoint.position, firePoint.rotation);
+            //towerPrefab.transform.rotation = transform.rotation;
+           
+
         }
         else
         {
@@ -183,7 +194,7 @@ public class PlayerActions : MonoBehaviour
         if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
         else if (playerMovementX == 0) { horizontalMove = 0 * runSpeed; }
         else { horizontalMove = -1.5f * runSpeed; }
-
+        animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (playerMovementY < 0) { crouch = true; }
         else { crouch = false; }

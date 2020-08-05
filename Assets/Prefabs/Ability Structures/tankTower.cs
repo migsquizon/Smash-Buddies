@@ -11,10 +11,14 @@ public class tankTower : MonoBehaviour
     public int atkSize;
     
     public Transform launchoffset;
+    
+    public Transform launchoffset2;
     bool fired = false;
+    public float dur = 5f;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
+        Destroy(gameObject,dur);
     }
 
     // Update is called once per frame
@@ -47,7 +51,7 @@ public class tankTower : MonoBehaviour
     {
         if (!fired)
         {
-            GameObject pusherobj = Instantiate(pusher, transform.position, transform.rotation);
+            GameObject pusherobj = Instantiate(pusher, launchoffset2.position + new Vector3(0,-0.1f,0), transform.rotation);
             pusherobj.GetComponent<push>().AtkRange = atkRange;
 //            push.GetComponent<Fire>().size = atkSize;
             fired = true;

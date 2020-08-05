@@ -85,7 +85,7 @@ public class WaveManager : MonoBehaviour
     //        // start interval here.
 
     //    }
-       
+
 
     //}
 
@@ -94,24 +94,24 @@ public class WaveManager : MonoBehaviour
     {
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
         WaitForSeconds wait = new WaitForSeconds(interval);
-   
+
         for (int i = 0; i < EnemySpawner.SharedInstance.waves[curr].miniWaves.Count; i++)
         {
             Debug.Log("Finished interval : " + Time.time);
             spawnEnemies(curr, i);
             if (i == EnemySpawner.SharedInstance.waves[curr].miniWaves.Count - 1) break;
             yield return wait;
-           
-           
+
+
         }
-         inCombat = false;
+        inCombat = false;
         // respawns = GameObject.FindGameObjectsWithTag("Enemy");
         // Debug.Log("Started preparation : " + Time.time);
         // can implement reward talent points here
         // preparationText.SetText("Preparation Phase");
         // if(persistentManager!=null)persistentManager.talentPoints += 1;
         // yield return prep; // Preperation duration
-      
+
         // Debug.Log("Finished preparation : " + Time.time);
     }
 
@@ -122,18 +122,20 @@ public class WaveManager : MonoBehaviour
         WaitForSeconds prep = new WaitForSeconds(preparation);
 
         preparationText.SetText("Preparation Phase");
-        if(persistentManager!=null)persistentManager.talentPoints += 1;     
+        if (persistentManager != null) persistentManager.talentPoints += 1;
         yield return prep;    //Wait for preparation
-        
+
         spawnWave(curr);
 
 
 
     }
 
-    private void begin(){
+    private void begin()
+    {
 
-        if(!inCombat){
+        if (!inCombat)
+        {
             StartCoroutine(startRound(currentWave));
             currentWave += 1;
             inCombat = true;
@@ -147,8 +149,8 @@ public class WaveManager : MonoBehaviour
         preparationText.SetText("Combat Phase");
         preparationScreen.SetActive(true);
         StartCoroutine(spawnMiniwaves(curr));
- 
-        
+
+
     }
 
     // ...
@@ -164,7 +166,7 @@ public class WaveManager : MonoBehaviour
 
     //    //After we have waited 5 seconds print the time again.
     //    Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-   
+
 
     //}
 
@@ -192,13 +194,13 @@ public class WaveManager : MonoBehaviour
         //}
         //else
         //{
-        if (currentWave == 2)
+        if (currentWave == numberOfWaves + 1)
         {
 
             if (respawns.Length == 0)
             {
-                // LevelManager levelchanger = GameObject.Find("LevelChanger").GetComponent<LevelManager>();
-                // levelchanger.FadeToNextLevel();
+                LevelManager levelchanger = GameObject.Find("LevelChanger").GetComponent<LevelManager>();
+                levelchanger.FadeToNextLevel();
                 return;
             }
 
@@ -215,7 +217,7 @@ public class WaveManager : MonoBehaviour
     }
 
 
-    
+
 
 
 }

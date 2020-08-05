@@ -493,6 +493,7 @@ MonoBehaviour:
   buildTowerCooldown: 10
   stunCooldown: 10
   stunTime: 5
+  animator: {fileID: 8744119932699363895}
   firePoint: {fileID: 8744119932568694518}
   bulletPrefab: {fileID: 6186094345650966270, guid: fa0672f69bb74fa459ebb66c60e0f836,
     type: 3}
@@ -582,6 +583,7 @@ MonoBehaviour:
   supportOffset: {fileID: 6086651938291056496}
   bulletPrefab: {fileID: 6186094345650966270, guid: fa0672f69bb74fa459ebb66c60e0f836,
     type: 3}
+  stunEffect: {fileID: 0}
   duration: 5
 --- !u!95 &8744119932699363895
 Animator:

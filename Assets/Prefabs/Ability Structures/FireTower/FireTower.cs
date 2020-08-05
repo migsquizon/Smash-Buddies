@@ -11,16 +11,18 @@ public class FireTower : MonoBehaviour
     public Transform launchoffset;
     public int atkSize;
     bool fired = false;
+    public float dur =5f;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
+        Destroy(gameObject,dur);
         
     }
 
     // Update is called once per frame
     void Update()
     {
-        float dir;
+        float dir;                           
         if (transform.rotation.y > 1)
         {
             dir = 1f;
@@ -47,7 +49,7 @@ public class FireTower : MonoBehaviour
     {
         if (!fired)
         {
-            GameObject fire = Instantiate(fireBreadth, transform.position, transform.rotation);
+            GameObject fire = Instantiate(fireBreadth, transform.position , transform.rotation);
             fire.GetComponent<Fire>().AtkRange = atkRange;
             fire.GetComponent<Fire>().size = atkSize;
             fired = true;

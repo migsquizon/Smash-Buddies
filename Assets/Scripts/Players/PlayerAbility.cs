@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlayerAbility : MonoBehaviour
 {
 
@@ -19,6 +20,7 @@ public class PlayerAbility : MonoBehaviour
     public Transform firePoint;
     public Transform supportOffset;
     public GameObject bulletPrefab;
+    public GameObject stunEffect;
     public float duration = 5.0f;
     private float timeSinceAction;
     bool fired = false;
@@ -61,7 +63,9 @@ public class PlayerAbility : MonoBehaviour
     }
     public void tankStun(float AOE, int stunDuration)
     {
-        var hitcolliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(AOE, 1f), 0);
+        GameObject stun_ = (GameObject)Instantiate(stunEffect, transform.position, transform.rotation);
+        Destroy(stun_, 2.0f);
+        var hitcolliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(AOE, 2f), 0);
         foreach (var hitcollider in hitcolliders)
         {
             var enemy = hitcollider.gameObject.tag;
@@ -74,21 +78,22 @@ public class PlayerAbility : MonoBehaviour
                 Debug.Log(ms);
 
                 //Debug.Log(transform.position.x);
-
             }
         }
     }
 
-    public void fireBurn(){
-        
+    public void fireBurn()
+    {
+
         //Transform opposite = transform.GetChild(4).GetComponent<Transform>();
-        Instantiate(fire,firePoint.position,firePoint.rotation);
+        Instantiate(fire, firePoint.position, firePoint.rotation);
     }
 
-        public void heartSpawn(){
-        
-       // Transform opposite = transform.GetChild(4).GetComponent<Transform>();
-        Instantiate(heart,firePoint.position,firePoint.rotation);
+    public void heartSpawn()
+    {
+
+        // Transform opposite = transform.GetChild(4).GetComponent<Transform>();
+        Instantiate(heart, firePoint.position, firePoint.rotation);
     }
     public void RoninDurFunc()
     {
@@ -119,9 +124,5 @@ public class PlayerAbility : MonoBehaviour
         RoninActive = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Ronin Ability duration ended at : " + Time.time);
-
     }
-
-
-
 }

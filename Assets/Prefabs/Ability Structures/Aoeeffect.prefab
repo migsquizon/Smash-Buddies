@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1263012796955004452}
   - component: {fileID: 6864433427476492561}
   - component: {fileID: 4693666192489004018}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Aoeeffect
   m_TagString: towerattacks
   m_Icon: {fileID: 0}
@@ -99,7 +99,7 @@ MonoBehaviour:
   scale: 0
   aoeSlow: 5
   aoeheal: 0
-  aoedamage: 5
+  aoedamage: 10
 --- !u!50 &6864433427476492561
 Rigidbody2D:
   serializedVersion: 4

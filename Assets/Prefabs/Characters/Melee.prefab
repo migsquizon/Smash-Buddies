@@ -11,12 +11,12 @@ GameObject:
   - component: {fileID: 4258379326764158231}
   - component: {fileID: 2000554605810798088}
   - component: {fileID: 3204744816852682067}
-  - component: {fileID: 3189340672986678895}
   - component: {fileID: 5713044701318527627}
   - component: {fileID: 6863742777694759958}
   - component: {fileID: 2301416896437999102}
   - component: {fileID: 5834739529906997813}
   - component: {fileID: 5574557389811397355}
+  - component: {fileID: 692378307209288767}
   m_Layer: 12
   m_Name: Melee
   m_TagString: Enemy
@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 169708504548078967}
   m_LocalRotation: {x: -0.006659434, y: -0, z: -0, w: 0.9999778}
   m_LocalPosition: {x: 5, y: 2, z: -0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.8, y: 2, z: 1}
   m_Children:
   - {fileID: 6628981531329427756}
   - {fileID: 6289658986332359259}
@@ -112,22 +112,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!58 &3189340672986678895
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 169708504548078967}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.035867654}
-  serializedVersion: 2
-  m_Radius: 0.28567207
 --- !u!114 &5713044701318527627
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +210,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &692378307209288767
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 169708504548078967}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.09607029, y: 0}
+  m_Size: {x: 0.123576164, y: 0.5000906}
+  m_Direction: 0
 --- !u!1 &834349159842240735
 GameObject:
   m_ObjectHideFlags: 0

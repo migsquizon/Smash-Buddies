@@ -8,33 +8,35 @@ public class Fire : MonoBehaviour
     public float Speed = 4;
     public Vector3 LaunchOffset;
     public bool Thrown;
-    public float Damage = 1;
+    public float Damage = 10                                ;
     public int AtkRange = 1;
 
     public int size = 1;
-    
+    public Rigidbody2D rb;
     void Start()
-    {
-        transform.localScale = transform.localScale + new Vector3 (0,size - 1,0);
+    {                                                                                                               
+        rb = GetComponent<Rigidbody2D>();
+        rb.velocity = transform.right*-1f * Speed;
+        /*transform.localScale = transform.localScale + new Vector3 (0,size - 1,0);
         if (Thrown){
             
             
             var direction = -transform.right;
             GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse); 
         }
-        transform.Translate(LaunchOffset);
+        transform.Translate(LaunchOffset);*/
         Destroy(gameObject, AtkRange);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!Thrown){
-            //Debug.Log(transform.right);
+        // if (!Thrown){
+        //     //Debug.Log(transform.right);
             
-            transform.position += -transform.right * Speed * Time.deltaTime;
+        //     transform.position += -transform.right * Speed * Time.deltaTime;
             
-        }
+        // }
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)

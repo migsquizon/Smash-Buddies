@@ -25,8 +25,8 @@ public class PlayerInputHandler : MonoBehaviour
     private float TankCD = 5f;
     private float SupportTimer;
     private float SupportCD = 5f;
-    private float TankAOE = 3f;
-    private int stunDuration = 3;
+    private float TankAOE = 4f;
+    private int stunDuration = 5;
 
     private void Awake()
     {
@@ -40,8 +40,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         RoninTimer = RoninCD + 1;
         SageTimer = SageCD + 1;
-        TankTimer = TankCD +1;
-        SupportTimer =SupportCD+1;
+        TankTimer = TankCD + 1;
+        SupportTimer = SupportCD + 1;
     }
     private void Update()
     {
@@ -49,7 +49,7 @@ public class PlayerInputHandler : MonoBehaviour
         SageTimer += Time.deltaTime;
         TankTimer += Time.deltaTime;
         SupportTimer += Time.deltaTime;
-        
+
     }
     public void OnLeftStick(InputValue val)
     {
@@ -121,11 +121,11 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (TankTimer > TankCD)
             {
-                player.GetComponent<PlayerAbility>().tankStun(TankAOE,stunDuration);
+                player.GetComponent<PlayerAbility>().tankStun(TankAOE, stunDuration);
                 TankTimer = 0;
             }
         }
-        if (player.gameObject.name == "Ronin")
+        if (player.gameObject.name == "Servo")
         {
             if (SupportTimer > SupportCD)
             {
@@ -137,7 +137,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
         // THIS IS A WORKING RONIN SCRIPT BUT I AM TESTING
 
-        if (player.gameObject.name == "Ronins")
+        if (player.gameObject.name == "Ronin")
         {
             if (RoninTimer > RoninCD)
             {
@@ -163,6 +163,7 @@ public class PlayerInputHandler : MonoBehaviour
             player.BuildTower(towerThree, towerThreePrice);
             return;
         }
+        player.BuildTower();
     }
 
 

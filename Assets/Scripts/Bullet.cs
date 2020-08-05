@@ -28,11 +28,12 @@ public class Bullet : MonoBehaviour
         if (hitInfo.gameObject.tag != "teleport")
         {
             // Debug.Log("Success!");
-            Debug.Log(hitInfo.gameObject.name);
+            // Debug.Log(hitInfo.gameObject.name);
             Destroy(gameObject);
         }
 
-        if (hitInfo.gameObject.tag == "Enemy") {
+        if (hitInfo.gameObject.tag == "Enemy")
+        {
             Debug.Log("Damaged by bullet");
             hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
@@ -40,7 +41,8 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    void OnBecameInvisible() {
+    void OnBecameInvisible()
+    {
         Destroy(gameObject);
     }
 }

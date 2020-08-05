@@ -99,9 +99,10 @@ MonoBehaviour:
   Speed: 4
   LaunchOffset: {x: 0, y: 0, z: 0}
   Thrown: 0
-  Damage: 1
+  Damage: 10
   AtkRange: 1
   size: 1
+  rb: {fileID: 0}
 --- !u!50 &-6668168116366913005
 Rigidbody2D:
   serializedVersion: 4

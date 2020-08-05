@@ -12,10 +12,12 @@ public class AoeEffect : MonoBehaviour
 
 
     public int aoedamage = 5;
+    public float dur = 5f;
     void Start()
     {
         // Debug.Log(transform.localScale);
         transform.localScale = transform.localScale + new Vector3(scale, 0, 0);
+        Destroy(gameObject,dur);
     }
 
     // Update is called once per frame
@@ -39,7 +41,7 @@ public class AoeEffect : MonoBehaviour
             Debug.Log("Going to slow enemy by " + aoeSlow.ToString());
             
             Debug.Log("Going to damage enemy by " + aoedamage.ToString());
-            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(aoedamage);
+            hitInfo.gameObject.GetComponent<EnemyHealth>().inAoe = aoedamage;
         }
         if (hitInfo.gameObject.tag == "Player")
         {
@@ -60,6 +62,7 @@ public class AoeEffect : MonoBehaviour
         if (hitInfo.gameObject.tag == "Enemy")
         {
             Debug.Log("Enemy exit!");
+            hitInfo.gameObject.GetComponent<EnemyHealth>().inAoe = 0;
         }
         if (hitInfo.gameObject.tag == "Player")
         {

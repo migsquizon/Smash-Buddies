@@ -10,7 +10,8 @@ public class EnemyHealth : MonoBehaviour
     public bool m_Dead;
     public HealthbarBehaviour healthbar;
     public EnemyAI moveSpeed;
-
+    bool kennaDmg = false;
+    public int inAoe = 0;
     void OnEnable()
     {
         m_MaxHealth = enemyStats.health;
@@ -19,7 +20,14 @@ public class EnemyHealth : MonoBehaviour
         healthbar.SetHealth(m_CurrentHealth, m_MaxHealth);
         // Debug.Log(moveSpeed.speed);
     }
-
+    void Update() {
+        while (inAoe > 0 && !kennaDmg)
+        {
+            TakeDamage(inAoe);
+            kennaDmg = true;
+            StartCoroutine(aoedmgcd());
+        }
+    }
     public void TakeDamage(float amount)
     {
         // tag can be used to determine status. for example, what happen if it takes damage while debuffed. (add multiplier etc)
@@ -52,6 +60,13 @@ public class EnemyHealth : MonoBehaviour
         //RoninActive = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Status duration ended at : " + Time.time);
+    
+    }
+         IEnumerator aoedmgcd()
+    {
+        //Print the time of when the function is first called.
+        yield return new WaitForSeconds(1.0f);
+        kennaDmg = false;
     
     }
 
