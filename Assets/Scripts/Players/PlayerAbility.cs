@@ -12,12 +12,14 @@ public class PlayerAbility : MonoBehaviour
     private float stunTimer;
 
 
-    public bool isActive {get;set;} = false;
+
+    public bool RoninActive {get;set;} = false;
 
     public Transform firePoint;
     public GameObject bulletPrefab;
     public float duration = 5.0f;
     private float timeSinceAction;
+    bool fired = false;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
@@ -28,14 +30,15 @@ public class PlayerAbility : MonoBehaviour
     void Update()
     {
         timeSinceAction += Time.deltaTime;
-        if(isActive) RoninAbility();
+        
+       // if(isActive && !fired) RoninAbility();
   
     }
 
     public void RoninAbility()
     {
-    
-      
+
+        fired = true;
         Debug.Log("shooting");
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         StartCoroutine(shootCD());
@@ -45,12 +48,17 @@ public class PlayerAbility : MonoBehaviour
         //Debug.Log(firePoint.rotation);
         //Quaternion temporary = firePoint.rotation;
         Instantiate(bulletPrefab, opposite.position, opposite.rotation);
-        // temporary.Rotate(0f, 180f, 0f);
-        if(timeSinceAction > duration) {
-            isActive = false;
-            timeSinceAction = 0;
-        }
         
+        // temporary.Rotate(0f, 180f, 0f);
+        // if(timeSinceAction > duration) {
+        //     RoninActive = false;
+        //     Debug.Log(timeSinceAction);
+        //     timeSinceAction = 0;
+        // }
+        
+    }
+    public void RoninDurFunc(){
+        StartCoroutine(RoninDuration());
     }
 
 
@@ -60,10 +68,23 @@ public class PlayerAbility : MonoBehaviour
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(2);
-
+        yield return new WaitForSeconds(0.3f);
+        fired = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+    
+    }
+
+            IEnumerator RoninDuration()
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("Ronin ability duration started at : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(5.0f);
+        RoninActive = false;
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Ronin Ability duration ended at : " + Time.time);
     
     }
 

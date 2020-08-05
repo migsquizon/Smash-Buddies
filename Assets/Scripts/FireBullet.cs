@@ -2,24 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class FireBullet : MonoBehaviour
 {
     // Start is called before the first frame update
-    public float Speed = 4;
+    public float Speed = 10;
     public Vector3 LaunchOffset;
     public bool Thrown;
-    public float Damage = 1;
+    public float Damage = 10;
     public int AtkRange = 1;
 
-    public int size = 1;
+    public int duration = 2;
     
     void Start()
     {
-        transform.localScale = transform.localScale + new Vector3 (0,size - 1,0);
+      //  transform.localScale = transform.localScale + new Vector3 (0,size - 1,0);
         if (Thrown){
             
             
-            var direction = -transform.right;
+            var direction = transform.right;
             GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse); 
         }
         transform.Translate(LaunchOffset);
@@ -49,9 +49,9 @@ public class Fire : MonoBehaviour
         if (hitInfo.gameObject.tag == "Enemy")
         {
             Debug.Log("burn!");
-            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             //Destroy(gameObject);
-           // hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
+            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(Damage,0,duration);
         }
 
         

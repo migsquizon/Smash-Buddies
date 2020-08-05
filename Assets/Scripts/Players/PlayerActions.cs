@@ -28,6 +28,7 @@ public class PlayerActions : MonoBehaviour
     private float buildTowerCooldown = 10.0f;
 
     private float buildTowerTimer;
+    
 
     [SerializeField]
     private float stunCooldown = 10.0f;
@@ -45,7 +46,7 @@ public class PlayerActions : MonoBehaviour
     public Transform firePoint;
     public GameObject bulletPrefab;
     public GameObject towerPrefab;
-
+    public GameObject fire;
     public GameObject coinManager;
     public GameObject towerPicker;
 
@@ -53,6 +54,7 @@ public class PlayerActions : MonoBehaviour
     void Start()
     {
         buildTowerTimer = buildTowerCooldown + 1;
+
     }
 
     public void BuildTower(GameObject tower, int price)
@@ -91,6 +93,11 @@ public class PlayerActions : MonoBehaviour
 
     }
 
+    public void fireBurn(){
+        
+        Transform opposite = transform.GetChild(4).GetComponent<Transform>();
+        Instantiate(fire,opposite.position,opposite.rotation);
+    }
     public void BuildTower()
     {
         if (buildTowerTimer > buildTowerCooldown)

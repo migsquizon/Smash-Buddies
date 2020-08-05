@@ -17,9 +17,4 @@ public class HealthbarBehaviour : MonoBehaviour
         // slider.gameObject.transform.Find("Fill Area").Find("Fill").GetComponent<Image>().color = Color.green;
 
     }
-
-    // void Update()
-    // {
-    //     slider.transform.position = Camera.main.WorldToScreenPoint(transform.parent.position + new Vector3(0, 0.8f, 0));
-    // }
 }

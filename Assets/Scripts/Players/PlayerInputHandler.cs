@@ -11,12 +11,16 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerActions player;
     private PlayerHealth playerHealth;
     private GameObject towerPicker;
+        private float RoninCD = 10f;
+    private float RoninTimer;
     public GameObject towerOne;
     public int towerOnePrice;
     public GameObject towerTwo;
     public int towerTwoPrice;
     public GameObject towerThree;
     public int towerThreePrice;
+
+    
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -26,8 +30,12 @@ public class PlayerInputHandler : MonoBehaviour
         //mover = GetComponent<PlayerMovement>();
         playerHealth = player.GetComponent<PlayerHealth>();
         towerPicker = player.towerPicker;
+        
+        RoninTimer = RoninCD + 1;
     }
-
+    private void Update() {
+        RoninTimer += Time.deltaTime;
+    }
     public void OnLeftStick(InputValue val)
     {
 
@@ -67,7 +75,10 @@ public class PlayerInputHandler : MonoBehaviour
         {
             if (player != null)
             {
-                player.Shoot();
+                if (player.GetComponent<PlayerAbility>().RoninActive && player.gameObject.name == "Ronin") {
+                    player.GetComponent<PlayerAbility>().RoninAbility();
+                    Debug.Log("ABILITYING");}
+                else player.Shoot();
             }
         }
 
@@ -82,8 +93,20 @@ public class PlayerInputHandler : MonoBehaviour
         }
         Debug.Log(player.gameObject.name);
         if(player.gameObject.name == "Ronin"){
-
-            player.GetComponent<PlayerAbility>().isActive = true;
+            player.fireBurn();
+        // THIS IS A WORKING RONIN SCRIPT BUT I AM TESTING
+        /*if( RoninTimer > RoninCD){
+            player.GetComponent<PlayerAbility>().RoninActive = true;
+            RoninTimer = 0;
+            player.GetComponent<PlayerAbility>().RoninDurFunc();
+            //player.GetComponent<PlayerAbility>().RoninAbility();
+        }
+        
+        else{
+            Debug.Log("RONIN ABILITY ON CD");
+        }*/
+        
+        
         }
     }
 

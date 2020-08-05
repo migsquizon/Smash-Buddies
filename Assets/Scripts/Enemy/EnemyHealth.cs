@@ -9,13 +9,15 @@ public class EnemyHealth : MonoBehaviour
     public float m_MaxHealth;
     public bool m_Dead;
     public HealthbarBehaviour healthbar;
+    public EnemyAI moveSpeed;
 
-    void Start()
+    void OnEnable()
     {
         m_MaxHealth = enemyStats.health;
-        m_CurrentHealth = m_MaxHealth;
+        m_CurrentHealth = enemyStats.health;
         m_Dead = false;
         healthbar.SetHealth(m_CurrentHealth, m_MaxHealth);
+        Debug.Log(moveSpeed.speed);
     }
 
     public void TakeDamage(float amount)
@@ -25,6 +27,32 @@ public class EnemyHealth : MonoBehaviour
         healthbar.SetHealth(m_CurrentHealth, m_MaxHealth);
 
         if (m_CurrentHealth <= 0f && !m_Dead) OnDeath();
+    }
+
+    public void TakeStatus(float damageOverTime, float slow,int duration){
+
+        //curSpeed = moveSpeed.speed;
+        StartCoroutine(statusDuration(duration,damageOverTime,slow));
+    }
+     IEnumerator statusDuration(int dur,float dot, float slow)
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("status duration started at : " + Time.time);
+        moveSpeed.speed -= slow;
+        for (float i = 0; i < dur; i++)
+        {
+            TakeDamage(dot);
+            Debug.Log("DOT Taken"+ dot);
+            yield return new WaitForSeconds(1.0f);
+
+        }
+        moveSpeed.speed += slow;
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        
+        //RoninActive = false;
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Status duration ended at : " + Time.time);
+    
     }
 
     private void OnDeath()

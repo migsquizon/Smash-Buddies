@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64d68f220ced653439b43e53a2d2fd66, type: 3}
   m_Name: DefaultEnemyStats
   m_EditorClassIdentifier: 
-  health: 100
+  health: 50
   attackDamage: 1
   attackRange: 1
   attackRate: 1

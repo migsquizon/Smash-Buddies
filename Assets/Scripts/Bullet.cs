@@ -35,6 +35,8 @@ public class Bullet : MonoBehaviour
         if (hitInfo.gameObject.tag == "Enemy") {
             Debug.Log("Damaged by bullet");
             hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
+
         }
     }
 
