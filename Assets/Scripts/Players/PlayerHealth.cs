@@ -6,7 +6,7 @@ public class PlayerHealth : MonoBehaviour
 {
     public GameObject[] hearts;
     private int life;
-    private bool dead;
+    public bool dead;
     private bool isHit = false;
     private int nextHit = 2;
 
@@ -25,24 +25,36 @@ public class PlayerHealth : MonoBehaviour
             //Destroy(hearts[life].gameO;bject);
             if (life < 1)
             {
-                dead = true;
+                OnDeath();
                 Debug.Log("<<<DEAD>>>");
             }
         }
     }
-    public void Heal(){
-        if (life < 3){
+
+    public void OnDeath()
+    {
+        dead = true;
+        GetComponent<CircleCollider2D>().enabled = false;
+        StartCoroutine(WaitForPlayerToRevive());
+    }
+
+    public void Heal()
+    {
+        if (life < 3)
+        {
             life += 1;
-            hearts[life-1].SetActive(true);
+            hearts[life - 1].SetActive(true);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D hitInfo) {
-        if (hitInfo.gameObject.tag == "Enemy" && !isHit) {
+    void OnCollisionEnter2D(Collision2D hitInfo)
+    {
+        if (hitInfo.gameObject.tag == "Enemy" && !isHit)
+        {
             Debug.Log("Collide with enemy. Player takes damage");
             PlayerHit();
             TakeDamage(1);
-            
+
         };
 
 
@@ -75,7 +87,17 @@ public class PlayerHealth : MonoBehaviour
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         isHit = false;
+    }
 
+    private IEnumerator WaitForPlayerToRevive()
+    {
+        yield return new WaitForSeconds(5);
+        dead = false;
+        GetComponent<CircleCollider2D>().enabled = true;
+        Heal();
+        Heal();
+        Heal();
+        transform.position = new Vector2(0, 2);
     }
 
 

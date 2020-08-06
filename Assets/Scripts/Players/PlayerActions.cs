@@ -25,7 +25,7 @@ public class PlayerActions : MonoBehaviour
     public GameObject[] respawns;
 
     [SerializeField]
-    private float buildTowerCooldown =  0f;
+    private float buildTowerCooldown = 0f;
 
     private float buildTowerTimer;
 
@@ -49,6 +49,7 @@ public class PlayerActions : MonoBehaviour
     public GameObject fire;
     public GameObject coinManager;
     public GameObject towerPicker;
+    private PlayerHealth playerHealth;
 
 
     void Start()
@@ -87,10 +88,8 @@ public class PlayerActions : MonoBehaviour
 
     public void Shoot()
     {
-
+        animator.SetTrigger("Attack");
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
-
-
     }
 
 
@@ -100,16 +99,16 @@ public class PlayerActions : MonoBehaviour
         {
             buildTowerTimer = 0;
             Debug.Log(transform.position);
-            
+
             //Debug.Log(transform.localRotation);
-            
+
             Debug.Log(firePoint.position);
-            
+
             //Debug.Log(firePoint.localRotation);
             Instantiate(towerPrefab, firePoint.position, Quaternion.Euler(0, transform.position.x < firePoint.position.x ? 180f : 0, 0));
             // Instantiate(towerPrefab, firePoint.position, firePoint.rotation);
             //towerPrefab.transform.rotation = transform.rotation;
-           
+
 
         }
         else
@@ -180,16 +179,13 @@ public class PlayerActions : MonoBehaviour
     {
         controller = GetComponent<CharacterController2D>();
         towerPicker.SetActive(false);
-
+        playerHealth = gameObject.GetComponent<PlayerHealth>();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-
-        buildTowerTimer += Time.deltaTime;
-
 
         if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
         else if (playerMovementX == 0) { horizontalMove = 0 * runSpeed; }
@@ -199,20 +195,17 @@ public class PlayerActions : MonoBehaviour
         if (playerMovementY < 0) { crouch = true; }
         else { crouch = false; }
 
-
-
+        buildTowerTimer += Time.deltaTime;
     }
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("teleport") && !teleport)
         {
-
             {
                 //Debug.Log(transform.position);
                 //Debug.Log("teleporting!");
                 if (transform.position.y > -1)
                 {
-
                     teleport = true;
                     transform.position = new Vector2(transform.position.x, -4f);
                     //Debug.Log(transform.position);
@@ -256,14 +249,9 @@ public class PlayerActions : MonoBehaviour
     void FixedUpdate()
     {
         if (isStun) return;
+        if (playerHealth.dead) return;
         //else Debug.Log("player is stunned!");
         controller.Move(horizontalMove * Time.fixedDeltaTime, crouch, jump);
-
-
         jump = false;
-
-
-
-
     }
 }
