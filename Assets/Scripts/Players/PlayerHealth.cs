@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
             Debug.Log("Damage Taken");
             life -= damagePoint;
             hearts[life].SetActive(false);
-            //Destroy(hearts[life].gameO;bject);
             if (life < 1)
             {
                 OnDeath();
@@ -97,7 +96,7 @@ public class PlayerHealth : MonoBehaviour
         Heal();
         Heal();
         Heal();
-        transform.position = new Vector2(0, 2);
+        transform.position = new Vector2(0, 10);
     }
 
 

@@ -42,7 +42,6 @@ public class PlayerActions : MonoBehaviour
 
     public bool buildTower { get; set; } = false;
 
-
     public Transform firePoint;
     public GameObject bulletPrefab;
     public GameObject towerPrefab;

@@ -17,7 +17,7 @@ public class laser : MonoBehaviour
     {
         lineRenderer = GetComponent<LineRenderer>();
         lineRenderer.enabled = false;
-
+        Destroy(gameObject, 5);
     }
 
     // Update is called once per frame
