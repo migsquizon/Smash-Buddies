@@ -17,12 +17,12 @@ public class LevelManager : MonoBehaviour
     void Update()
     {
 
-        // LevelTimer += Time.deltaTime;
-        // Debug.Log(LevelTimer);
-        // if (LevelTimer > 10.0f)
-        // {
-        //     FadeToNextLevel();
-        // }
+        LevelTimer += Time.deltaTime;
+        //Debug.Log(LevelTimer);
+        if (LevelTimer > 10.0f && SceneManager.GetActiveScene().buildIndex==0)
+        {
+            FadeToNextLevel();
+        }
     }
 
     public void FadeToNextLevel()

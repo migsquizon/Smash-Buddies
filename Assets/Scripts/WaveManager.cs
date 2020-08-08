@@ -43,7 +43,7 @@ public class WaveManager : MonoBehaviour
             return;
         }
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        //DontDestroyOnLoad(this.gameObject);
     }
 
     public static void spawnEnemies(int big, int mini)

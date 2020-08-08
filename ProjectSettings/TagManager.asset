@@ -10,6 +10,7 @@ TagManager:
   - towerattacks
   - MainPortal
   - Obstacle
+  - BossPortal
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - PassthroughBullet
   - Obstacle
   - PlayArea
-  - 
+  - BossPortal
   - 
   - 
   - 
