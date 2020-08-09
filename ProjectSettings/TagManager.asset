@@ -10,6 +10,7 @@ TagManager:
   - towerattacks
   - MainPortal
   - Obstacle
+  - TutorialArrow
   layers:
   - Default
   - TransparentFX
