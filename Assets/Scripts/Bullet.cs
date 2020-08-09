@@ -40,6 +40,14 @@ public class Bullet : MonoBehaviour
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
 
         }
+
+        if (hitInfo.gameObject.tag == "BossPortal")
+        {
+            Debug.Log("Damaged by bullet");
+            hitInfo.gameObject.GetComponent<BossHealth>().TakeDamage(damage);
+            //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
+
+        }
     }
 
     void OnBecameInvisible()

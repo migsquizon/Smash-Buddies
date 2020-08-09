@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PortalHealth : MonoBehaviour
+public class BossHealth : MonoBehaviour
 {
     public int maxHealth = 100;
     public int currentHealth;

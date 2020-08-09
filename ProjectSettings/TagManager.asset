@@ -11,6 +11,7 @@ TagManager:
   - MainPortal
   - Obstacle
   - TutorialArrow
+  - BossPortal
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - PassthroughBullet
   - Obstacle
   - PlayArea
-  - 
+  - BossPortal
   - 
   - 
   - 
