@@ -30,6 +30,8 @@ public class PlayerInputHandler : MonoBehaviour
     private float TankAOE = 4f;
     private int stunDuration = 5;
     private bool teleport = false;
+    
+    SpriteRenderer sprite;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -45,6 +47,7 @@ public class PlayerInputHandler : MonoBehaviour
         SageTimer = SageCD + 1;
         TankTimer = TankCD + 1;
         SupportTimer = SupportCD + 1;
+        sprite = player.GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -171,6 +174,8 @@ public class PlayerInputHandler : MonoBehaviour
             }
             if (RoninTimer > RoninCD)
             {
+                
+                sprite.color = new Color(1, 0, 0, 1);
                 player.GetComponent<PlayerAbility>().RoninActive = true;
                 RoninTimer = 0;
                 player.GetComponent<PlayerAbility>().RoninDurFunc();
@@ -242,7 +247,7 @@ public class PlayerInputHandler : MonoBehaviour
     {
         if (!teleportpressed)
         {
-
+            player.teleporting.SetActive(true);
             teleportpressed = true;
             Debug.Log("R2 is pressed");
             player.PlayerHit();
@@ -273,6 +278,7 @@ public class PlayerInputHandler : MonoBehaviour
         //After we have waited 5 seconds print the time again.
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         teleportpressed = false;
+        player.teleporting.SetActive(false);
     }
 
 

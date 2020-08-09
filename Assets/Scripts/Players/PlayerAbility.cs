@@ -24,10 +24,12 @@ public class PlayerAbility : MonoBehaviour
     public float duration = 5.0f;
     private float timeSinceAction;
     bool fired = false;
+    SpriteRenderer sprite;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
         timeSinceAction = 0.0f;
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -51,7 +53,8 @@ public class PlayerAbility : MonoBehaviour
         //temporary.Rotate(0f, 180f, 0f);
         //Debug.Log(firePoint.rotation);
         //Quaternion temporary = firePoint.rotation;
-        Instantiate(bulletPrefab, opposite.position, opposite.rotation);
+        GameObject oppBullet = Instantiate(bulletPrefab, opposite.position, opposite.rotation);
+        oppBullet.GetComponent<Bullet>().dir = transform.localRotation.y > 0 ? -1f : 1f ;
 
         // temporary.Rotate(0f, 180f, 0f);
         // if(timeSinceAction > duration) {
@@ -111,6 +114,7 @@ public class PlayerAbility : MonoBehaviour
         fired = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        
 
     }
 
@@ -124,5 +128,6 @@ public class PlayerAbility : MonoBehaviour
         RoninActive = false;
         //After we have waited 5 seconds print the time again.
         Debug.Log("Ronin Ability duration ended at : " + Time.time);
+        sprite.color = new Color(1, 1, 1, 1);
     }
 }

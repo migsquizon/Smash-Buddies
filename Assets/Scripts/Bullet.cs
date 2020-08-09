@@ -8,12 +8,13 @@ public class Bullet : MonoBehaviour
     public float speed = 20f;
     public int damage = 40;
     public Rigidbody2D rb;
+    public float dir = 1;
 
     // Use this for initialization
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * dir * speed;
         Destroy(gameObject,0.4f);
     }
 

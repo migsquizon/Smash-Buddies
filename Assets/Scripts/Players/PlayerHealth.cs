@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public GameObject[] hearts;
@@ -9,10 +9,21 @@ public class PlayerHealth : MonoBehaviour
     public bool dead;
     private bool isHit = false;
     private int nextHit = 2;
-
+    SpriteRenderer sprite;
+    bool isboss = false;
     private void Start()
     {
         life = hearts.Length;
+        sprite = GetComponent<SpriteRenderer>();
+         Scene currentScene = SceneManager.GetActiveScene ();
+ 
+         // Retrieve the name of this scene.
+         string sceneName = currentScene.name;
+         if (sceneName == "Round 2"){
+             isboss = true;
+         }
+        // Create a temporary reference to the current scene.
+        
     }
 
     public void TakeDamage(int damagePoint)
@@ -20,6 +31,10 @@ public class PlayerHealth : MonoBehaviour
         if (life >= 1)
         {
             Debug.Log("Damage Taken");
+
+            sprite.color = new Color(1, 1, 1, 0);
+            StartCoroutine(tookDamage());
+
             life -= damagePoint;
             hearts[life].SetActive(false);
             if (life < 1)
@@ -27,6 +42,8 @@ public class PlayerHealth : MonoBehaviour
                 OnDeath();
                 Debug.Log("<<<DEAD>>>");
             }
+
+
         }
     }
 
@@ -34,7 +51,8 @@ public class PlayerHealth : MonoBehaviour
     {
         dead = true;
         GetComponent<CircleCollider2D>().enabled = false;
-        StartCoroutine(WaitForPlayerToRevive());
+        if (!isboss ) StartCoroutine(WaitForPlayerToRevive());
+       
     }
 
     public void Heal()
@@ -86,6 +104,19 @@ public class PlayerHealth : MonoBehaviour
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         isHit = false;
+    }
+
+    private IEnumerator tookDamage()
+    {
+        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(0.2f);
+
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        isHit = false;
+        sprite.color = new Color(1, 1, 1, 1);
     }
 
     private IEnumerator WaitForPlayerToRevive()
