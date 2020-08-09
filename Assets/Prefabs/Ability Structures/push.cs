@@ -8,33 +8,36 @@ public class push : MonoBehaviour
     public float Speed = 4;
     public Vector3 LaunchOffset;
     public bool Thrown;
-    public float Damage = 1;
+    public float Damage;
     public float SplashRange = 1;
     public int AtkRange = 1;
     //public int size = 1;
 
-    
-    
+
+
     void Start()
     {
-        if (Thrown){
-            
-            
+        Damage = 1;
+        if (Thrown)
+        {
+
+
             var direction = -transform.right;
-            GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse); 
+            GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse);
         }
         transform.Translate(LaunchOffset);
-        Destroy(gameObject,AtkRange);
+        Destroy(gameObject, AtkRange);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!Thrown){
+        if (!Thrown)
+        {
             //Debug.Log(transform.right);
-            
+
             transform.position += -transform.right * Speed * Time.deltaTime;
-            
+            // Debug.Log(Damage);
         }
     }
 
@@ -45,18 +48,19 @@ public class push : MonoBehaviour
         //{
         //    enemy.TakeDamage(damage);
         //}
-        Debug.Log(hitInfo);
+        // Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
         if (hitInfo.gameObject.tag == "Enemy")
         {
-            Debug.Log("push!");
-            
+            // Debug.Log("push!");
+
             var direction = -transform.right;
-            hitInfo.GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse); 
+            hitInfo.GetComponent<Rigidbody2D>().AddForce(direction * Speed, ForceMode2D.Impulse);
             hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
+            Debug.Log(Damage);
             //Destroy(gameObject);
         }
 
-        
+
     }
 }

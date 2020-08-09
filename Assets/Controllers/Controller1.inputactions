@@ -46,6 +46,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "TakeDamage",
+                    "type": "Button",
+                    "id": "e6d5a77a-e106-49a7-bf8e-184a31f985c5",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "ShowShop",
                     "type": "Button",
                     "id": "f11192fe-1c83-4762-a975-73c889939f01",
@@ -54,12 +62,20 @@
                     "interactions": "Press(behavior=2)"
                 },
                 {
-                    "name": "TakeDamage",
+                    "name": "ShowPowerUp",
                     "type": "Button",
-                    "id": "e6d5a77a-e106-49a7-bf8e-184a31f985c5",
+                    "id": "a7a788e7-f50e-4cf3-bf84-e1bac1d0d6ae",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press(behavior=2)"
+                },
+                {
+                    "name": "NextScene",
+                    "type": "Button",
+                    "id": "101963e0-57ba-4d6e-b52a-2673ee64012c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -164,6 +180,28 @@
                 },
                 {
                     "name": "",
+                    "id": "64cb5593-e1fa-464a-ac1c-01cdfe4df8e4",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TakeDamage",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a774ce5-7835-4c76-9278-6e7074a34b55",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ShowPowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "28aefc1a-b5d5-4024-9900-5d65f64168e4",
                     "path": "<Gamepad>/leftShoulder",
                     "interactions": "",
@@ -175,12 +213,12 @@
                 },
                 {
                     "name": "",
-                    "id": "64cb5593-e1fa-464a-ac1c-01cdfe4df8e4",
-                    "path": "<Gamepad>/rightShoulder",
+                    "id": "4396fb8b-b2bd-4090-9b6c-849108956c5a",
+                    "path": "<Gamepad>/start",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "TakeDamage",
+                    "action": "NextScene",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -25,7 +25,7 @@ public class PlayerActions : MonoBehaviour
     public GameObject[] respawns;
 
     [SerializeField]
-    private float buildTowerCooldown = 0f;
+    public float buildTowerCooldown = 0f;
 
     private float buildTowerTimer;
 
@@ -48,13 +48,34 @@ public class PlayerActions : MonoBehaviour
     public GameObject fire;
     public GameObject coinManager;
     public GameObject towerPicker;
+    public GameObject powerUpPicker;
     private PlayerHealth playerHealth;
+    public CoolDownBar towerCoolDownBar;
+    private float currentTowerCoolDownTime;
+    private bool towerCoolDownIsRunning;
+    public CoolDownBar skillCoolDownBar;
+    private float currentSkillCoolDownTime;
+    private bool skillCoolDownIsRunning;
+    private float skillCoolDown;
 
 
     void Start()
     {
-        buildTowerTimer = buildTowerCooldown + 1;
 
+        buildTowerTimer = buildTowerCooldown + 1;
+        // currentTowerCoolDownTime = 0;
+        if (towerCoolDownBar != null)
+        {
+            towerCoolDownBar.SetMaxTime(buildTowerCooldown);
+            towerCoolDownBar.SetTime(buildTowerCooldown);
+            towerCoolDownIsRunning = false;
+        }
+        if (skillCoolDownBar != null)
+        {
+            skillCoolDownBar.SetMaxTime(1);
+            skillCoolDownBar.SetTime(1);
+            skillCoolDownIsRunning = false;
+        }
     }
 
     public void BuildTower(GameObject tower, int price)
@@ -178,6 +199,7 @@ public class PlayerActions : MonoBehaviour
     {
         controller = GetComponent<CharacterController2D>();
         towerPicker.SetActive(false);
+        powerUpPicker.SetActive(false);
         playerHealth = gameObject.GetComponent<PlayerHealth>();
     }
 
@@ -195,7 +217,67 @@ public class PlayerActions : MonoBehaviour
         else { crouch = false; }
 
         buildTowerTimer += Time.deltaTime;
+
+        if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
+        else if (playerMovementX == 0) { horizontalMove = 0 * runSpeed; }
+        else { horizontalMove = -1.5f * runSpeed; }
+
+
+        if (playerMovementY < 0) { crouch = true; }
+        else { crouch = false; }
+
+        if (towerCoolDownIsRunning)
+        {
+            if (currentTowerCoolDownTime < buildTowerCooldown)
+            {
+                currentTowerCoolDownTime += Time.deltaTime;
+                towerCoolDownBar.SetTime(currentTowerCoolDownTime);
+            }
+            else
+            {
+                towerCoolDownIsRunning = false;
+                currentTowerCoolDownTime = buildTowerCooldown;
+                towerCoolDownBar.SetTime(currentTowerCoolDownTime);
+            }
+        }
+
+        if (skillCoolDownIsRunning)
+        {
+            if (currentSkillCoolDownTime < skillCoolDown)
+            {
+                currentSkillCoolDownTime += Time.deltaTime;
+                skillCoolDownBar.SetTime(currentSkillCoolDownTime);
+            }
+            else
+            {
+                skillCoolDownIsRunning = false;
+                currentSkillCoolDownTime = skillCoolDown;
+                skillCoolDownBar.SetTime(currentSkillCoolDownTime);
+            }
+        }
     }
+
+    public void startTowerCoolDown()
+    {
+        if (towerCoolDownIsRunning == false)
+        {
+            towerCoolDownBar.SetMaxTime(buildTowerCooldown);
+            towerCoolDownIsRunning = true;
+            currentTowerCoolDownTime = 0;
+        }
+    }
+
+    public void startSkillCoolDown(float skillTime)
+    {
+        if (skillCoolDownIsRunning == false)
+        {
+            skillCoolDown = skillTime;
+            skillCoolDownBar.SetMaxTime(skillCoolDown);
+            skillCoolDownIsRunning = true;
+            currentSkillCoolDownTime = 0;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("teleport") && !teleport)

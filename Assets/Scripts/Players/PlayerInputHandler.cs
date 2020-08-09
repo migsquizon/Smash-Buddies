@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.SceneManagement;
 
 public class PlayerInputHandler : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class PlayerInputHandler : MonoBehaviour
     private PlayerActions player;
     private PlayerHealth playerHealth;
     private GameObject towerPicker;
+    private GameObject powerUpPicker;
     private float RoninCD = 10f;
     private float RoninTimer;
     public GameObject towerOne;
@@ -37,6 +39,7 @@ public class PlayerInputHandler : MonoBehaviour
         //mover = GetComponent<PlayerMovement>();
         playerHealth = player.GetComponent<PlayerHealth>();
         towerPicker = player.towerPicker;
+        powerUpPicker = player.powerUpPicker;
 
         RoninTimer = RoninCD + 1;
         SageTimer = SageCD + 1;
@@ -88,6 +91,7 @@ public class PlayerInputHandler : MonoBehaviour
         }
         else
         {
+
             if (player != null)
             {
                 if (player.GetComponent<PlayerAbility>().RoninActive && player.gameObject.name == "Ronin")
@@ -109,42 +113,69 @@ public class PlayerInputHandler : MonoBehaviour
             return;
         }
         Debug.Log(player.gameObject.name);
+
         if (player.gameObject.name == "Sage")
         {
-            if (SageTimer > SageCD)
+            if (powerUpPicker.activeInHierarchy)
+            {
+                // get index of player
+                SageCD -= 2;
+
+            }
+            else if (SageTimer > SageCD)
             {
                 player.GetComponent<PlayerAbility>().fireBurn();
                 SageTimer = 0;
+                player.startSkillCoolDown(SageCD);
             }
         }
         if (player.gameObject.name == "Tank")
         {
-            if (TankTimer > TankCD)
+            if (powerUpPicker.activeInHierarchy)
+            {
+                // get index of player
+                TankCD -= 2;
+            }
+            else if (TankTimer > TankCD)
             {
                 player.GetComponent<PlayerAbility>().tankStun(TankAOE, stunDuration);
                 TankTimer = 0;
+                player.startSkillCoolDown(TankCD);
             }
         }
         if (player.gameObject.name == "Servo")
         {
+            if (powerUpPicker.activeInHierarchy)
+            {
+                // get index of player
+                SupportCD -= 2;
+
+            }
             if (SupportTimer > SupportCD)
             {
                 player.GetComponent<PlayerAbility>().heartSpawn();
                 Debug.Log("support skill used");
                 SupportTimer = 0;
                 //Tanktimer = 0;
+                player.startSkillCoolDown(SupportCD);
             }
         }
         // THIS IS A WORKING RONIN SCRIPT BUT I AM TESTING
 
         if (player.gameObject.name == "Ronin")
         {
+            if (powerUpPicker.activeInHierarchy)
+            {
+                // get index of player
+                RoninCD -= 2;
+            }
             if (RoninTimer > RoninCD)
             {
                 player.GetComponent<PlayerAbility>().RoninActive = true;
                 RoninTimer = 0;
                 player.GetComponent<PlayerAbility>().RoninDurFunc();
                 //player.GetComponent<PlayerAbility>().RoninAbility();
+                player.startSkillCoolDown(RoninCD);
             }
 
             else
@@ -163,7 +194,15 @@ public class PlayerInputHandler : MonoBehaviour
             player.BuildTower(towerThree, towerThreePrice);
             return;
         }
+        if (powerUpPicker.activeInHierarchy)
+        {
+            // get index of player
+            player.buildTowerCooldown -= 5;
+            return;
+        }
+
         player.BuildTower();
+        player.startTowerCoolDown();
     }
 
 
@@ -180,6 +219,18 @@ public class PlayerInputHandler : MonoBehaviour
             towerPicker.SetActive(true);
         }
     }
+    public void OnShowPowerUp()
+    {
+        Debug.Log("show power up");
+        if (powerUpPicker.activeInHierarchy)
+        {
+            powerUpPicker.SetActive(false);
+        }
+        else
+        {
+            powerUpPicker.SetActive(true);
+        }
+    }
 
     public void OnTakeDamage()
     {
@@ -187,5 +238,9 @@ public class PlayerInputHandler : MonoBehaviour
         playerHealth.TakeDamage(1);
     }
 
+    public void OnNextScene()
+    {
+        GameObject.Find("LevelChanger").GetComponent<LevelManager>().FadeToNextLevel();
+    }
 
 }

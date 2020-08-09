@@ -42,7 +42,7 @@ public class EnemyBullet : MonoBehaviour
         }if (hitInfo.gameObject.tag == "Obstacle")
         {
             Debug.Log("Damaged by bullet");
-            //hitInfo.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            hitInfo.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
             Destroy(gameObject);
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
 

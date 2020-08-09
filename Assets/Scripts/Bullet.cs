@@ -14,6 +14,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        Destroy(gameObject,0.4f);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)

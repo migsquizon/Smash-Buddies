@@ -143,8 +143,10 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 945baca3ae4b3794497d1196eda43319, type: 2}
   m_FireRate: 1
   attackPoint: {fileID: 6289658986332359259}
-  attackRange: 0.5
+  attackRange: 1
   animator: {fileID: 5574557389811397355}
+  launchoffset: {fileID: 0}
+  rangedProjectile: {fileID: 0}
 --- !u!114 &2301416896437999102
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,6 +165,7 @@ MonoBehaviour:
   m_Dead: 0
   healthbar: {fileID: 5928828859178437509}
   moveSpeed: {fileID: 5713044701318527627}
+  inAoe: 0
 --- !u!114 &5834739529906997813
 MonoBehaviour:
   m_ObjectHideFlags: 0

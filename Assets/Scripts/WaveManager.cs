@@ -43,7 +43,7 @@ public class WaveManager : MonoBehaviour
             return;
         }
         _instance = this;
-        DontDestroyOnLoad(this.gameObject);
+        // DontDestroyOnLoad(this.gameObject);
     }
 
     public static void spawnEnemies(int big, int mini)
@@ -56,6 +56,7 @@ public class WaveManager : MonoBehaviour
         {
             foreach (GameObject enemy in miniWaves[i])
             {
+                enemy.transform.localScale = new Vector3(1.8f, 2.0f, 1f);
                 enemy.transform.position = miniWavesLocation[i];
                 enemy.SetActive(true);
             }
@@ -92,12 +93,12 @@ public class WaveManager : MonoBehaviour
 
     private IEnumerator spawnMiniwaves(int curr)
     {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        // Debug.Log("Started Coroutine at timestamp : " + Time.time);
         WaitForSeconds wait = new WaitForSeconds(interval);
 
         for (int i = 0; i < EnemySpawner.SharedInstance.waves[curr].miniWaves.Count; i++)
         {
-            Debug.Log("Finished interval : " + Time.time);
+            // Debug.Log("Finished interval : " + Time.time);
             spawnEnemies(curr, i);
             if (i == EnemySpawner.SharedInstance.waves[curr].miniWaves.Count - 1) break;
             yield return wait;
