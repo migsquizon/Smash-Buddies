@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2041841621529198238}
   - component: {fileID: 6007655581556891989}
   - component: {fileID: 5691032820066195851}
+  - component: {fileID: -7298311941598299165}
   m_Layer: 12
   m_Name: Range
   m_TagString: Enemy
@@ -37,6 +38,7 @@ Transform:
   m_Children:
   - {fileID: 6365993994007990860}
   - {fileID: 5906076543908981324}
+  - {fileID: 7090061259673697977}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.763, y: 0, z: 0}
@@ -159,8 +161,11 @@ MonoBehaviour:
   enemyStats: {fileID: 11400000, guid: 945baca3ae4b3794497d1196eda43319, type: 2}
   m_FireRate: 1
   attackPoint: {fileID: 5906076543908981324}
-  attackRange: 0.3
+  attackRange: 2
   animator: {fileID: 5691032820066195851}
+  launchoffset: {fileID: 7090061259673697977}
+  rangedProjectile: {fileID: 4467771710657378774, guid: 4b5c7b7886e73394899d7705e86a5662,
+    type: 3}
 --- !u!114 &2041841621529198238
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +184,7 @@ MonoBehaviour:
   m_Dead: 0
   healthbar: {fileID: 5900063184356925669}
   moveSpeed: {fileID: 5543541607667241451}
+  inAoe: 0
 --- !u!114 &6007655581556891989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +221,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 143198916705082903}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: d196e625623b5c147bd54650099d4bd3, type: 2}
   m_CullingMode: 0
@@ -226,6 +232,26 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-7298311941598299165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 143198916705082903}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22653028ecc19694d83338f0a7d6aca6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rangedProjectile: {fileID: 4467771710657378774, guid: 4b5c7b7886e73394899d7705e86a5662,
+    type: 3}
+  enemyHealth: {fileID: 0}
+  atkRange: 3
+  atkSpeed: 1
+  collideroffset: {fileID: 5906076543908981324}
+  launchoffset: {fileID: 7090061259673697977}
+  dur: 5
 --- !u!1 &590647167821345727
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +326,36 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1957275672153099281
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7090061259673697977}
+  m_Layer: 12
+  m_Name: launchOffset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7090061259673697977
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1957275672153099281}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.74, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4088880558329505399}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4346840898053559722
 GameObject:
   m_ObjectHideFlags: 0
