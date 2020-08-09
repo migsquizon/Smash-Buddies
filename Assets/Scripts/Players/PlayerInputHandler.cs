@@ -29,7 +29,7 @@ public class PlayerInputHandler : MonoBehaviour
     private float SupportCD = 5f;
     private float TankAOE = 4f;
     private int stunDuration = 5;
-
+    private bool teleport = false;
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -234,9 +234,47 @@ public class PlayerInputHandler : MonoBehaviour
 
     public void OnTakeDamage()
     {
-        Debug.Log("R1 is pressed");
+        // Debug.Log("R1 is pressed");
         playerHealth.TakeDamage(1);
     }
+    bool teleportpressed = false;
+    public void OnTeleport()
+    {
+        if (!teleportpressed)
+        {
+
+            teleportpressed = true;
+            Debug.Log("R2 is pressed");
+            player.PlayerHit();
+            StartCoroutine(PortalCoroutine());
+        }
+    }
+
+    IEnumerator PortalCoroutine()
+    {
+        //Print the time of when the function is first called.
+        //Debug.Log("Started Coroutine at timestamp : " + Time.time);
+
+        //yield on a new YieldInstruction that waits for 5 seconds.
+        yield return new WaitForSeconds(3);
+        if (player.gameObject.transform.position.y > -1)
+        {
+            teleport = true;
+            player.gameObject.transform.position = new Vector2(player.gameObject.transform.position.x, -4f);
+            //Debug.Log(transform.position);
+
+        }
+        else if (player.gameObject.transform.position.y < -1)
+        {
+            teleport = true;
+            player.gameObject.transform.position = new Vector2(player.gameObject.transform.position.x, 2f);
+
+        }
+        //After we have waited 5 seconds print the time again.
+        //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        teleportpressed = false;
+    }
+
 
     public void OnNextScene()
     {

@@ -33,11 +33,37 @@ public class BossHealth : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        // if (collision.gameObject.CompareTag("Enemy"))
+        // {
+        //     TakeDamage(30);
+        //     Destroy(collision.gameObject);
+        // }
+    }
+
+    public void TakeStatus(float damageOverTime, int duration)
+    {
+
+        //curSpeed = moveSpeed.speed;
+        StartCoroutine(statusDuration(duration, damageOverTime));
+    }
+    IEnumerator statusDuration(int dur, float dot)
+    {
+        //Print the time of when the function is first called.
+        Debug.Log("status duration started at : " + Time.time);
+
+        for (float i = 0; i < dur; i++)
         {
-            TakeDamage(30);
-            Destroy(collision.gameObject);
+            TakeDamage((int)dot);
+            Debug.Log("DOT Taken" + dot);
+            yield return new WaitForSeconds(1.0f);
+
         }
+        //yield on a new YieldInstruction that waits for 5 seconds.
+
+        //RoninActive = false;
+        //After we have waited 5 seconds print the time again.
+        Debug.Log("Status duration ended at : " + Time.time);
+
     }
 
     public void TakeDamage(int damage)
@@ -49,7 +75,7 @@ public class BossHealth : MonoBehaviour
 
         currentHealth -= damage;
 
-        if (currentHealth < 50)
+        if (currentHealth < maxHealth * 0.5)
         {
             GetComponent<Animator>().SetBool("Enrage", true);
         }

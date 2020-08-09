@@ -30,10 +30,9 @@ public class PlayerActions : MonoBehaviour
     private float buildTowerTimer;
 
 
-    [SerializeField]
     private float stunCooldown = 10.0f;
-    [SerializeField]
-    public int stunTime = 5;
+
+    private int stunTime = 3;
     private float stunTimer;
     public Animator animator;
 
@@ -208,9 +207,9 @@ public class PlayerActions : MonoBehaviour
     void Update()
     {
 
-        if (playerMovementX > 0) { horizontalMove = 1.5f * runSpeed; }
+        if (playerMovementX > 0.1) { horizontalMove = 1.5f * runSpeed; }
         else if (playerMovementX == 0) { horizontalMove = 0 * runSpeed; }
-        else { horizontalMove = -1.5f * runSpeed; }
+        else if (playerMovementX < -0.1) { horizontalMove = -1.5f * runSpeed; }
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
 
         if (playerMovementY < 0) { crouch = true; }

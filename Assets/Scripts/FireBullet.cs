@@ -13,10 +13,10 @@ public class FireBullet : MonoBehaviour
 
     public int duration = 2;
     public Rigidbody2D rb;
-    
+
     void Start()
     {
-      //  transform.localScale = transform.localScale + new Vector3 (0,size - 1,0);
+        //  transform.localScale = transform.localScale + new Vector3 (0,size - 1,0);
         /*if (Thrown){
             
             
@@ -54,9 +54,16 @@ public class FireBullet : MonoBehaviour
             Debug.Log("burn!");
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(Damage);
             //Destroy(gameObject);
-            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(Damage,0,duration);
+            hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(Damage, 0, duration);
+        }
+        if (hitInfo.gameObject.tag == "BossPortal")
+        {
+            Debug.Log("Damaged by bullet");
+            // hitInfo.gameObject.GetComponent<BossHealth>().TakeDamage((int)Damage);
+            hitInfo.gameObject.GetComponent<BossHealth>().TakeStatus(Damage * 2, duration * 5);
+
         }
 
-        
+
     }
 }

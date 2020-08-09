@@ -14,6 +14,7 @@ public class EnemyBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * speed;
+        Destroy(gameObject, 1);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -25,12 +26,12 @@ public class EnemyBullet : MonoBehaviour
         //}
         // Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
-/*         if (hitInfo.gameObject.tag != "teleport")
-        {
-            // Debug.Log("Success!");
-            // Debug.Log(hitInfo.gameObject.name);
-            Destroy(gameObject);
-        } */
+        /*         if (hitInfo.gameObject.tag != "teleport")
+                {
+                    // Debug.Log("Success!");
+                    // Debug.Log(hitInfo.gameObject.name);
+                    Destroy(gameObject);
+                } */
 
         if (hitInfo.gameObject.tag == "Player")
         {
@@ -39,7 +40,8 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject);
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
 
-        }if (hitInfo.gameObject.tag == "Obstacle")
+        }
+        if (hitInfo.gameObject.tag == "Obstacle")
         {
             Debug.Log("Damaged by bullet");
             hitInfo.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);

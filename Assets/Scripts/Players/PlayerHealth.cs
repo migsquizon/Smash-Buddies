@@ -93,11 +93,10 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(5);
         dead = false;
         GetComponent<CircleCollider2D>().enabled = true;
+        GetComponent<Rigidbody2D>().MovePosition(new Vector2(0, 0));
         Heal();
         Heal();
         Heal();
-        transform.position = new Vector2(0, 10);
+        transform.position = new Vector2(0, 20);
     }
-
-
 }
