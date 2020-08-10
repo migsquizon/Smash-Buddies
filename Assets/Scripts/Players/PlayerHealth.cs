@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {
     public GameObject[] hearts;
-    private int life;
+    public int life;
     public bool dead;
     private bool isHit = false;
     private int nextHit = 2;
@@ -15,15 +15,16 @@ public class PlayerHealth : MonoBehaviour
     {
         life = hearts.Length;
         sprite = GetComponent<SpriteRenderer>();
-         Scene currentScene = SceneManager.GetActiveScene ();
- 
-         // Retrieve the name of this scene.
-         string sceneName = currentScene.name;
-         if (sceneName == "Round 2"){
-             isboss = true;
-         }
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        // Retrieve the name of this scene.
+        string sceneName = currentScene.name;
+        if (sceneName == "Round 2")
+        {
+            isboss = true;
+        }
         // Create a temporary reference to the current scene.
-        
+
     }
 
     public void TakeDamage(int damagePoint)
@@ -51,8 +52,9 @@ public class PlayerHealth : MonoBehaviour
     {
         dead = true;
         GetComponent<CircleCollider2D>().enabled = false;
-        if (!isboss ) StartCoroutine(WaitForPlayerToRevive());
-       
+        if (!isboss) StartCoroutine(WaitForPlayerToRevive());
+        else sprite.color = new Color(1, 1, 1, 0);
+
     }
 
     public void Heal()

@@ -47,10 +47,10 @@ MonoBehaviour:
   towerOne: {fileID: 8708498813142949833, guid: 20dd925cd7b90d2459c83e1d1dbfd54a,
     type: 3}
   towerOnePrice: 75
-  towerTwo: {fileID: 4970449650477501630, guid: 5183a852e4860f44a8355ce667112fee,
+  towerTwo: {fileID: 8708498813142949833, guid: 797d988337c495443a9ec58ad2c6a918,
     type: 3}
   towerTwoPrice: 100
-  towerThree: {fileID: 5571578704816657213, guid: b9e5d9aa7a6230f499b5306591ed7e1e,
+  towerThree: {fileID: 8708498813142949833, guid: 7738507e3f9ad6a41af91a34001cd568,
     type: 3}
   towerThreePrice: 150
 --- !u!114 &8061064206037296145

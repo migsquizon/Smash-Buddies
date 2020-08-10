@@ -10,6 +10,9 @@ public class BossHealth : MonoBehaviour
     public HealthBarPortal healthBarPortal;
     public GameObject gameOverScreen;
 
+
+    public GameObject winScreen;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -19,13 +22,29 @@ public class BossHealth : MonoBehaviour
 
 
     public bool isInvulnerable = false;
+    public GameObject[] players;
 
     private void Update()
     {
+        int playerlives = 0;
+        players = GameObject.FindGameObjectsWithTag("Player");
         if (currentHealth <= 0)
         {
+            GameObject.Find("HUD Canvas/PortalHealthObject").gameObject.SetActive(false);
+            winScreen.SetActive(true);
+        }
+        foreach (GameObject player in players)
+        {
+            playerlives += player.GetComponent<PlayerHealth>().life;
+
+        }
+
+        if (playerlives == 0)
+        {
+            GameObject.Find("HUD Canvas/PortalHealthObject").gameObject.SetActive(false);
             gameOverScreen.SetActive(true);
         }
+
 
 
 

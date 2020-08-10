@@ -13,8 +13,8 @@ public class EnemyBullet : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * speed;
-        Destroy(gameObject, 1);
+        //rb.velocity = transform.right * speed;
+        Destroy(gameObject, 0.7f);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)

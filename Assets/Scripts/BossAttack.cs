@@ -21,7 +21,7 @@ public class BossAttack : MonoBehaviour
     void Update()
     {
         //float moveSpeed = gameObject.GetComponent<BossHealth>().moveSpeed.speed;
-        Collider2D[] hitColliders = Physics2D.OverlapCircleAll(attackPoint.position, attackRange);
+        Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2(2.421875f, 6.765625f), 0);
         foreach (Collider2D collision in hitColliders)
         {
             if (collision.gameObject.tag == "Player" && !hasAttacked)

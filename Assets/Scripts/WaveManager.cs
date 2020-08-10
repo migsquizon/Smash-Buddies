@@ -185,33 +185,20 @@ public class WaveManager : MonoBehaviour
         respawns = GameObject.FindGameObjectsWithTag("Enemy");
         if (respawns.Length == 0) stillGotEnemy = false;
         else stillGotEnemy = true;
-        Debug.Log(currentWave);
-        //if (!inCombat)
-        //{
-        //    if (respawns.Length == 0)
-        //    {
-        //        spawnWave();
-        //    }
-        //}
-        //else
-        //{
+
         if (currentWave == numberOfWaves + 1)
         {
-
             if (respawns.Length == 0)
             {
                 LevelManager levelchanger = GameObject.Find("LevelChanger").GetComponent<LevelManager>();
                 levelchanger.FadeToNextLevel();
                 return;
             }
-
-
         }
         else
         {
             if (!stillGotEnemy)
             {
-                // spawnWave();
                 begin();
             }
         }

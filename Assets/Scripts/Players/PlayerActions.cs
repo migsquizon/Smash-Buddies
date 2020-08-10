@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static UnityEngine.InputSystem.InputAction;
+using UnityEngine.SceneManagement;
 
 public class PlayerActions : MonoBehaviour
 {
 
     CharacterController2D controller;
+
+    Scene currentScene;
     bool teleport = false;
     public float runSpeed = 40f;
 
@@ -57,11 +60,12 @@ public class PlayerActions : MonoBehaviour
     private bool skillCoolDownIsRunning;
     private float skillCoolDown;
     public GameObject teleporting;
-
+    bool isboss = false;
 
     void Start()
     {
-        
+
+
         buildTowerTimer = buildTowerCooldown + 1;
         // currentTowerCoolDownTime = 0;
         if (towerCoolDownBar != null)
@@ -200,7 +204,7 @@ public class PlayerActions : MonoBehaviour
         controller = GetComponent<CharacterController2D>();
         towerPicker.SetActive(false);
         powerUpPicker.SetActive(false);
-        
+
         teleporting.SetActive(false);
         playerHealth = gameObject.GetComponent<PlayerHealth>();
     }
@@ -285,14 +289,14 @@ public class PlayerActions : MonoBehaviour
         if (other.CompareTag("teleport") && !teleport)
         {
             {
-                
+
                 //Debug.Log(transform.position);
                 //Debug.Log("teleporting!");
                 if (transform.position.y > -1)
                 {
-                    
+
                     teleport = true;
-                    
+
                     transform.position = new Vector2(transform.position.x, -4f);
                     //Debug.Log(transform.position);
                     StartCoroutine(PortalCoroutine());
@@ -320,9 +324,9 @@ public class PlayerActions : MonoBehaviour
         //After we have waited 5 seconds print the time again.
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         teleport = false;
-        
+
         teleporting.SetActive(false);
-        
+
     }
 
     public void OnLanding()

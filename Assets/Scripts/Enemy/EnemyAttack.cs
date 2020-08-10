@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    public EnemyStats enemyStats;
     public float m_FireRate = 0.3f;
     private bool hasAttacked;
     public Transform attackPoint;
@@ -13,6 +12,7 @@ public class EnemyAttack : MonoBehaviour
 
     public Transform launchoffset;
     public GameObject rangedProjectile;
+    public Transform playerpos;
 
 
     IEnumerator attackCD()
@@ -22,9 +22,13 @@ public class EnemyAttack : MonoBehaviour
         animator.SetBool("Attack", false);
     }
 
+    void Start()
+    {
+    }
     void Update()
     {
         float moveSpeed = gameObject.GetComponent<EnemyHealth>().moveSpeed.speed;
+
         Collider2D[] hitColliders = Physics2D.OverlapBoxAll(attackPoint.position, new Vector2((attackRange - 0.3f) * 1f, 2f), 0);
         foreach (Collider2D collision in hitColliders)
         {
@@ -35,8 +39,12 @@ public class EnemyAttack : MonoBehaviour
                 Debug.Log("Attacking player");
                 if (attackRange > 1)
                 {
+                    playerpos = collision.gameObject.transform;
                     GameObject fire = Instantiate(rangedProjectile, launchoffset.position, launchoffset.rotation);
+                    fire.GetComponent<Rigidbody2D>().velocity = (playerpos.position - launchoffset.position).normalized * 10f;
+
                     gameObject.GetComponent<EnemyHealth>().TakeStatus(0, moveSpeed, 2);
+
                 }
                 else
                 {

@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = transform.right * dir * speed;
-        Destroy(gameObject,0.4f);
+        Destroy(gameObject, 0.4f);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -27,17 +27,12 @@ public class Bullet : MonoBehaviour
         //}
         // Debug.Log(hitInfo);
         //Instantiate(impactEffect, transform.position, transform.rotation);
-        if (hitInfo.gameObject.tag != "teleport")
-        {
-            // Debug.Log("Success!");
-            // Debug.Log(hitInfo.gameObject.name);
-            Destroy(gameObject);
-        }
 
         if (hitInfo.gameObject.tag == "Enemy")
         {
             Debug.Log("Damaged by bullet");
             hitInfo.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            Destroy(gameObject);
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
 
         }
@@ -46,6 +41,7 @@ public class Bullet : MonoBehaviour
         {
             Debug.Log("Damaged by bullet");
             hitInfo.gameObject.GetComponent<BossHealth>().TakeDamage(damage);
+            Destroy(gameObject);
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
 
         }

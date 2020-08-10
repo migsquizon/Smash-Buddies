@@ -30,10 +30,18 @@ public class PlayerInputHandler : MonoBehaviour
     private float TankAOE = 4f;
     private int stunDuration = 5;
     private bool teleport = false;
-    
+    public GameObject teleporting;
+    bool isboss = false;
+
     SpriteRenderer sprite;
     private void Awake()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "Round 2")
+        {
+            isboss = true;
+        }
         playerInput = GetComponent<PlayerInput>();
         var players = FindObjectsOfType<PlayerActions>();
         var index = playerInput.playerIndex;
@@ -245,7 +253,7 @@ public class PlayerInputHandler : MonoBehaviour
     bool teleportpressed = false;
     public void OnTeleport()
     {
-        if (!teleportpressed)
+        if (!teleportpressed && !isboss)
         {
             player.teleporting.SetActive(true);
             teleportpressed = true;

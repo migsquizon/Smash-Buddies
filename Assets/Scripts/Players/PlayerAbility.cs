@@ -54,7 +54,7 @@ public class PlayerAbility : MonoBehaviour
         //Debug.Log(firePoint.rotation);
         //Quaternion temporary = firePoint.rotation;
         GameObject oppBullet = Instantiate(bulletPrefab, opposite.position, opposite.rotation);
-        oppBullet.GetComponent<Bullet>().dir = transform.localRotation.y > 0 ? -1f : 1f ;
+        //oppBullet.GetComponent<Bullet>().dir = transform.localRotation.y > 0 ? -1f : 1f ;
 
         // temporary.Rotate(0f, 180f, 0f);
         // if(timeSinceAction > duration) {

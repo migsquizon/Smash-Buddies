@@ -571,6 +571,11 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3634994199528698121, guid: 7dda696997ddc4949807964c33a7df88,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3634994199528698123, guid: 7dda696997ddc4949807964c33a7df88,
         type: 3}
       propertyPath: m_Layer
@@ -3897,6 +3902,11 @@ PrefabInstance:
       propertyPath: m_Tiles.Array.data[95].second.m_AllTileFlags
       value: 1073741825
       objectReference: {fileID: 0}
+    - target: {fileID: 3634994199548896238, guid: 7dda696997ddc4949807964c33a7df88,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 3634994200385087187, guid: 7dda696997ddc4949807964c33a7df88,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4887,7 +4897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2066551937
 Transform:
   m_ObjectHideFlags: 0
@@ -5344,6 +5354,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3154276079909032671, guid: 182d09874cc44ea45ac4a5ed0f1b2315,
+        type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 3600873134032994381, guid: 182d09874cc44ea45ac4a5ed0f1b2315,
         type: 3}
@@ -5802,6 +5817,16 @@ PrefabInstance:
     - target: {fileID: 249580585549129068, guid: 668d57e79464e6647b84a3e8345f8eea,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792167695652725981, guid: 668d57e79464e6647b84a3e8345f8eea,
+        type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3792167695652725981, guid: 668d57e79464e6647b84a3e8345f8eea,
+        type: 3}
+      propertyPath: m_DynamicOccludee
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5582046554478012016, guid: 668d57e79464e6647b84a3e8345f8eea,
@@ -6328,6 +6353,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7827641300252121781, guid: 9789d437adbf9474ca6c4d5e1f34b2cf,
+        type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9789d437adbf9474ca6c4d5e1f34b2cf, type: 3}
 --- !u!114 &7104822290243561278 stripped
@@ -6519,6 +6549,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: WaveManager
       objectReference: {fileID: 0}
+    - target: {fileID: 7689803860113156410, guid: 1acc9b420e7056949928e437d3a2c7b6,
+        type: 3}
+      propertyPath: waves.Array.data[1].miniWaves.Array.data[0].enemyTypesInLane1.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689803860113156410, guid: 1acc9b420e7056949928e437d3a2c7b6,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[0].enemyTypesInLane4.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689803860113156410, guid: 1acc9b420e7056949928e437d3a2c7b6,
+        type: 3}
+      propertyPath: waves.Array.data[1].miniWaves.Array.data[0].enemyTypesInLane1.Array.data[1].amount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689803860113156410, guid: 1acc9b420e7056949928e437d3a2c7b6,
+        type: 3}
+      propertyPath: waves.Array.data[1].miniWaves.Array.data[0].enemyTypesInLane1.Array.data[1].enemyPrefab
+      value: 
+      objectReference: {fileID: 169708504548078967, guid: 4579b36737b300044b656d33f4c03d16,
+        type: 3}
+    - target: {fileID: 7689803860113156410, guid: 1acc9b420e7056949928e437d3a2c7b6,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[0].enemyTypesInLane4.Array.data[1].amount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7689803860113156410, guid: 1acc9b420e7056949928e437d3a2c7b6,
+        type: 3}
+      propertyPath: waves.Array.data[0].miniWaves.Array.data[0].enemyTypesInLane4.Array.data[1].enemyPrefab
+      value: 
+      objectReference: {fileID: 169708504548078967, guid: 4579b36737b300044b656d33f4c03d16,
+        type: 3}
     - target: {fileID: 7689803860113156411, guid: 1acc9b420e7056949928e437d3a2c7b6,
         type: 3}
       propertyPath: preparationScreen
@@ -6807,6 +6869,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4514589852051643171, guid: f64e157fde00e7840824994faab4db9e,
+        type: 3}
+      propertyPath: m_ShapeTexture
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6608137943142436093, guid: f64e157fde00e7840824994faab4db9e,
         type: 3}

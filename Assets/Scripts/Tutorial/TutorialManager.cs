@@ -8,15 +8,17 @@ public class TutorialManager : MonoBehaviour
     private GameObject tutorialEnemy;
 
     public GameObject HUDStateParent;
+    public GameObject tutorial_0_HUD;
     public GameObject tutorial_1_HUD;
     public GameObject tutorial_2_HUD;
     public GameObject tutorial_3_HUD;
     public GameObject tutorial_4_HUD;
     public GameObject tutorial_5_HUD;
     public GameObject tutorial_6_HUD;
+    public GameObject tutorial_7_HUD;
 
 
-    public int state = 1;
+    public int state = 0;
     public bool enemyIsDead = false;
     public bool enemyChasePortal = false;
     private bool startCoroutine = false;
@@ -67,6 +69,8 @@ public class TutorialManager : MonoBehaviour
         }
         else if (state == 4)
         {
+            tutorial_0_HUD.gameObject.SetActive(false);
+            tutorial_7_HUD.gameObject.SetActive(true);
             if (!GameObject.Find("Melee(Clone)")) enemyIsDead = true;
             if (enemyIsDead)
             {
@@ -93,13 +97,13 @@ public class TutorialManager : MonoBehaviour
     {
         tutorial_4_HUD.gameObject.SetActive(false);
         tutorial_5_HUD.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3.5f);
         tutorial_5_HUD.gameObject.SetActive(false);
         tutorial_6_HUD.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3.5f);
         tutorial_6_HUD.gameObject.SetActive(false);
         tutorial_4_HUD.gameObject.SetActive(true);
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3.5f);
         StartCoroutine(RotatingTutorial());
     }
 }
