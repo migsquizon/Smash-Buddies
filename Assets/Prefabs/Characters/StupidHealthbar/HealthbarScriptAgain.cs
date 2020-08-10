@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class HealthbarScriptAgain : MonoBehaviour
 {
+    void Start()
+    {
+        transform.localScale = new Vector3(0, 0.1f, 1);
+    }
     public void SetHealth(float health, float maxHealth)
     {
-        if (health == maxHealth) transform.localScale = new Vector3(1, 0.1f, 1);
-        else transform.localScale = new Vector3(health / maxHealth, 0.1f, 1);
+        if (health < 0) health = 0;
+        transform.localScale = new Vector3(health / maxHealth, 0.1f, 1);
+
     }
 }

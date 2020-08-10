@@ -11,6 +11,7 @@ public class PlayerHealth : MonoBehaviour
     private int nextHit = 2;
     SpriteRenderer sprite;
     bool isboss = false;
+    public AudioSource takeDamageSound;
     private void Start()
     {
         life = hearts.Length;
@@ -30,7 +31,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damagePoint)
     {
         if (life >= 1)
-        {
+        {   takeDamageSound.Play();
             Debug.Log("Damage Taken");
 
             sprite.color = new Color(1, 1, 1, 0);
@@ -110,13 +111,13 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator tookDamage()
     {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        // Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(0.2f);
 
         //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        // Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         isHit = false;
         sprite.color = new Color(1, 1, 1, 1);
     }

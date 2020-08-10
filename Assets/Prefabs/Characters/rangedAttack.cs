@@ -57,7 +57,7 @@ public class rangedAttack : MonoBehaviour
             GameObject fire = Instantiate(rangedProjectile, launchoffset.position, Quaternion.identity);
             Debug.Log("fire.GetComponent<Rigidbody2D>().velocity");
             fire.GetComponent<Rigidbody2D>().velocity = (toShootAt.position - launchoffset.position).normalized * 4f;
-            Debug.Log(fire.GetComponent<Rigidbody2D>().velocity);
+            // Debug.Log(fire.GetComponent<Rigidbody2D>().velocity);
             fire.GetComponent<Fire>().AtkRange = atkRange;
             fired = true;
             StartCoroutine(attackCD());

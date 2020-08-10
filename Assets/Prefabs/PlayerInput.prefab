@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6177332307780761378}
   - component: {fileID: 2205217109103549306}
   - component: {fileID: 8061064206037296145}
+  - component: {fileID: 3033545995704005386}
   m_Layer: 0
   m_Name: PlayerInput
   m_TagString: Untagged
@@ -53,6 +54,7 @@ MonoBehaviour:
   towerThree: {fileID: 8708498813142949833, guid: 7738507e3f9ad6a41af91a34001cd568,
     type: 3}
   towerThreePrice: 150
+  teleporting: {fileID: 0}
 --- !u!114 &8061064206037296145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,3 +135,15 @@ MonoBehaviour:
   m_DefaultActionMap: Movement
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &3033545995704005386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8233858979250456225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53929375396b77a4e94cda859978d398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

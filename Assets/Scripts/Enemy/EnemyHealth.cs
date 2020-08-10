@@ -32,7 +32,10 @@ public class EnemyHealth : MonoBehaviour
         m_CurrentHealth -= amount;
         healthbar2.SetHealth(m_CurrentHealth, m_MaxHealth);
 
-        if (m_CurrentHealth <= 0f && !m_Dead) OnDeath();
+        if (m_CurrentHealth <= 0f && !m_Dead)
+        {
+            OnDeath();
+        }
     }
 
     public void TakeStatus(float damageOverTime, float slow, int duration)
@@ -65,16 +68,20 @@ public class EnemyHealth : MonoBehaviour
         //Print the time of when the function is first called.
         yield return new WaitForSeconds(1.0f);
         kennaDmg = false;
+    }
 
+    IEnumerator DeathFX()
+    {
+        GetComponent<AudioSource>().Play();
+        GetComponent<Collider2D>().enabled = false;
+        Debug.Log(GetComponent<AudioSource>());
+        yield return new WaitForSeconds(1.0f);
+        m_Dead = true;
+        Destroy(gameObject);
     }
 
     private void OnDeath()
     {
-        m_Dead = true;
-
-        // playing death effects
-
-        gameObject.SetActive(false);
-        Destroy(gameObject);
+        StartCoroutine(DeathFX());
     }
 }

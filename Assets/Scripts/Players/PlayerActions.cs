@@ -61,6 +61,7 @@ public class PlayerActions : MonoBehaviour
     private float skillCoolDown;
     public GameObject teleporting;
     bool isboss = false;
+    public AudioSource attackSound;
 
     void Start()
     {
@@ -113,6 +114,7 @@ public class PlayerActions : MonoBehaviour
     public void Shoot()
     {
         animator.SetTrigger("Attack");
+        attackSound.Play();
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 

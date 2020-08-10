@@ -50,15 +50,38 @@ public class PlayerInputHandler : MonoBehaviour
         playerHealth = player.GetComponent<PlayerHealth>();
         towerPicker = player.towerPicker;
         powerUpPicker = player.powerUpPicker;
-
+        Debug.Log("input handler awake");
         RoninTimer = RoninCD + 1;
         SageTimer = SageCD + 1;
         TankTimer = TankCD + 1;
         SupportTimer = SupportCD + 1;
         sprite = player.GetComponent<SpriteRenderer>();
     }
+
+    private void Start()
+    {
+        Debug.Log("input handler start");
+    }
+
+
+
+
     private void Update()
     {
+        Scene currentScene = SceneManager.GetActiveScene();
+        string sceneName = currentScene.name;
+        if (sceneName == "Round 2")
+        {
+            isboss = true;
+        }
+        playerInput = GetComponent<PlayerInput>();
+        var players = FindObjectsOfType<PlayerActions>();
+        var index = playerInput.playerIndex;
+        player = players.FirstOrDefault(m => m.GetPlayerIndex() == index);
+        //mover = GetComponent<PlayerMovement>();
+        playerHealth = player.GetComponent<PlayerHealth>();
+        towerPicker = player.towerPicker;
+        powerUpPicker = player.powerUpPicker;
         RoninTimer += Time.deltaTime;
         SageTimer += Time.deltaTime;
         TankTimer += Time.deltaTime;
@@ -108,9 +131,11 @@ public class PlayerInputHandler : MonoBehaviour
                 if (player.GetComponent<PlayerAbility>().RoninActive && player.gameObject.name == "Ronin")
                 {
                     player.GetComponent<PlayerAbility>().RoninAbility();
-                    Debug.Log("ABILITYING");
                 }
-                else player.Shoot();
+                else
+                {
+                    player.Shoot();
+                }
             }
         }
 
@@ -182,7 +207,7 @@ public class PlayerInputHandler : MonoBehaviour
             }
             if (RoninTimer > RoninCD)
             {
-                
+
                 sprite.color = new Color(1, 0, 0, 1);
                 player.GetComponent<PlayerAbility>().RoninActive = true;
                 RoninTimer = 0;

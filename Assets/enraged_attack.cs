@@ -25,9 +25,6 @@ public class enraged_attack : StateMachineBehaviour
         firePoint = animator.gameObject.transform.GetChild(0).GetComponent<Transform>();
         fireRate = 1f;
         nextFire = Time.time;
-
-
-
     }
 
 

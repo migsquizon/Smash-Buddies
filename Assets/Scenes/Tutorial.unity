@@ -458,7 +458,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAABAIexYDVGyZgIAAA0FAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty4jAQ/BVK5yVlg4Fkb7uGkD3kUWG3cvFFWGOsQpZcegRIin/fkWxjh5wQPT2j7pmRPwmXpobcKr3WnD0qBuTniPgz+THqgw9wpDslN/wDOs4bZ7b0JBo4r9RyhXjs04yqwGqe/5I74ckRgk7yQulqxXaQKmMNwgUVBjCklfXZEqHPETniz/jOp5zwNFn40wee7qLRGY85SAu6p3bE5GY+n8a388lsNY4Wbc7k5i6azZJkMV2N42nIdzIXtKqBeTN9meRyYRJoEm22DG8pV0Jw02ok9lSHHqS0Ng4dIoFxip6DMM8vge9K68sNk5+LwoBtRWt6WnKNrWuqkt+q6WdFzb7R9U6FCwKiVlRT9fEbYRyHcKFV9dBdHEf+ElvyfP9KTzk1dtDxIbz8qtzJAxV7uhXwVoJ8UmutnGQYtNr5VGdgsuz/XrylJeT7Hm+kXoGu/j63brzewznYP6aCV1sfukkaYCNUaHjYCtA4mj8oOOyMaUsg6lX8M/CX7obL1QbuuTYWQ61L6eVtldOeSlahZ96Ns6nSEgLciq5BUmFPL1jGXs/wKja49ipyT/0zai9vY93ruEoJcM+PoqvQizpchmVKdXgEUz47K7iEXrQPPGGfUiVls2LDnnRpG6cLmg/Sdo6zr6tFtlEC8byYxvl2Fm8X8TiZR7cFJOw22sbxNGck7B6X6JOKl0Zo2x6cmuyLS9yz7usyWmtah3Vnmh7W/KNSg5ZzWahNrgHkc1PhIhw0XoLPkq0YxwZtwFouw7zJZ0aEyvfAskuhLDhdHa2mWV8lIzV/V9YjGUnD5yQjZ3L+D1BLAwQUAAAICAAAQCHsb7Vo8G0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UpKBSaqhWZqxYXKSqWGSuaGuiZmBRVqqSYqFQZKhoXFyilIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAQCHsWA1RsmYCAAANBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAQCHsb7Vo8G0AAAB4AAAACQAkAAAAAAAAAAAAAACzAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGsDAAAAAA==
+    dataString: UEsDBBQAAAgIAABAIeymRg0rZgIAAAwFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty4jAQ/BVK5yVlg4Fkb7sOIXvIo8Ju5eKLsMZYhSy59AiQFP++I9nGhpwQ3T2jnof8Rbg0NeRW6ZXm7EkxID9HxJ/Jj1FPPsKBbpVc80/oNO+c2dKLaNC8UcsV4rEPM6oCq3n+S26FF0cIOskLpasl20KqjDUIF1QYQEor66MlQl8jcsCf8Z0POeJpsvCnTzzdRaMTHnOQFnQv7YTJzXw+jW/nk9lyHC3amMnNXTSbJcliuhzH0xDvZC5oVQPzxfRpkvOFSZBJLLNV+JJyJQQ3rUdij3XoQUpr47BCFDBOseZgzOtL4NvS+nTD4JeiMGBb05oe77nG1jVZyW/V9LOiZtf4+qDCBQNRa6rJ+vRNMI4DXWhVPXYXx5G/xJY8373RY06NHXR8CN9fOndyT8WObgS8lyCf1UorJxmSVjsf6gxM7vu/59rSEvJdjzdWr0BXf59bN15fwymUf0gFrzaeukkaYC1UaHjYCtA4mj9oOOyMaVMg6l38M/CXbofL1RIPXBuLVFul9PY2ymkvJcvQM1+Ns6nSEgLcmq5BUmGPr5jGXs/wihtce8U8UP+M2stbrnsdVyEB7vVRdEW9qv15WKZU+ycw5YuzgkvoTXviGfuUKimbFTOXpI9aO13QfBC1dZxdbhbZRAnE82Ia55tZvFnE42Qe3RaQsNtoE8fTnJGwelximVS8Nj7b7uDQZJ9c4pp1H5fRStM6bDvTdL/in5Ua+OOyUOtcA8iXJkPXIQMaL8FXyZaMY3/WYC2XYdzkKyNC5Ttg2TlRFipdHqymWZ8lIzX/UNYjGUnD1yQjJ3L6D1BLAwQUAAAICAAAQCHsb7Vo8G0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UpKBSaqhWZqxYXKSqWGSuaGuiZmBRVqqSYqFQZKhoXFyilIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAQCHspkYNK2YCAAAMBQAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAQCHsb7Vo8G0AAAB4AAAACQAkAAAAAAAAAAAAAACzAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAGsDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -648,7 +648,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -51, y: -362}
+  m_AnchoredPosition: {x: -59, y: -252}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &228966815
@@ -685,7 +685,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 135}
+  m_AnchoredPosition: {x: 0, y: 86}
   m_SizeDelta: {x: 700, y: 180}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &228966817
@@ -1933,7 +1933,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 135}
+  m_AnchoredPosition: {x: 0, y: 86}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &825156781
@@ -2261,7 +2261,6 @@ GameObject:
   - component: {fileID: 946399738}
   - component: {fileID: 946399741}
   - component: {fileID: 946399740}
-  - component: {fileID: 946399739}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -2288,25 +2287,6 @@ RectTransform:
   m_AnchoredPosition: {x: -62, y: 7}
   m_SizeDelta: {x: 150, y: 150}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &946399739
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 946399737}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 39b5e6bba1e731e4a830d7e45b2f2bd4, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &946399740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5716,6 +5696,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205670730}
   - component: {fileID: 1205670729}
+  - component: {fileID: 1205670731}
   m_Layer: 0
   m_Name: TutorialManager
   m_TagString: Untagged
@@ -5769,6 +5750,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1205670731
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205670728}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 94d08094e5f8cac429caa7d70323d827, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.75
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1208382025
 GameObject:
   m_ObjectHideFlags: 0
@@ -6991,7 +7068,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -28, y: -362}
+  m_AnchoredPosition: {x: -38, y: -252}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1814916720

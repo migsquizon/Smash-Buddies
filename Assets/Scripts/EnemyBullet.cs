@@ -36,7 +36,7 @@ public class EnemyBullet : MonoBehaviour
         if (hitInfo.gameObject.tag == "Player")
         {
             Debug.Log("Damaged by bullet");
-            //hitInfo.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
+            hitInfo.gameObject.GetComponent<PlayerHealth>().TakeDamage(1);
             Destroy(gameObject);
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
 

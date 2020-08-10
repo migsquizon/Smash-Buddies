@@ -10,8 +10,8 @@ public class BossHealth : MonoBehaviour
     public HealthBarPortal healthBarPortal;
     public GameObject gameOverScreen;
 
-
     public GameObject winScreen;
+    public AudioSource deathSound;
 
     private void Start()
     {
@@ -30,6 +30,7 @@ public class BossHealth : MonoBehaviour
         players = GameObject.FindGameObjectsWithTag("Player");
         if (currentHealth <= 0)
         {
+            deathSound.Play();
             GameObject.Find("HUD Canvas/PortalHealthObject").gameObject.SetActive(false);
             winScreen.SetActive(true);
         }
@@ -44,19 +45,6 @@ public class BossHealth : MonoBehaviour
             GameObject.Find("HUD Canvas/PortalHealthObject").gameObject.SetActive(false);
             gameOverScreen.SetActive(true);
         }
-
-
-
-
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // if (collision.gameObject.CompareTag("Enemy"))
-        // {
-        //     TakeDamage(30);
-        //     Destroy(collision.gameObject);
-        // }
     }
 
     public void TakeStatus(float damageOverTime, int duration)

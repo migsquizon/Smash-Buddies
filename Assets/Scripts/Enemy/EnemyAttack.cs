@@ -13,6 +13,7 @@ public class EnemyAttack : MonoBehaviour
     public Transform launchoffset;
     public GameObject rangedProjectile;
     public Transform playerpos;
+    public AudioSource attackSound;
 
 
     IEnumerator attackCD()
@@ -35,8 +36,9 @@ public class EnemyAttack : MonoBehaviour
             if (collision.gameObject.tag == "Player" && !hasAttacked)
             {
                 animator.SetBool("Attack", true);
+                attackSound.Play();
                 hasAttacked = true;
-                Debug.Log("Attacking player");
+                // Debug.Log("Attacking player");
                 if (attackRange > 1)
                 {
                     playerpos = collision.gameObject.transform;
@@ -57,6 +59,7 @@ public class EnemyAttack : MonoBehaviour
             if (collision.gameObject.tag == "Obstacle" && !hasAttacked)
             {
                 animator.SetBool("Attack", true);
+                attackSound.Play();
                 hasAttacked = true;
                 Debug.Log("Attacking obstacle");
                 if (attackRange > 1)

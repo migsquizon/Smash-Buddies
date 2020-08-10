@@ -9,6 +9,7 @@ public class BossAttack : MonoBehaviour
     private bool hasAttacked;
     public Transform attackPoint;
     public float attackRange;
+    public AudioSource attack1Sound;
     //public Animator animator;
 
     IEnumerator attackCD()
@@ -27,6 +28,7 @@ public class BossAttack : MonoBehaviour
             if (collision.gameObject.tag == "Player" && !hasAttacked)
             {
                 //animator.SetBool("Attack", true);
+                attack1Sound.Play();
                 hasAttacked = true;
                 Debug.Log("Attacking Portal");
                 collision.gameObject.GetComponent<PlayerHealth>().PlayerHit();
@@ -37,6 +39,7 @@ public class BossAttack : MonoBehaviour
             if (collision.gameObject.tag == "Obstacle" && !hasAttacked)
             {
                 //animator.SetBool("Attack", true);
+                attack1Sound.Play();
                 hasAttacked = true;
                 collision.gameObject.GetComponent<Obstacle>().TakeDamage(1);
                 StartCoroutine(attackCD());

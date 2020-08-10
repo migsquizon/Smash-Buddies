@@ -8,17 +8,12 @@ public class Obstacle : MonoBehaviour
     public int maxHealth;
     public bool dead;
     public bool isHit;
-    public HealthbarBehaviour healthbar;
     public HealthbarScriptAgain healthbar2;
-    public Transform child;
+    public AudioSource takeDamage;
+    public AudioSource destroyed;
 
     void OnEnable()
     {
-        // Debug.Log(transform.rotation.y + " rotation of obs");
-        // if (transform.rotation.y < 0) {
-        //     child.rotation = Quaternion.Euler(0, 180, 0);
-        //     Debug.Log("HERE");
-        // }
         currentHealth = maxHealth;
         dead = false;
         healthbar2.SetHealth(currentHealth, maxHealth);
@@ -26,14 +21,20 @@ public class Obstacle : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        takeDamage.Play();
         currentHealth -= amount;
         healthbar2.SetHealth(currentHealth, maxHealth);
         Debug.Log(currentHealth + " currentHealth");
-        if (currentHealth <= 0 && !dead) OnDeath();
+        if (currentHealth <= 0 && !dead) StartCoroutine(OnDeath());
     }
 
-    void OnDeath()
+
+    IEnumerator OnDeath()
     {
+        destroyed.Play();
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(1.5f);
         dead = true;
         gameObject.SetActive(false);
         Destroy(gameObject);
