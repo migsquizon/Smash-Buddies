@@ -12,8 +12,10 @@ public class PlayerHealth : MonoBehaviour
     SpriteRenderer sprite;
     bool isboss = false;
     public AudioSource takeDamageSound;
+    private GameObject mainCamera;
     private void Start()
     {
+        mainCamera = GameObject.Find("Main Camera");
         life = hearts.Length;
         sprite = GetComponent<SpriteRenderer>();
         Scene currentScene = SceneManager.GetActiveScene();
@@ -31,7 +33,8 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(int damagePoint)
     {
         if (life >= 1)
-        {   takeDamageSound.Play();
+        {
+            takeDamageSound.Play();
             Debug.Log("Damage Taken");
 
             sprite.color = new Color(1, 1, 1, 0);
@@ -44,13 +47,12 @@ public class PlayerHealth : MonoBehaviour
                 OnDeath();
                 Debug.Log("<<<DEAD>>>");
             }
-
-
         }
     }
 
     public void OnDeath()
     {
+        if (mainCamera) mainCamera.GetComponent<ScreenShake>().StartShake(0.1f, 0.3f);
         dead = true;
         GetComponent<CircleCollider2D>().enabled = false;
         if (!isboss) StartCoroutine(WaitForPlayerToRevive());
@@ -99,13 +101,13 @@ public class PlayerHealth : MonoBehaviour
 
     private IEnumerator WaitForPlayerToRecover()
     {
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        // Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(nextHit);
 
         //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+        // Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         isHit = false;
     }
 

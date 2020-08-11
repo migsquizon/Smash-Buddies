@@ -12,6 +12,7 @@ public class FireTower : MonoBehaviour
     public int atkSize;
     bool fired = false;
     public float dur =5f;
+    public AudioSource attackSound;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
@@ -49,6 +50,7 @@ public class FireTower : MonoBehaviour
     {
         if (!fired)
         {
+            attackSound.Play();
             GameObject fire = Instantiate(fireBreadth, transform.position , transform.rotation);
             fire.GetComponent<Fire>().AtkRange = atkRange;
             fire.GetComponent<Fire>().size = atkSize;

@@ -5,13 +5,14 @@ using TMPro;
 
 public class CoinManager : MonoBehaviour
 {
-    public int coin {get;set;}
+    [SerializeField]
+    public int coin;
     public TextMeshPro coinText;
 
     // Start is called before the first frame update
     void Start()
     {
-        coin = 1000;
+
         coinText.SetText(coin.ToString());
     }
 
@@ -23,7 +24,7 @@ public class CoinManager : MonoBehaviour
 
     public void BuyCoin(int price)
     {
-        Debug.Log("Buy Coin");
+        // Debug.Log("Buy Coin");
         coin -= price;
     }
 }

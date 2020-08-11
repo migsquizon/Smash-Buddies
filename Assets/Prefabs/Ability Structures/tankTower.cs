@@ -9,32 +9,23 @@ public class tankTower : MonoBehaviour
     public int atkRange = 1;
     public int atkSpeed;
     public int atkSize;
-    
+
     public Transform launchoffset;
-    
+
     public Transform launchoffset2;
     bool fired = false;
     public float dur = 5f;
+    public AudioSource attackSound;
     void Start()
     {
         //rb2D = GetComponent<Rigidbody2D>();
-        Destroy(gameObject,dur);
+        Destroy(gameObject, dur);
     }
 
     // Update is called once per frame
     void Update()
     {
-        float dir;
-        if (transform.rotation.y > 1)
-        {
-            dir = 1f;
-        }
-        else
-        {
-            dir = -1f;
-        }
-        
-        var hitcolliders = Physics2D.OverlapBoxAll(launchoffset.position,new Vector2 (atkRange*1f,1f),0);
+        var hitcolliders = Physics2D.OverlapBoxAll(launchoffset.position, new Vector2(atkRange * 1f, 1f), 0);
         //var hitcolliders = Physics2D.OverlapCircleAll(new Vector3(launchoffset.position.x + (dir * Math.Abs(transform.position.y)), launchoffset.position.y, 0f), 3f);
         foreach (var hitcollider in hitcolliders)
         {
@@ -47,13 +38,14 @@ public class tankTower : MonoBehaviour
         }
     }
 
-        public void toFire()
+    public void toFire()
     {
         if (!fired)
         {
-            GameObject pusherobj = Instantiate(pusher, launchoffset2.position + new Vector3(0,-0.1f,0), transform.rotation);
+            attackSound.Play();
+            GameObject pusherobj = Instantiate(pusher, launchoffset2.position + new Vector3(0, -0.1f, 0), transform.rotation);
             pusherobj.GetComponent<push>().AtkRange = atkRange;
-//            push.GetComponent<Fire>().size = atkSize;
+            //            push.GetComponent<Fire>().size = atkSize;
             fired = true;
             StartCoroutine(fireCD());
         }
@@ -65,7 +57,7 @@ public class tankTower : MonoBehaviour
         Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
-        yield return new WaitForSeconds(4-atkSpeed);
+        yield return new WaitForSeconds(4 - atkSpeed);
 
         //After we have waited 5 seconds print the time again.
         Debug.Log("Finished Coroutine at timestamp : " + Time.time);

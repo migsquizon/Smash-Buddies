@@ -11,6 +11,7 @@ public class laser : MonoBehaviour
 
     public float atkRange;
     public float damage;
+    public AudioSource attackSound;
     GameObject closest_enemy;
 
     void Start()
@@ -44,7 +45,7 @@ public class laser : MonoBehaviour
         var closest = 999f;
         Vector3 enemy_loc = new Vector3(0f, 0f, 0f);
 
-        var hitcolliders = Physics2D.OverlapBoxAll(colliderCheck.position, new Vector2(atkRange/2, 2f), 0);
+        var hitcolliders = Physics2D.OverlapBoxAll(colliderCheck.position, new Vector2(atkRange / 2, 2f), 0);
         foreach (var hitcollider in hitcolliders)
         {
             var enemy = hitcollider.gameObject.tag;
@@ -55,9 +56,6 @@ public class laser : MonoBehaviour
                 var dist_to_player = Math.Abs(enemy_location_x - transform.position.x);
                 if (dist_to_player < closest)
                 {
-                    Debug.Log(enemy_location_x);
-                    Debug.Log("hi");
-                    Debug.Log(transform.position.x);
                     closest = dist_to_player * 1f;
                     enemy_loc = hitcollider.gameObject.transform.position;
                     closest_enemy = hitcollider.gameObject;
@@ -69,15 +67,17 @@ public class laser : MonoBehaviour
             }
         }
         Debug.Log(closest);
-        if (closest < 3*atkRange)
+        if (closest < 3 * atkRange)
         {
             lineRenderer.enabled = true;
             lineRenderer.SetPosition(0, offset.position);
             lineRenderer.SetPosition(1, enemy_loc);
-            Debug.Log("next");
-            Debug.Log(enemy_loc);
             if (closest_enemy != null)
+            {
+                attackSound.Play();
+                GetComponent<Animator>().SetTrigger("Attack");
                 closest_enemy.gameObject.GetComponent<EnemyHealth>().TakeDamage(damage);
+            }
 
         }
         //ENEMY TAKE DAMAGE HERE

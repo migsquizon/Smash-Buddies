@@ -59,13 +59,13 @@ public class PlayerActions : MonoBehaviour
     private float currentSkillCoolDownTime;
     private bool skillCoolDownIsRunning;
     private float skillCoolDown;
-    public GameObject teleporting;
     bool isboss = false;
     public AudioSource attackSound;
+    public GameObject Teleport;
 
     void Start()
     {
-
+        Teleport.gameObject.SetActive(false);
 
         buildTowerTimer = buildTowerCooldown + 1;
         // currentTowerCoolDownTime = 0;
@@ -124,11 +124,11 @@ public class PlayerActions : MonoBehaviour
         if (buildTowerTimer > buildTowerCooldown)
         {
             buildTowerTimer = 0;
-            Debug.Log(transform.position);
+            // Debug.Log(transform.position);
 
             //Debug.Log(transform.localRotation);
 
-            Debug.Log(firePoint.position);
+            // Debug.Log(firePoint.position);
 
             //Debug.Log(firePoint.localRotation);
             Instantiate(towerPrefab, firePoint.position, Quaternion.Euler(0, transform.position.x < firePoint.position.x ? 180f : 0, 0));
@@ -207,7 +207,6 @@ public class PlayerActions : MonoBehaviour
         towerPicker.SetActive(false);
         powerUpPicker.SetActive(false);
 
-        teleporting.SetActive(false);
         playerHealth = gameObject.GetComponent<PlayerHealth>();
     }
 
@@ -293,7 +292,6 @@ public class PlayerActions : MonoBehaviour
             {
 
                 //Debug.Log(transform.position);
-                //Debug.Log("teleporting!");
                 if (transform.position.y > -1)
                 {
 
@@ -327,7 +325,6 @@ public class PlayerActions : MonoBehaviour
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         teleport = false;
 
-        teleporting.SetActive(false);
 
     }
 

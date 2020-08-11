@@ -9,6 +9,8 @@ public class Countdown : MonoBehaviour
     TextMeshPro textMeshPro;
     bool timerIsRunning = false;
 
+    public GameObject gameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +24,7 @@ public class Countdown : MonoBehaviour
     {
         if (timerIsRunning)
         {
-            if (timeRemaining > 0 )
+            if (timeRemaining > 0)
             {
                 if (timeRemaining > 60)
                 {
@@ -35,7 +37,7 @@ public class Countdown : MonoBehaviour
                     textMeshPro.color = new Color(255, 0, 0);
                     textMeshPro.SetText(System.Math.Round(timeRemaining, 2).ToString());
                 }
-                
+
             }
             else
             {
@@ -44,6 +46,7 @@ public class Countdown : MonoBehaviour
                 timeRemaining = 0;
                 //textMeshPro.SetText(timeRemaining.ToString());
                 DisplayTime(timeRemaining);
+                gameOverScreen.SetActive(true);
             }
         }
     }

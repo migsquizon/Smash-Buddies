@@ -30,10 +30,15 @@ public class PlayerInputHandler : MonoBehaviour
     private float TankAOE = 4f;
     private int stunDuration = 5;
     private bool teleport = false;
-    public GameObject teleporting;
+    public GameObject Teleport;
     bool isboss = false;
 
-    SpriteRenderer sprite;
+    private int powerUpCount;
+
+    private PersistentManager persistentManager;
+
+
+    //SpriteRenderer sprite;
     private void Awake()
     {
         Scene currentScene = SceneManager.GetActiveScene();
@@ -50,17 +55,19 @@ public class PlayerInputHandler : MonoBehaviour
         playerHealth = player.GetComponent<PlayerHealth>();
         towerPicker = player.towerPicker;
         powerUpPicker = player.powerUpPicker;
-        Debug.Log("input handler awake");
+        // Debug.Log("input handler awake");
         RoninTimer = RoninCD + 1;
         SageTimer = SageCD + 1;
         TankTimer = TankCD + 1;
         SupportTimer = SupportCD + 1;
-        sprite = player.GetComponent<SpriteRenderer>();
+        //sprite = player.GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
-        Debug.Log("input handler start");
+
+        // Debug.Log("input handler start");
+
     }
 
 
@@ -68,6 +75,7 @@ public class PlayerInputHandler : MonoBehaviour
 
     private void Update()
     {
+        persistentManager = GameObject.Find("PersistentManager").GetComponent<PersistentManager>();
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
         if (sceneName == "Round 2")
@@ -86,6 +94,7 @@ public class PlayerInputHandler : MonoBehaviour
         SageTimer += Time.deltaTime;
         TankTimer += Time.deltaTime;
         SupportTimer += Time.deltaTime;
+
 
     }
     public void OnLeftStick(InputValue val)
@@ -152,11 +161,11 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (player.gameObject.name == "Sage")
         {
-            if (powerUpPicker.activeInHierarchy)
+            if (powerUpPicker.activeInHierarchy && persistentManager.talentPoints > 0)
             {
                 // get index of player
-                SageCD -= 2;
-
+                SageCD *= 0.8f;
+                persistentManager.talentPoints -= 1;
             }
             else if (SageTimer > SageCD)
             {
@@ -167,10 +176,11 @@ public class PlayerInputHandler : MonoBehaviour
         }
         if (player.gameObject.name == "Tank")
         {
-            if (powerUpPicker.activeInHierarchy)
+            if (powerUpPicker.activeInHierarchy && persistentManager.talentPoints > 0)
             {
                 // get index of player
-                TankCD -= 2;
+                TankCD *= 0.8f;
+                persistentManager.talentPoints -= 1;
             }
             else if (TankTimer > TankCD)
             {
@@ -181,16 +191,16 @@ public class PlayerInputHandler : MonoBehaviour
         }
         if (player.gameObject.name == "Servo")
         {
-            if (powerUpPicker.activeInHierarchy)
+            if (powerUpPicker.activeInHierarchy && persistentManager.talentPoints > 0)
             {
                 // get index of player
-                SupportCD -= 2;
-
+                SupportCD *= 0.8f;
+                persistentManager.talentPoints -= 1;
             }
             if (SupportTimer > SupportCD)
             {
                 player.GetComponent<PlayerAbility>().heartSpawn();
-                Debug.Log("support skill used");
+                // Debug.Log("support skill used");
                 SupportTimer = 0;
                 //Tanktimer = 0;
                 player.startSkillCoolDown(SupportCD);
@@ -200,15 +210,16 @@ public class PlayerInputHandler : MonoBehaviour
 
         if (player.gameObject.name == "Ronin")
         {
-            if (powerUpPicker.activeInHierarchy)
+            if (powerUpPicker.activeInHierarchy && persistentManager.talentPoints > 0)
             {
                 // get index of player
-                RoninCD -= 2;
+                RoninCD *= 0.8f;
+                persistentManager.talentPoints -= 1;
             }
             if (RoninTimer > RoninCD)
             {
 
-                sprite.color = new Color(1, 0, 0, 1);
+                //sprite.color = new Color(1, 0, 0, 1);
                 player.GetComponent<PlayerAbility>().RoninActive = true;
                 RoninTimer = 0;
                 player.GetComponent<PlayerAbility>().RoninDurFunc();
@@ -232,10 +243,11 @@ public class PlayerInputHandler : MonoBehaviour
             player.BuildTower(towerThree, towerThreePrice);
             return;
         }
-        if (powerUpPicker.activeInHierarchy)
+        if (powerUpPicker.activeInHierarchy && persistentManager.talentPoints > 0)
         {
             // get index of player
-            player.buildTowerCooldown -= 5;
+            player.buildTowerCooldown -= 2;
+            persistentManager.talentPoints -= 1;
             return;
         }
 
@@ -276,11 +288,12 @@ public class PlayerInputHandler : MonoBehaviour
         playerHealth.TakeDamage(1);
     }
     bool teleportpressed = false;
+
     public void OnTeleport()
     {
         if (!teleportpressed && !isboss)
         {
-            player.teleporting.SetActive(true);
+            player.Teleport.gameObject.SetActive(true);
             teleportpressed = true;
             Debug.Log("R2 is pressed");
             player.PlayerHit();
@@ -311,13 +324,18 @@ public class PlayerInputHandler : MonoBehaviour
         //After we have waited 5 seconds print the time again.
         //Debug.Log("Finished Coroutine at timestamp : " + Time.time);
         teleportpressed = false;
-        player.teleporting.SetActive(false);
+        player.Teleport.gameObject.SetActive(false);
     }
 
 
     public void OnNextScene()
     {
         GameObject.Find("LevelChanger").GetComponent<LevelManager>().FadeToNextLevel();
+    }
+
+    public void OnRestart()
+    {
+        GameObject.Find("LevelChanger").GetComponent<LevelManager>().FadeToLevel(0);
     }
 
 }

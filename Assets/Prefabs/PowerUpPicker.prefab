@@ -959,7 +959,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Ability CoolDown
+  m_text: Tower Cooldown
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91708be08a6cdef4bb7c396cebb648d2, type: 2}
   m_sharedMaterial: {fileID: 6294917918075304167, guid: 91708be08a6cdef4bb7c396cebb648d2,
@@ -1029,7 +1029,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0.35151377, w: -0.15137014}
   m_textInfo:
     textComponent: {fileID: 6810949050455132503}
-    characterCount: 16
+    characterCount: 14
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -1116,7 +1116,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Tower Cooldown
+  m_text: Ability Cooldown
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91708be08a6cdef4bb7c396cebb648d2, type: 2}
   m_sharedMaterial: {fileID: 6294917918075304167, guid: 91708be08a6cdef4bb7c396cebb648d2,
@@ -1186,7 +1186,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -4.2864265, w: -0.15137014}
   m_textInfo:
     textComponent: {fileID: 6810949050536728349}
-    characterCount: 14
+    characterCount: 16
     spriteCount: 0
     spaceCount: 1
     wordCount: 2

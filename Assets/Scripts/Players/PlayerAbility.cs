@@ -23,6 +23,7 @@ public class PlayerAbility : MonoBehaviour
     public GameObject stunEffect;
     public float duration = 5.0f;
     private float timeSinceAction;
+    public AudioSource abilitySound;
     bool fired = false;
     SpriteRenderer sprite;
     void Start()
@@ -43,29 +44,17 @@ public class PlayerAbility : MonoBehaviour
 
     public void RoninAbility()
     {
-
         fired = true;
-        Debug.Log("shooting");
+        abilitySound.Play();
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
         StartCoroutine(shootCD());
         Transform opposite = transform.GetChild(5).GetComponent<Transform>();
-        //Debug.Log(firePoint.rotation);
-        //temporary.Rotate(0f, 180f, 0f);
-        //Debug.Log(firePoint.rotation);
-        //Quaternion temporary = firePoint.rotation;
         GameObject oppBullet = Instantiate(bulletPrefab, opposite.position, opposite.rotation);
-        //oppBullet.GetComponent<Bullet>().dir = transform.localRotation.y > 0 ? -1f : 1f ;
-
-        // temporary.Rotate(0f, 180f, 0f);
-        // if(timeSinceAction > duration) {
-        //     RoninActive = false;
-        //     Debug.Log(timeSinceAction);
-        //     timeSinceAction = 0;
-        // }
-
     }
+
     public void tankStun(float AOE, int stunDuration)
     {
+        abilitySound.Play();
         GameObject stun_ = (GameObject)Instantiate(stunEffect, transform.position, transform.rotation);
         Destroy(stun_, 2.0f);
         var hitcolliders = Physics2D.OverlapBoxAll(transform.position, new Vector2(AOE, 2f), 0);
@@ -74,27 +63,22 @@ public class PlayerAbility : MonoBehaviour
             var enemy = hitcollider.gameObject.tag;
             if (enemy == "Enemy")
             {
-                Debug.Log("Got enemy here");
                 var ms = hitcollider.gameObject.GetComponent<EnemyHealth>().moveSpeed.speed;
-                Debug.Log(ms);
                 hitcollider.gameObject.GetComponent<EnemyHealth>().TakeStatus(0, ms, stunDuration);
-                Debug.Log(ms);
-
-                //Debug.Log(transform.position.x);
             }
         }
     }
 
     public void fireBurn()
     {
-
+        abilitySound.Play();
         //Transform opposite = transform.GetChild(4).GetComponent<Transform>();
         Instantiate(fire, firePoint.position, firePoint.rotation);
     }
 
     public void heartSpawn()
     {
-
+        abilitySound.Play();
         // Transform opposite = transform.GetChild(4).GetComponent<Transform>();
         Instantiate(heart, firePoint.position, firePoint.rotation);
     }
@@ -107,27 +91,28 @@ public class PlayerAbility : MonoBehaviour
     IEnumerator shootCD()
     {
         //Print the time of when the function is first called.
-        Debug.Log("Started Coroutine at timestamp : " + Time.time);
+        // Debug.Log("Started Coroutine at timestamp : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
         yield return new WaitForSeconds(0.3f);
         fired = false;
         //After we have waited 5 seconds print the time again.
-        Debug.Log("Finished Coroutine at timestamp : " + Time.time);
-        
+        // Debug.Log("Finished Coroutine at timestamp : " + Time.time);
+
 
     }
 
     IEnumerator RoninDuration()
     {
         //Print the time of when the function is first called.
-        Debug.Log("Ronin ability duration started at : " + Time.time);
+        // Debug.Log("Ronin ability duration started at : " + Time.time);
 
         //yield on a new YieldInstruction that waits for 5 seconds.
+        sprite.color = new Color(1, 0, 0, 1);
         yield return new WaitForSeconds(5.0f);
         RoninActive = false;
         //After we have waited 5 seconds print the time again.
-        Debug.Log("Ronin Ability duration ended at : " + Time.time);
+        // Debug.Log("Ronin Ability duration ended at : " + Time.time);
         sprite.color = new Color(1, 1, 1, 1);
     }
 }

@@ -24,7 +24,7 @@ public class Obstacle : MonoBehaviour
         takeDamage.Play();
         currentHealth -= amount;
         healthbar2.SetHealth(currentHealth, maxHealth);
-        Debug.Log(currentHealth + " currentHealth");
+        // Debug.Log(currentHealth + " currentHealth");
         if (currentHealth <= 0 && !dead) StartCoroutine(OnDeath());
     }
 

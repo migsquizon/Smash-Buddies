@@ -43,7 +43,7 @@ public class EnemyAttack : MonoBehaviour
                 {
                     playerpos = collision.gameObject.transform;
                     GameObject fire = Instantiate(rangedProjectile, launchoffset.position, launchoffset.rotation);
-                    fire.GetComponent<Rigidbody2D>().velocity = (playerpos.position - launchoffset.position).normalized * 10f;
+                    fire.GetComponent<Rigidbody2D>().velocity = (playerpos.position - launchoffset.position).normalized * 6f;
 
                     gameObject.GetComponent<EnemyHealth>().TakeStatus(0, moveSpeed, 2);
 
@@ -61,21 +61,23 @@ public class EnemyAttack : MonoBehaviour
                 animator.SetBool("Attack", true);
                 attackSound.Play();
                 hasAttacked = true;
-                Debug.Log("Attacking obstacle");
+                //Debug.Log("Attacking obstacle");
                 if (attackRange > 1)
                 {
                     GameObject fire = Instantiate(rangedProjectile, launchoffset.position, launchoffset.rotation);
+                    fire.GetComponent<Rigidbody2D>().velocity = (collision.gameObject.transform.position - launchoffset.position).normalized * 6f;
                     gameObject.GetComponent<EnemyHealth>().TakeStatus(0, moveSpeed, 2);
                 }
                 else
                 {
                     //fire.GetComponent<Fire>().AtkRange = attackRange;
                     collision.gameObject.GetComponent<Obstacle>().TakeDamage(1);
+                    gameObject.GetComponent<EnemyHealth>().TakeStatus(0, moveSpeed, 2);
+
                 }
                 //fire.GetComponent<Fire>().AtkRange = attackRange;
 
                 StartCoroutine(attackCD());
-                gameObject.GetComponent<EnemyHealth>().TakeStatus(0, moveSpeed, 2);
             }
         }
     }

@@ -14,7 +14,7 @@ public class EnemyBullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         //rb.velocity = transform.right * speed;
-        Destroy(gameObject, 0.7f);
+        Destroy(gameObject, 2f);
     }
 
     void OnTriggerEnter2D(Collider2D hitInfo)
@@ -44,7 +44,7 @@ public class EnemyBullet : MonoBehaviour
         if (hitInfo.gameObject.tag == "Obstacle")
         {
             Debug.Log("Damaged by bullet");
-            hitInfo.gameObject.GetComponent<PlayerHealth>().TakeDamage(damage);
+            hitInfo.gameObject.GetComponent<Obstacle>().TakeDamage(1);
             Destroy(gameObject);
             //hitInfo.gameObject.GetComponent<EnemyHealth>().TakeStatus(20f,30f,5);
 

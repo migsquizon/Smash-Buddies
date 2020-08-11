@@ -8,27 +8,27 @@ public class TutorialManager : MonoBehaviour
     private GameObject tutorialEnemy;
 
     public GameObject HUDStateParent;
-    public GameObject tutorial_0_HUD;
-    public GameObject tutorial_1_HUD;
-    public GameObject tutorial_2_HUD;
-    public GameObject tutorial_3_HUD;
-    public GameObject tutorial_4_HUD;
-    public GameObject tutorial_5_HUD;
-    public GameObject tutorial_6_HUD;
-    public GameObject tutorial_7_HUD;
+
+    public GameObject XConnect;
+    public GameObject StartStart;
 
 
     public int state = 0;
     public bool enemyIsDead = false;
     public bool enemyChasePortal = false;
-    private bool startCoroutine = false;
 
     public GameObject tutorial_1_target;
     public GameObject tutorial_2_target;
     public GameObject MainPortal;
 
+
     void Update()
     {
+        if (GameObject.Find("PlayerInput(Clone)"))
+        {
+            XConnect.gameObject.SetActive(false);
+            StartStart.gameObject.SetActive(true);
+        }
         if (state == 1)
         {
             if (tutorial_1_target.GetComponentInChildren<Tutorial_1>().hasCollided)
@@ -36,9 +36,7 @@ public class TutorialManager : MonoBehaviour
                 tutorial_1_target.GetComponentInChildren<Tutorial_1>().hasCollided = false;
 
                 tutorial_1_target.gameObject.SetActive(false);
-                tutorial_1_HUD.gameObject.SetActive(false);
                 tutorial_2_target.gameObject.SetActive(true);
-                tutorial_2_HUD.gameObject.SetActive(true);
                 state++;
             }
         }
@@ -48,9 +46,6 @@ public class TutorialManager : MonoBehaviour
             {
                 tutorial_2_target.GetComponentInChildren<Tutorial_1>().hasCollided = false;
                 tutorial_2_target.gameObject.SetActive(false);
-                tutorial_2_HUD.gameObject.SetActive(false);
-                tutorial_3_HUD.gameObject.SetActive(true);
-
                 SpawnEnemy();
                 state++;
             }
@@ -60,8 +55,6 @@ public class TutorialManager : MonoBehaviour
             if (!GameObject.Find("Melee(Clone)")) enemyIsDead = true;
             if (enemyIsDead)
             {
-                tutorial_3_HUD.gameObject.SetActive(false);
-                tutorial_4_HUD.gameObject.SetActive(true);
                 MainPortal.gameObject.SetActive(true);
                 enemyChasePortal = true;
                 state++;
@@ -69,19 +62,12 @@ public class TutorialManager : MonoBehaviour
         }
         else if (state == 4)
         {
-            tutorial_0_HUD.gameObject.SetActive(false);
-            tutorial_7_HUD.gameObject.SetActive(true);
             if (!GameObject.Find("Melee(Clone)")) enemyIsDead = true;
             if (enemyIsDead)
             {
                 // summon enemy
                 SpawnEnemy();
                 enemyIsDead = false;
-            }
-            if (!startCoroutine)
-            {
-                StartCoroutine(RotatingTutorial());
-                startCoroutine = true;
             }
         }
     }
@@ -93,17 +79,5 @@ public class TutorialManager : MonoBehaviour
         tutorialEnemy.SetActive(true);
     }
 
-    IEnumerator RotatingTutorial()
-    {
-        tutorial_4_HUD.gameObject.SetActive(false);
-        tutorial_5_HUD.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.5f);
-        tutorial_5_HUD.gameObject.SetActive(false);
-        tutorial_6_HUD.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.5f);
-        tutorial_6_HUD.gameObject.SetActive(false);
-        tutorial_4_HUD.gameObject.SetActive(true);
-        yield return new WaitForSeconds(3.5f);
-        StartCoroutine(RotatingTutorial());
-    }
+
 }

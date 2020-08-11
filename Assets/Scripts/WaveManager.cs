@@ -20,9 +20,18 @@ public class WaveManager : MonoBehaviour
     public TextMeshPro preparationText;
 
 
+    public TextMeshPro powerupText;
+
+
     public bool stillGotEnemy = false;
 
     private PersistentManager persistentManager;
+
+
+    private CoinManager coinManager;
+
+    private PortalHealth portalHealth;
+
     public int preparation = 15;
 
     private static WaveManager _instance;
@@ -123,7 +132,9 @@ public class WaveManager : MonoBehaviour
         WaitForSeconds prep = new WaitForSeconds(preparation);
 
         preparationText.SetText("Preparation Phase");
-        if (persistentManager != null) persistentManager.talentPoints += 1;
+        if (persistentManager != null) persistentManager.talentPoints += 4;
+        Debug.Log(225 * (int)(portalHealth.currentHealth / portalHealth.maxHealth));
+        if (coinManager != null && portalHealth != null) coinManager.coin += (int)(portalHealth.currentHealth * 225 / portalHealth.maxHealth);
         yield return prep;    //Wait for preparation
 
         spawnWave(curr);
@@ -176,12 +187,15 @@ public class WaveManager : MonoBehaviour
     {
         //rb2D = GetComponent<Rigidbody2D>();
         persistentManager = GameObject.Find("PersistentManager").GetComponent<PersistentManager>();
+        coinManager = GameObject.Find("CoinManager").GetComponent<CoinManager>();
+        portalHealth = GameObject.Find("Portal Destination").GetComponent<PortalHealth>();
         begin();
     }
 
 
     void Update()
     {
+        powerupText.SetText(persistentManager.talentPoints.ToString());
         respawns = GameObject.FindGameObjectsWithTag("Enemy");
         if (respawns.Length == 0) stillGotEnemy = false;
         else stillGotEnemy = true;

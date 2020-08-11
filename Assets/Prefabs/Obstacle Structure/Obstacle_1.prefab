@@ -519,13 +519,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d15500684bfb84a9b4e66b6fc2dab2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 20
-  maxHealth: 20
+  currentHealth: 10
+  maxHealth: 10
   dead: 0
   isHit: 0
-  healthbar: {fileID: 0}
   healthbar2: {fileID: 4347203745876798849}
-  child: {fileID: 0}
   takeDamage: {fileID: 1227618397295176210}
   destroyed: {fileID: 4995370222934788234}
 --- !u!1001 &2690192928959786791

@@ -34,7 +34,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (m_CurrentHealth <= 0f && !m_Dead)
         {
-            OnDeath();
+            StartCoroutine(DeathFX());
         }
     }
 
@@ -74,14 +74,9 @@ public class EnemyHealth : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
         GetComponent<Collider2D>().enabled = false;
-        Debug.Log(GetComponent<AudioSource>());
+        GetComponent<EnemyAttack>().enabled = false;
         yield return new WaitForSeconds(1.0f);
         m_Dead = true;
         Destroy(gameObject);
-    }
-
-    private void OnDeath()
-    {
-        StartCoroutine(DeathFX());
     }
 }
