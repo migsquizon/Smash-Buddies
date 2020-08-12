@@ -181,8 +181,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae8624cb52c4e0d42bca103966237bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_CurrentHealth: 100
-  m_MaxHealth: 100
+  m_CurrentHealth: 80
+  m_MaxHealth: 80
   m_Dead: 0
   healthbar2: {fileID: 8983948965291358090}
   moveSpeed: {fileID: 5543541607667241451}
